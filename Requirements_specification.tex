@@ -77,11 +77,91 @@ The following section describes the system's actors. Every actor has a type and 
 
 \pagebreak
 
-\section{Use cases}
+\section{Fully dressed Use cases }
 
-\subsection{Use case 1 - Enter parameters}
+%TODO Skriv noget om hvad en parameter profil er!
+\begin{framed}
+\subsection{Use case 1 - New parameter profile}
 \subsubsection*{Goal:}
-To enter the parameters for the boat being used.
+To create a new parameter profile for the controller
+
+\subsubsection*{Initialization:}
+Technician
+
+\subsubsection*{Actors:}
+Technician (primary)
+
+\subsubsection*{References:}
+Use case 3 - Edit parameter profile
+
+\subsubsection*{Simultaneous occurrences:}
+One
+
+\subsubsection*{Prerequisite:}
+Edit parameter menu is opened in user interface
+
+\subsubsection*{Result:}
+A new parameter profile has been created.
+
+\subsubsection*{Main scenario:}
+\begin{enumerate}
+	\item The technician selects "New Profile" button.
+	\item A new parameter profile is added to the list of parameter profiles, all parameters are set to default values.
+	\item The new parameter profile is passed to use case 3 - Edit parameter profile
+\end{enumerate}	
+\end{framed}
+
+\begin{framed}
+	\subsection{Use case 2 - Delete parameter profile}
+	\subsubsection*{Goal:}
+	To delete a parameter profile for the controller
+	
+	\subsubsection*{Initialization:}
+	Technician
+	
+	\subsubsection*{Actors:}
+	Technician (primary)
+	
+	\subsubsection*{References:}
+	None
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item Edit parameter menu is opened in user interface
+		\item A parameter profile must exist.
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	A parameter profile has been deleted
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The technician selects a desired parameter profile to delete
+		\item The technician selects "Delete Profile" button.
+		\item The selected profile is deleted from the list of parameter profiles.
+	\end{enumerate}	
+	
+	\subsubsection*{Exception:}
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item 
+		\begin{enumerate}
+			\item If the active profile is deleted, no active profile is set.
+		\end{enumerate}
+	\end{enumerate}
+
+
+\end{framed}
+
+
+
+\begin{framed}
+\subsection{Use case 3 - Edit parameter profile}
+\subsubsection*{Goal:}
+To edit an existing parameter profile 
 
 \subsubsection*{Initialization:}
 Technician
@@ -92,57 +172,117 @@ Technician (primary)
 \subsubsection*{References:}
 None
 
-\subsubsection*{Simultaneous occurances:}
+\subsubsection*{Simultaneous occurrences:}
 One
 
 \subsubsection*{Prerequisite:}
-None
+\begin{itemize}
+	\item Edit parameter menu is opened in user interface
+	\item A parameter profile must exist.
+\end{itemize}
+
 
 \subsubsection*{Result:}
-The autopilot parameters have been updated.
+The parameter profile has been edited
 
 \subsubsection*{Main scenario:}
 \begin{enumerate}
-	\item The technician investigates the boat which will be used, specifically its drive system.
-	\item The boat parameters are set using the graphical user interface. 
+	\item The technician selects a desired parameter profile to edit
+	\item Then the technician selects "Edit Profile"
+	\item The selected parameter profile values are displayed on the user interface
+	\item The technician edits the parameter values of the profile
+	\item The technician selects "Save"
+	\item The old parameter profile is overwritten with the new values.
 \end{enumerate}	
+
+\subsubsection*{Extension:}
+\begin{enumerate}
+	\setcounter{enumi}{4}
+	\item 
+	\begin{enumerate}
+		\item The technician selects "Revert"
+		\item The old parameter profile is not overwritten. The old values are kept
+		\item The user interface displays the old values
+	\end{enumerate}
+\end{enumerate}
 \end{framed}
 
-
 \begin{framed}
-	\subsection{Use case 1 - Enter parameters}
+	\subsection{Use case 4 - Set active parameter profile}
 	\subsubsection*{Goal:}
-		To enter the parameters for the boat being used.
-		
+	To set a parameter profile as active.
+	
 	\subsubsection*{Initialization:}
-		Technician
+	Technician
 	
 	\subsubsection*{Actors:}
-		Technician (primary)
+	Technician (primary)
 	
 	\subsubsection*{References:}
-		None
+	None
 	
-	\subsubsection*{Simultaneous occurances:}
-		One
+	\subsubsection*{Simultaneous occurrences:}
+	One
 	
 	\subsubsection*{Prerequisite:}
-		None
-	
+	\begin{itemize}
+		\item Edit parameter menu is opened in user interface
+		\item A parameter profile must exist.
+	\end{itemize}
+
 	\subsubsection*{Result:}
-		The autopilot parameters have been updated.
+	The parameter profile has been set as active
 	
 	\subsubsection*{Main scenario:}
-		\begin{enumerate}
-			\item The technician investigates the boat which will be used, specifically its drive system.
-			\item The boat parameters are set using the graphical user interface. 
-		\end{enumerate}	
+	\begin{enumerate}
+		\item The technician selects a desired parameter profile to activate
+		\item The technician then selects "Set Profile"
+		\item The selected parameter profile has been set as active.
+		\item The name of the active profile is displayed on the user interface.
+		\item The boat parameters are updated with the newly activated parameter profile values.
+	\end{enumerate}
 \end{framed}
 
 \begin{framed}
-	\subsection{Use case 2 - Specify waypoints}
+	\subsection{Use case 5 - Request diagnostics}
 	\subsubsection*{Goal:}
-	To enter waypoints, outlining a desired path through an area.
+	To display all diagnostics data
+	
+	\subsubsection*{Initialization:}
+	Technician or user
+	
+	\subsubsection*{Actors:}
+	\begin{itemize}
+		\item Technician (primary)
+		\item User (primary)
+		\item GPS (secondary)
+	\end{itemize}
+	
+	\subsubsection*{References:}
+	None
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One
+	
+	\subsubsection*{Prerequisite:}
+	None
+	
+	\subsubsection*{Result:}
+	All diagnostics data are displayed on the user interface
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The primary actor selects the "Diagnostics" menu in the user interface.
+		\item The diagnostics data is displayed on the user interface. 
+	\end{enumerate}
+\end{framed}
+
+
+
+\begin{framed}
+	\subsection{Use case 6 - Set point to point destination}
+	\subsubsection*{Goal:}
+	To set a point to point destination
 	
 	\subsubsection*{Initialization:}
 	User
@@ -153,48 +293,31 @@ The autopilot parameters have been updated.
 	\subsubsection*{References:}
 	None
 	
-	\subsubsection*{Simultaneous occurances:}
+	\subsubsection*{Simultaneous occurrences:}
 	One
 	
 	\subsubsection*{Prerequisite:}
-	Use case 1 - Enter parameters has been completed.
-	
-	\subsubsection*{Result:}
-	Waypoints for the path have been set.
-	
-	\subsubsection*{Main scenario:}
-	\begin{enumerate}
-		\item The user accesses the graphical user interface and sets a series of waypoints, detailing a path through the area starting at Waypoint 1.
-	\end{enumerate}	
-\end{framed}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The point to point menu is opened in user interface
+	\end{itemize}
 
-\begin{framed}
-	\subsection{Use case 3 - Navigate waypoints}
-	\subsubsection*{Goal:}
-	To navigate the set waypoints, outlining a desired path through an area.
-	
-	\subsubsection*{Initialization:}
-	User
-	
-	\subsubsection*{Actors:}
-	User (primary), 
-	
-	\subsubsection*{References:}
-	None
-	
-	\subsubsection*{Simultaneous occurances:}
-	One
-	
-	\subsubsection*{Prerequisite:}
-	Use case 2 - Specify waypoints has been completed.
-	
 	\subsubsection*{Result:}
-	The boat has completed its path through each waypoint.
+	A destination has been defined.
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user accesses the graphical user interface and selects "Start".
-		\item The Boat Autopilot updates its current location using GPS signals.
-		\item The Boat Autopilot begins navigating to the first waypoint using a feedback control loop, and continues this until each waypoint has been visited. The Boat's location is updated throughout using GPS.
+		\item The user selects a desired position on the map.
+		\item \label{uc4.2} The user interface displays the selected position on the map
+		\item the user interface displays the selected position as coordinates
 	\end{enumerate}	
-\end{framed}
+
+	\subsubsection*{Alternate flow:}
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item The user inputs latitude and longitude in the user interface
+			\item The main scenario is continued from \ref{uc4.2}
+		\end{enumerate}
+	\end{enumerate}
+\end{framed}	
