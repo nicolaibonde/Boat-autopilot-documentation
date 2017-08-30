@@ -98,7 +98,7 @@ Use case 3 - Edit parameter profile
 One
 
 \subsubsection*{Prerequisite:}
-Edit parameter menu is opened in user interface
+"Edit parameter" menu is opened in user interface
 
 \subsubsection*{Result:}
 A new parameter profile has been created.
@@ -130,7 +130,7 @@ A new parameter profile has been created.
 	
 	\subsubsection*{Prerequisite:}
 	\begin{itemize}
-		\item Edit parameter menu is opened in user interface
+		\item "Edit parameter" menu is opened in user interface
 		\item A parameter profile must exist.
 	\end{itemize}
 	
@@ -177,7 +177,7 @@ One
 
 \subsubsection*{Prerequisite:}
 \begin{itemize}
-	\item Edit parameter menu is opened in user interface
+	\item "Edit parameter" menu is opened in user interface
 	\item A parameter profile must exist.
 \end{itemize}
 
@@ -226,7 +226,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Prerequisite:}
 	\begin{itemize}
-		\item Edit parameter menu is opened in user interface
+		\item "Edit parameter" menu is opened in user interface
 		\item A parameter profile must exist.
 	\end{itemize}
 
@@ -299,7 +299,7 @@ The parameter profile has been edited
 	\subsubsection*{Prerequisite:}
 	\begin{itemize}
 		\item The user interface has an updated map
-		\item The point to point menu is opened in user interface
+		\item The "Point to point" menu is opened in user interface
 	\end{itemize}
 
 	\subsubsection*{Result:}
@@ -320,4 +320,275 @@ The parameter profile has been edited
 			\item The main scenario is continued from \ref{uc4.2}
 		\end{enumerate}
 	\end{enumerate}
+\end{framed}	
+
+\begin{framed}
+	\subsection{Use case 7 - Calculate point to point path}
+	\subsubsection*{Goal:}
+	A path to the destination has been calculated.
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	None
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One 
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Point to point" menu is opened in user interface
+		\item The boat must not be running a navigation task.
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	A path to the destination has been calculated.
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects "Calculate path" from the user interface.
+		\item A path is calculated and displayed on the map. 
+		\item The "Calculate path" option is changed to "Start"
+	\end{enumerate}	
+\end{framed}	
+
+
+\begin{framed}
+	\subsection{Use case 8 - Run point to point path}
+	\subsubsection*{Goal:}
+	The boat reaches the point to point destination
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	Use case 7 - Calculate point to point path
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One 
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Point to point" menu is opened in user interface
+		\item Use case 7 - Calculate point to point path has been completed
+		\item There must be an active parameter profile.
+		\item The boat must not be running a navigation task.
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	The destination is reached
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects "Start".
+		\item The "Start" button on the user interface changes to read "Running...".
+		\item The boat runs a control loop based on direction data from the calculated path.
+		\item The position of the boat on the user interface map is continually updated using GPS.
+		\item The ETA is continually calculated and displayed on the user interface.
+		\item When the boat reaches its destination it stops.
+		\item On the user interface the "Running..." button is replaced by the "Calculate path" button.
+	\end{enumerate}	
+\end{framed}	
+
+\begin{framed}
+	\subsection{Use case 9 - Stop point to point path}
+	\subsubsection*{Goal:}
+	The boat stops while running point to point navigation
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	Use case 8 - Run point to point path
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One 
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Point to point" menu is opened in user interface
+		\item Use case 8 - Run point to point is running
+		\item There must be an active parameter profile.
+		
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	The boat has stopped
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects "Stop".
+		\item The "Running..." button changes to the "Calculate path" button.
+		\item The boat turns off its motors and comes to a halt.
+	\end{enumerate}	
+\end{framed}	
+
+\begin{framed}
+	\subsection{Use case 10 - Set coverage area}
+	\subsubsection*{Goal:}
+	To specify an area to cover.
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	None
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Coverage" menu is opened in user interface
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	A coverage area has been defined
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects two positions on the map which encapsulates a rectangle. One of the points is labeled "1", this specifies the starting point of the coverage route, the other is labeled "2" indicating the endpoint.
+		\item \label{uc10.2} The user interface displays the selected rectangle on the map, including the staring point "1" and endpoint "2".
+		\item The user interface displays the selected points as coordinates.
+	\end{enumerate}	
+	
+	\subsubsection*{Alternate flow:}
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item The user inputs latitude and longitude for each point "1" and "2" in the user interface.
+			\item The main scenario is continued from \ref{uc10.2}
+		\end{enumerate}
+	\end{enumerate}
+\end{framed}	
+
+\begin{framed}
+	\subsection{Use case 11 - Calculate coverage path}
+	\subsubsection*{Goal:}
+	To calculate a path that covers an area.
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	Use case 10 - Set coverage area
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One 
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Coverage" menu is opened in user interface.
+		\item The area to cover must be defined.
+		\item The boat must not be running a navigation task.
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	A path to the destination has been calculated.
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects "Calculate path" from the user interface.
+		\item A path is calculated and displayed on the map. 
+		\item The "Calculate path" option is changed to "Start"
+	\end{enumerate}	
+\end{framed}	
+
+\begin{framed}
+	\subsection{Use case 12 - Run coverage path}
+	\subsubsection*{Goal:}
+	The boat completes its coverage path.
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	Use case 11 - Calculate coverage path
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One 
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Coverage" menu is opened in user interface
+		\item Use case 11 - Calculate coverage path has been completed
+		\item There must be an active parameter profile.
+		\item The boat must not be running a navigation task.
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	The coverage path is completed.
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects "Start".
+		\item The "Start" button on the user interface changes to read "Running...".
+		\item The boat runs a control loop based on direction data from the calculated coverage path.
+		\item The position of the boat on the user interface map is continually updated using GPS.
+		\item The ETA is continually calculated and displayed on the user interface.
+		\item When the boat reaches its destination, it stops.
+		\item On the user interface the "Running..." button is replaced by a "Calculate path" button.
+	\end{enumerate}	
+\end{framed}	
+
+\begin{framed}
+	\subsection{Use case 13 - Stop point to point path}
+	\subsubsection*{Goal:}
+	The boat stops while running coverage navigation
+	
+	\subsubsection*{Initialization:}
+	User
+	
+	\subsubsection*{Actors:}
+	User (primary)
+	
+	\subsubsection*{References:}
+	Use case 12 - Run coverage path
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One 
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item The user interface has an updated map
+		\item The "Coverage" menu is opened in user interface
+		\item Use case 12 - Run coverage path is running
+		\item There must be an active parameter profile.
+		
+	\end{itemize}
+	
+	\subsubsection*{Result:}
+	The boat has stopped
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The user selects stop.
+		\item The "Running..." button changes to a "Calculate path" button.
+		\item The boat turns off its motors and comes to a halt.
+	\end{enumerate}	
 \end{framed}	
