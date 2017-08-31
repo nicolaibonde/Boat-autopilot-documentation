@@ -82,6 +82,7 @@ The following section describes the system's actors. Every actor has a type and 
 \section{Fully dressed Use cases }
 
 %TODO Skriv noget om hvad en parameter profil er!
+%TODO Skriv uc1: i use case diagrammet
 \begin{framed}
 \subsection{Use case 1 - New parameter profile}
 \subsubsection*{Goal:}
@@ -94,7 +95,7 @@ Technician
 Technician (primary)
 
 \subsubsection*{References:}
-Use case 3 - Edit parameter profile
+None
 
 \subsubsection*{Simultaneous occurrences:}
 One
@@ -109,7 +110,7 @@ A new parameter profile has been created.
 \begin{enumerate}
 	\item The technician selects "New Profile" button.
 	\item A new parameter profile is added to the list of parameter profiles, all parameters are set to default values.
-	\item The new parameter profile is passed to use case 3 - Edit parameter profile
+	\item The selected parameter profile values are displayed on the user interface
 \end{enumerate}	
 \end{framed}
 
@@ -311,7 +312,7 @@ The parameter profile has been edited
 	\begin{enumerate}
 		\item The user selects a desired position on the map.
 		\item \label{uc4.2} The user interface displays the selected position on the map
-		\item the user interface displays the selected position as coordinates
+		\item The user interface displays the selected position as coordinates
 	\end{enumerate}	
 
 	\subsubsection*{Alternate flow:}
