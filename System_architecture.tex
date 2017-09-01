@@ -9,20 +9,45 @@ k
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/General_BDD}
 	\caption{General BDD}
-	\label{fig:generalbdd}
 \end{figure}
 
+k
 
 \subsubsection{General IBD}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/General_IBD}
 	\caption{General IBD}
-	\label{fig:generalibd}
 \end{figure}
 
-\subsubsection{Signal list}
 k
+
+\subsubsection{Signal list}
+
+%TODO change ibd so every signal has a name
+Table~\ref*{table: General IBD} shows the signal list for the general system.
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Signal type} 	&\textbf{Name}		&\textbf{Description} \\\hline
+		24V			&Vsupply	&24V supply to Power regulator\\\hline
+		
+		24V			&Vcc24		&24V supply to Motor\\\hline
+		12V			&Vcc12		&12V supply to GPS\\\hline
+		5V			&Vcc5		&5V supply to Controller and Motor Controller\\\hline
+		0V			&0V			&System ground\\\hline
+		PWM[1..2]	&MotConPWM	&PWM-signal to Motor Control, one or two instances\\\hline
+		PWM[1..2]	&MotorPWM	&PWM-signal to Motor, one or two instances\\\hline
+		CMOS		&GPS		&GPS data to Controller, CMOS-standard\\\hline	
+		WiFi		&WiFi		&WiFi signal between Controller and User interface\\\hline
+		Ethernet	&Ethernet	&Ethernet signal between Controller and User interface\\\hline
+		
+		
+	\end{tabular}
+	\caption{Signal list for General IBD}
+	\label{table: General IBD}
+\end{table}
 
 \section{Software architecture}
 k
@@ -31,6 +56,119 @@ k
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Domain_Model}
 	\caption{Domain Model}
-	\label{fig:domainmodel}
 \end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Application_Model}
+	\caption{Application Model}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_1_SD}
+	\caption{Sequence diagram for Use case 1 - New parameter profile}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_2_SD}
+	\caption{Sequence diagram for Use case 2 - Delete parameter profile}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_3_SD}
+	\caption{Sequence diagram for Use case 3 - Edit parameter profile}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_4_SD}
+	\caption{Sequence diagram for Use case 4 - Set active parameter profile}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_5_SD}
+	\caption{Sequence diagram for Use case 5 - Request diagnostics}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_6_SD}
+	\caption{Sequence diagram for Use case 6 - Set point to point destination}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_7_SD}
+	\caption{Sequence diagram for Use case 7 - Calculate point to point path}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_8_SD}
+	\caption{Sequence diagram for Use case 8 - Run point to point path}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_9_SD}
+	\caption{Sequence diagram for Use case 9 - Stop point to point path}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_10_SD}
+	\caption{Sequence diagram for Use case 10 - Set coverage area}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_11_SD}
+	\caption{Sequence diagram for Use case 11 - Calculate coverage path}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_12_SD}
+	\caption{Sequence diagram for Use case 12 - Run coverage path}
+\end{figure}
+
+k
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_13_SD}
+	\caption{Sequence diagram for Use case 13 - Stop coverage path}
+\end{figure}
+
+k
 
