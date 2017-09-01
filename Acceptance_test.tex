@@ -268,8 +268,90 @@ Template
 		}}}\\  \hline
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
-		1 & Select a position on the map & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for po\\ \hline
-		2 & Select a different position on the map & The map indicates the position and labels it "2" to indicate the end position of the coverage\\ \hline
+		1 & Select a position on the map & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
+		2 & Select a different position on the map & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
 	\end{tabularx}
-	\caption{Test of: --Use case name and Scenario--}
+	\caption{Test of: Use case 10 - Set coverage area - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 10 - Set coverage area} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 10 - Set coverage area - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 11 - Calculate coverage path} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface\\
+					\textbullet The boat must not be running a navigation task
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint of the Bézier curves covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 11 - Calculate coverage path - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 12 - Run coverage path} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface\\
+					\textbullet There must be an active parameter profile\\
+					\textbullet The boat must not be running a navigation task
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint of the Bézier curves covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
+		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has completed the coverage of the area chosen in the first step, also while the boat is moving the ETA on the user interface is continually updated with an approximate ETA. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the endpoint the "Running..." button should change to "Calculate path"\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 12 - Run coverage path - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 13 - Stop coverage path} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" men is opened in user interface\\
+					\textbullet There must be an active parameter profile
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint of the Bézier curves covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
+		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving, also while the boat is moving the ETA on the user interface is continually updated with an approximate ETA. On the map the icon of the boat should also change to correspond with the real position of the boat. \\ \hline
+		5 & Press the "Stop" button in the user interface, before the boat has reached the endpoint & In the user interface the button "Running..." changes to "Calculate path". The boats turns off its motors and comes to a halt.\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 13 - Stop coverage path - Main scenario}
 \end{table}
