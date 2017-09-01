@@ -5,26 +5,6 @@ String
 
 \section{Tests}
 
-%TODO Remove this template 
-Template
-\begin{table}[H] 			
-	\centering
-	\begin{tabularx}{\textwidth}{|c|X|X|}
-		\hline
-		\bfseries Use case under test & \multicolumn{2}{|c|}{ --USE CASE NAME--} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{--SCENARIO--} \\ \hline
-		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
-				\textbullet --Prerequisite1--\\
-				\textbullet --Prerequisite2--
-			}}}\\  \hline
-		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
-		%Copy below when adding more steps
-		1 & --ACTION-- & --EXPECTED--\\ \hline
-	\end{tabularx}
-	\caption{Test of: --Use case name and Scenario--}
-\end{table}
-%Template ends here
-
 %TODO Describe what default parameters are!
 %TODO Describe what the edit section of the user interface is.
 
@@ -52,7 +32,7 @@ Template
 		\bfseries Scenario & \multicolumn{2}{| c |}{Main Scenario} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 				\textbullet "Edit parameter" menu is opened in user interface\\
-				\textbullet A parameter profile must excist
+				\textbullet A parameter profile must exist
 			}}} \\  \hline
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
@@ -67,10 +47,10 @@ Template
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 2 - Delete Parameter profile} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Exception - 3.a)} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 1 - Active profile deleted} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 				\textbullet "Edit parameter" menu is opened in user interface\\
-				\textbullet A parameter profile must excist
+				\textbullet A parameter profile must exist
 		}}} \\  \hline
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
@@ -78,10 +58,8 @@ Template
 		2 & Press the "Set Profile" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
 		3 & Make sure that the now active profile is still selected, then press the "Delete profile" button in the user interface & The previously selected parameter profile should be deleted from the list of parameter profiles, and under the text "Active Profile" it should now say "None" \\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 2 - Delete parameter profile - Exception 3.a)}
+	\caption{Test of: Use case 2 - Delete parameter profile - Extension 1 - Active profile deleted}
 \end{table}
-
-%TODO Find ud af navngive Extension, exception og alternative flows er extension og alternative flow ikke det samme?
 
 \begin{table}[H] 			
 	\centering
@@ -108,7 +86,7 @@ Template
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 3 - Edit parameter profile} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 5.a)} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 2 - Revert} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 					\textbullet "Edit parameter" menu is opened in user interface\\
 					\textbullet A Parameter profile must exist
@@ -120,7 +98,7 @@ Template
 		3 & Change the values either by moving the sliders or by directly entering values in the input fields & The values changed should correspond to what they were changed to\\ \hline
 		4 & Press the "Revert" button & The values changed should now go back to what they were set to before they were changed\\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 3 - Edit parameter profile - Extension 5.a)}
+	\caption{Test of: Use case 3 - Edit parameter profile - Extension 2 - Revert}
 \end{table}
 
 \begin{table}[H] 			
@@ -138,7 +116,7 @@ Template
 		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted\\ \hline
 		2 & Press the "Set Profile" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
 	\end{tabularx}
-	\caption{Test of: --Use case name and Scenario--}
+	\caption{Test of: Use case 4 - Set active parameter profile}
 \end{table}
 
 %TODO Use case 4, consider if bullet point number 5 makes sense
@@ -171,7 +149,7 @@ Template
 					\textbullet The "Point to point" menu is opened in user interface
 		}}}\\  \hline
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
-		%Copy below when adding more steps
+		
 		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 6 - Set point to point destination - Main scenario}
@@ -182,7 +160,7 @@ Template
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 6 - Set point to point destination} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow 1: Coordinate input} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 					\textbullet The user interface has an updated map\\
 					\textbullet The "Point to point" menu is opened in user interface
@@ -191,10 +169,9 @@ Template
 		%Copy below when adding more steps
 		1 & Input a coordinate by writing it in the input fields "longitude" and "latitude & On the map there should be an indication of the coordinate inputed in the input fields\\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 6 - Set point to point destination - Alternate flow}
+	\caption{Test of: Use case 6 - Set point to point destination - Alternate flow 1: Coordinate input}
 \end{table}
 
-%TODO There is missing a prerequisite that the use case 6 has to be run, both here and in the use case
 \begin{table}[H] 			
 	\centering
 	\begin{tabularx}{\textwidth}{|c|X|X|}
@@ -202,6 +179,7 @@ Template
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 7 - Calculate point to point path} \\ \hline
 		\bfseries Scenario & \multicolumn{2}{| c |}{Main scenario} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
+					\textbullet Use case 6 - Set point to point destination has been completed
 					\textbullet The user interface has an updated map\\
 					\textbullet The "Point to point" menu is opened in user interface\\
 					\textbullet The boat must not be running a navigation task
@@ -279,7 +257,7 @@ Template
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 10 - Set coverage area} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow 2: Coordinate inputs} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 					\textbullet The user interface has an updated map\\
 					\textbullet The "Coverage" menu is opened in user interface
@@ -289,7 +267,7 @@ Template
 		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
 		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 10 - Set coverage area - Main scenario}
+	\caption{Test of: Use case 10 - Set coverage area - Alternate flow 2: Coordinate inputs}
 \end{table}
 
 \begin{table}[H] 			

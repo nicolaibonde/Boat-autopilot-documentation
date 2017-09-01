@@ -82,7 +82,7 @@ The following section describes the system's actors. Every actor has a type and 
 \section{Fully dressed Use cases }
 
 %TODO Skriv noget om hvad en parameter profil er!
-%TODO Skriv uc1: i use case diagrammet
+
 \begin{framed}
 \subsection{Use case 1 - New parameter profile}
 \subsubsection*{Goal:}
@@ -147,7 +147,7 @@ A new parameter profile has been created.
 		\item The selected profile is deleted from the list of parameter profiles.
 	\end{enumerate}	
 	
-	\subsubsection*{Exception:}
+	\subsubsection*{Extension 1: Active profile deleted}
 	\begin{enumerate}
 		\setcounter{enumi}{2}
 		\item 
@@ -198,7 +198,7 @@ The parameter profile has been edited
 	\item The old parameter profile is overwritten with the new values.
 \end{enumerate}	
 
-\subsubsection*{Extension:}
+\subsubsection*{Extension 2: Revert}
 \begin{enumerate}
 	\setcounter{enumi}{4}
 	\item 
@@ -315,7 +315,7 @@ The parameter profile has been edited
 		\item The user interface displays the selected position as coordinates
 	\end{enumerate}	
 
-	\subsubsection*{Alternate flow:}
+	\subsubsection*{Alternate flow 1: Coordinate input}
 	\begin{enumerate}
 		\item 
 		\begin{enumerate}
@@ -344,6 +344,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Prerequisite:}
 	\begin{itemize}
+		\item Use case 6 - Set point to point destination has been completed
 		\item The user interface has an updated map
 		\item The "Point to point" menu is opened in user interface
 		\item The boat must not be running a navigation task.
@@ -472,7 +473,7 @@ The parameter profile has been edited
 		\item The user interface displays the selected points as coordinates.
 	\end{enumerate}	
 	
-	\subsubsection*{Alternate flow:}
+	\subsubsection*{Alternate flow 2: Coordinate inputs}
 	\begin{enumerate}
 		\item 
 		\begin{enumerate}
