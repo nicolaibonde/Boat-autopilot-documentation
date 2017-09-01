@@ -47,7 +47,7 @@ String
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 2 - Delete Parameter profile} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 1 - Active profile deleted} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 1: Active profile deleted} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 				\textbullet "Edit parameter" menu is opened in user interface\\
 				\textbullet A parameter profile must exist
@@ -58,7 +58,7 @@ String
 		2 & Press the "Set Profile" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
 		3 & Make sure that the now active profile is still selected, then press the "Delete profile" button in the user interface & The previously selected parameter profile should be deleted from the list of parameter profiles, and under the text "Active Profile" it should now say "None" \\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 2 - Delete parameter profile - Extension 1 - Active profile deleted}
+	\caption{Test of: Use case 2 - Delete parameter profile - Extension 1: Active profile deleted}
 \end{table}
 
 \begin{table}[H] 			
@@ -86,7 +86,7 @@ String
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 3 - Edit parameter profile} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 2 - Revert} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Extension 1: Revert} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 					\textbullet "Edit parameter" menu is opened in user interface\\
 					\textbullet A Parameter profile must exist
@@ -98,7 +98,7 @@ String
 		3 & Change the values either by moving the sliders or by directly entering values in the input fields & The values changed should correspond to what they were changed to\\ \hline
 		4 & Press the "Revert" button & The values changed should now go back to what they were set to before they were changed\\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 3 - Edit parameter profile - Extension 2 - Revert}
+	\caption{Test of: Use case 3 - Edit parameter profile - Extension 1: Revert}
 \end{table}
 
 \begin{table}[H] 			
@@ -257,7 +257,7 @@ String
 	\begin{tabularx}{\textwidth}{|c|X|X|}
 		\hline
 		\bfseries Use case under test & \multicolumn{2}{|c|}{ Use case 10 - Set coverage area} \\ \hline
-		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow 2: Coordinate inputs} \\ \hline
+		\bfseries Scenario & \multicolumn{2}{| c |}{Alternate flow 1: Coordinate inputs} \\ \hline
 		\bfseries Prerequisite &  \multicolumn{2}{|l|}{\asg{\shortstack[l]{
 					\textbullet The user interface has an updated map\\
 					\textbullet The "Coverage" menu is opened in user interface
@@ -267,7 +267,7 @@ String
 		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
 		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
 	\end{tabularx}
-	\caption{Test of: Use case 10 - Set coverage area - Alternate flow 2: Coordinate inputs}
+	\caption{Test of: Use case 10 - Set coverage area - Alternate flow 1: Coordinate inputs}
 \end{table}
 
 \begin{table}[H] 			
