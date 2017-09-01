@@ -1,3 +1,9 @@
+\input{preamble}
+
+\begin{document}
+
+\selectlanguage{english}
+	
 \chapter{Requirements specification}
 
 The requirements for the product are prioritized using the MoSCoW method. Using this, the requirements for the product are divided into four sections, where the most important elements are given the highest priority. \textbf{Must} are the requirements that are an absolute necessity for the product. \textbf{Should} are the requirements that are also of high priority, but not quite mandatory. \textbf{Could} are requirements which may be met, if the time and other constraints of the project allow for it. \textbf{Won't} are the requirements the product will not meet, but could be developed at a later point in its lifetime.  
@@ -5,69 +11,94 @@ The requirements for the product are prioritized using the MoSCoW method. Using 
 \noindent The following priorities have been chosen for this project:
 \begin{itemize}
 	\item[\textbf{Must}]
-		\begin{itemize}
-			\item Navigate waypoints from user input
-			\item Be compatible with NMEA protocol GPS input
-			\item Use GPS for localization
-			\item Implement a PID control loop
-		\end{itemize}
+	\begin{itemize}
+		\item Navigate waypoints from user input
+		\item Be compatible with NMEA protocol GPS input
+		\item Use GPS for localization
+		\item Implement a PID control loop
+	\end{itemize}
 	\item[\textbf{Should}]
-		\begin{itemize}
-			\item Control thrusters in two-thruster catamaran
-			\item Use a graphical user interface for user interaction
-			\item Be able to change the PID parameters
-		\end{itemize}
+	\begin{itemize}
+		\item Control thrusters in two-thruster catamaran
+		\item Use a graphical user interface for user interaction
+		\item Be able to change the PID parameters
+	\end{itemize}
 	\item[\textbf{Could}] 
-		\begin{itemize}
-			\item Control wheel in outboard motor on boat
-			\item Be generic enough to use with other engine types
-		\end{itemize}
+	\begin{itemize}
+		\item Control wheel in outboard motor on boat
+		\item Be generic enough to use with other engine types
+	\end{itemize}
 	\item[\textbf{Won't}]
-		\begin{itemize}
-			\item Use pylogon-coverage for a specified area
-			\item Avoid obstacles
-		\end{itemize}
+	\begin{itemize}
+		\item Use pylogon-coverage for a specified area
+		\item Avoid obstacles
+	\end{itemize}
 \end{itemize}
 
+Figure \ref{fig:rich_image} below shows an illustration of the usage scenario for the Boat autopilot system. A technician or a user accesses the system using an interface. This interface communicates with the system using wireless communication, and the system performs the appropriate actions, for example following a curved path to cover a specified area. 
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/Design/UI_Mockup_Edit_param.pdf}
+	\includegraphics[width=1\linewidth]{Images/Introduction/rich_image}
+	\caption{Rich image}
+	\label{fig:rich_image}
+\end{figure}
+
+Figure \ref{fig:general_sd} shows a general, and simplified, sequence of events for the system.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/Introduction/General_SD}
+	\caption{General sequence diagram}
+	\label{fig:general_sd}
+\end{figure}
+
+At this point it seemed appropriate to consider the design of the user interface because it describes how the actors interact with the system, which makes it possible to specify the Use cases of the system. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Edit_param.pdf}
 	\caption{Mockup for Edit parameter menu}
+	\label{fig:mockupparam}
 \end{figure}
 
-k
+Figure \ref{fig:mockupparam} shows the Edit Param menu of the user interface. As seen in the UI, the technician can create and edit new profiles for the Controller, and set which one is actively running in the control loop. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/Design/UI_Mockup_Point_to_point.pdf}
+	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Point_to_point.pdf}
 	\caption{Mockup for Point to point menu}
+	\label{fig:mockupp2p}
 \end{figure}
 
-k
+Figure \ref{fig:mockupp2p} shows the Point to point menu of the user interface. In this menu, the user can specify a destination either on a map or by inputting coordinates, then ask the system to calculate a path there, and finally to proceed to the destination. If needed, the user can also stop the boat.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/Design/UI_Mockup_Diagnostics.pdf}
+	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Diagnostics.pdf}
 	\caption{Mockup for Diagnostics menu}
+	\label{fig:mockupdiag}
 \end{figure}
 
-k
+Figure \ref{fig:mockupdiag} shows the Diagnostics menu of the user interface. Here, the system status is shown to make troubleshooting easier.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/Design/UI_Mockup_Coverage.pdf}
+	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Coverage.pdf}
 	\caption{Mockup for Coverage menu}
+	\label{fig:mockupcover}
 \end{figure}
 
-k
-
-The following two diagrams specify the actor context to the system, and the use cases for the system.
+Figure \ref{fig:mockupcover} shows the Coverage menu of the user interface. Here, the user can specify two opposing edges of a rectangle for the system to cover. The user can then ask the system to calculate a curved path through this area, and finally to proceed. There is, like in the Point to point menu, a stop function for convenience.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{Images/Requirements_specification/Actor_context_diagram}
 	\caption{Actor context diagram}
+	\label{fig:actorcontextdiagram}
 \end{figure}
+
+Figure \ref{fig:actorcontextdiagram} shows an actor context diagram for the system. The technician and the user are primary actors, and the GPS is a secondary actor.
 
 \begin{figure}[H]
 	\centering
@@ -76,6 +107,7 @@ The following two diagrams specify the actor context to the system, and the use 
 	\label{fig:usecasediagram}
 \end{figure}
 
+Figure \ref{fig:usecasediagram} shows the use cases for the system, and the arrows show which actors are involved in each. The use cases are broadly based on the UI mockups.
 
 \section{Actor description}
 The following section describes the system's actors. Every actor has a type and a short description of its function and impact on the system.
@@ -86,26 +118,26 @@ The following section describes the system's actors. Every actor has a type and 
 	Primary
 	
 	\subsubsection*{Description:}
-	A technician with knowledge of the system. This actor triggers the use case "Specify parameters".
+	A technician with knowledge of the system.
 	
 \end{framed}
 
 \begin{framed}
 	\subsection{Actor: User}
-		\subsubsection*{Type:}
-			Primary
+	\subsubsection*{Type:}
+	Primary
 	
-		\subsubsection*{Description:}
-			The user, or customer. This actor triggers the use case "Specify waypoints".
+	\subsubsection*{Description:}
+	The user, or customer. 
 \end{framed}
 
 \begin{framed}
 	\subsection{Actor: GPS}
-		\subsubsection*{Type:}
-			Secondary
+	\subsubsection*{Type:}
+	Secondary
 	
-		\subsubsection*{Description:}
-			The global positioning system. This actor assists in carrying out the use case "Navigate waypoints".
+	\subsubsection*{Description:}
+	The global positioning system.
 	
 \end{framed}
 
@@ -113,37 +145,35 @@ The following section describes the system's actors. Every actor has a type and 
 
 \section{Fully dressed Use cases }
 
-%TODO Skriv noget om hvad en parameter profil er!
-
 \begin{framed}
-\subsection{Use case 1 - New parameter profile}
-\subsubsection*{Goal:}
-To create a new parameter profile for the controller
-
-\subsubsection*{Initialization:}
-Technician
-
-\subsubsection*{Actors:}
-Technician (primary)
-
-\subsubsection*{References:}
-None
-
-\subsubsection*{Simultaneous occurrences:}
-One
-
-\subsubsection*{Prerequisite:}
-"Edit parameter" menu is opened in user interface
-
-\subsubsection*{Result:}
-A new parameter profile has been created.
-
-\subsubsection*{Main scenario:}
-\begin{enumerate}
-	\item The technician selects "New Profile" button.
-	\item A new parameter profile is added to the list of parameter profiles, all parameters are set to default values.
-	\item The selected parameter profile values are displayed on the user interface
-\end{enumerate}	
+	\subsection{Use case 1 - New parameter profile}
+	\subsubsection*{Goal:}
+	To create a new parameter profile for the controller
+	
+	\subsubsection*{Initialization:}
+	Technician
+	
+	\subsubsection*{Actors:}
+	Technician (primary)
+	
+	\subsubsection*{References:}
+	None
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One
+	
+	\subsubsection*{Prerequisite:}
+	"Edit parameter" menu is opened in user interface
+	
+	\subsubsection*{Result:}
+	A new parameter profile has been created.
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The technician selects "New Profile" button as seen on figure \ref{fig:mockupparam}.
+		\item A new parameter profile is added to the list of parameter profiles, all parameters are set to default values.
+		\item The selected parameter profile values are displayed on the user interface
+	\end{enumerate}	
 \end{framed}
 
 \begin{framed}
@@ -175,56 +205,56 @@ A new parameter profile has been created.
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
 		\item The technician selects a desired parameter profile to delete
-		\item The technician selects "Delete Profile" button.
+		\item The technician selects "Delete Profile" button as seen on figure \ref{fig:mockupparam}.
 		\item The selected profile is deleted from the list of parameter profiles. [Extension 1]
 	\end{enumerate}	
 	
 	\subsubsection*{Extension 1: Active profile deleted}
-		\begin{enumerate}
-			\item If the active profile is deleted, no active profile is set.
-		\end{enumerate}
+	\begin{enumerate}
+		\item If the active profile is deleted, no active profile is set.
+	\end{enumerate}
+	
+	
 \end{framed}
 
-
-
 \begin{framed}
-\subsection{Use case 3 - Edit parameter profile}
-\subsubsection*{Goal:}
-To edit an existing parameter profile 
-
-\subsubsection*{Initialization:}
-Technician
-
-\subsubsection*{Actors:}
-Technician (primary)
-
-\subsubsection*{References:}
-None
-
-\subsubsection*{Simultaneous occurrences:}
-One
-
-\subsubsection*{Prerequisite:}
-\begin{itemize}
-	\item "Edit parameter" menu is opened in user interface
-	\item A parameter profile must exist.
-\end{itemize}
-
-
-\subsubsection*{Result:}
-The parameter profile has been edited
-
-\subsubsection*{Main scenario:}
-\begin{enumerate}
-	\item The technician selects a desired parameter profile to edit
-	\item Then the technician selects "Edit Profile"
-	\item The selected parameter profile values are displayed on the user interface
-	\item The technician edits the parameter values of the profile
-	\item The technician selects "Save" [Extension 1]
-	\item The old parameter profile is overwritten with the new values.
-\end{enumerate}	
-
-\subsubsection*{Extension 1: Revert}
+	\subsection{Use case 3 - Edit parameter profile}
+	\subsubsection*{Goal:}
+	To edit an existing parameter profile 
+	
+	\subsubsection*{Initialization:}
+	Technician
+	
+	\subsubsection*{Actors:}
+	Technician (primary)
+	
+	\subsubsection*{References:}
+	None
+	
+	\subsubsection*{Simultaneous occurrences:}
+	One
+	
+	\subsubsection*{Prerequisite:}
+	\begin{itemize}
+		\item "Edit parameter" menu is opened in user interface
+		\item A parameter profile must exist.
+	\end{itemize}
+	
+	
+	\subsubsection*{Result:}
+	The parameter profile has been edited
+	
+	\subsubsection*{Main scenario:}
+	\begin{enumerate}
+		\item The technician selects a desired parameter profile to edit
+		\item Then the technician selects "Edit Profile" as seen on figure \ref{fig:mockupparam}
+		\item The selected parameter profile values are displayed on the user interface
+		\item The technician edits the parameter values of the profile
+		\item The technician selects "Save" [Extension 1]
+		\item The old parameter profile is overwritten with the new values.
+	\end{enumerate}	
+	
+	\subsubsection*{Extension 1: Revert}
 	\begin{enumerate}
 		\item The technician selects "Revert"
 		\item The old parameter profile is not overwritten. The old values are kept
@@ -254,14 +284,14 @@ The parameter profile has been edited
 		\item "Edit parameter" menu is opened in user interface
 		\item A parameter profile must exist.
 	\end{itemize}
-
+	
 	\subsubsection*{Result:}
 	The parameter profile has been set as active
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
 		\item The technician selects a desired parameter profile to activate
-		\item The technician then selects "Set Profile"
+		\item The technician then selects "Set Profile" as seen on figure \ref{fig:mockupparam}
 		\item The selected parameter profile has been set as active.
 		\item The name of the active profile is displayed on the user interface.
 		\item The boat parameters are updated with the newly activated parameter profile values.
@@ -297,7 +327,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The primary actor selects the "Diagnostics" menu in the user interface.
+		\item The primary actor selects the "Diagnostics" menu in the user interface as seen on figure \ref{fig:mockupdiag}.
 		\item The diagnostics data is displayed on the user interface. 
 	\end{enumerate}
 \end{framed}
@@ -326,22 +356,22 @@ The parameter profile has been edited
 		\item The user interface has an updated map
 		\item The "Point to point" menu is opened in user interface
 	\end{itemize}
-
+	
 	\subsubsection*{Result:}
 	A destination has been defined.
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects a desired position on the map.
+		\item The user selects a desired position on the map as seen on figure \ref{fig:mockupp2p}.
 		\item \label{uc4.2} The user interface displays the selected position on the map
 		\item The user interface displays the selected position as coordinates
 	\end{enumerate}	
-
-	\subsubsection*{Alternate flow 1: Coordinate input}
-		\begin{enumerate}
-			\item The user inputs latitude and longitude in the user interface
-			\item The main scenario is continued from \ref{uc4.2}
-		\end{enumerate}
+	
+	\subsubsection*{Alternate flow 1: Coordinate input} 
+	\begin{enumerate}
+		\item The user inputs latitude and longitude in the user interface
+		\item The main scenario is continued from \ref{uc4.2}
+	\end{enumerate}
 \end{framed}	
 
 \begin{framed}
@@ -374,7 +404,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects "Calculate path" from the user interface.
+		\item The user selects "Calculate path" from the user interface as seen on figure \ref{fig:mockupp2p}.
 		\item A path is calculated and displayed on the map. 
 		\item The "Calculate path" option is changed to "Start"
 	\end{enumerate}	
@@ -412,7 +442,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects "Start".
+		\item The user selects "Start" as seen on figure \ref{fig:mockupp2p}.
 		\item The "Start" button on the user interface changes to read "Running...".
 		\item The boat runs a control loop based on direction data from the calculated path.
 		\item The position of the boat on the user interface map is continually updated using GPS.
@@ -453,7 +483,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects "Stop".
+		\item The user selects "Stop" as seen on figure \ref{fig:mockupp2p}.
 		\item The "Running..." button changes to the "Calculate path" button.
 		\item The boat turns off its motors and comes to a halt.
 	\end{enumerate}	
@@ -487,16 +517,16 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects two positions on the map which encapsulates a rectangle. One of the points is labeled "1", this specifies the starting point of the coverage route, the other is labeled "2" indicating the endpoint.
+		\item The user selects two positions on the map which encapsulates a rectangle. One of the points is labeled "1", this specifies the starting point of the coverage route, the other is labeled "2" indicating the endpoint as seen on figure \ref{fig:mockupcover}.
 		\item \label{uc10.2} The user interface displays the selected rectangle on the map, including the staring point "1" and endpoint "2".
 		\item The user interface displays the selected points as coordinates.
 	\end{enumerate}	
 	
 	\subsubsection*{Alternate flow 1: Coordinate inputs}
-		\begin{enumerate}
-			\item The user inputs latitude and longitude for each point "1" and "2" in the user interface.
-			\item The main scenario is continued from \ref{uc10.2}
-		\end{enumerate}
+	\begin{enumerate}
+		\item The user inputs latitude and longitude for each point "1" and "2" in the user interface.
+		\item The main scenario is continued from \ref{uc10.2}
+	\end{enumerate}
 \end{framed}	
 
 \begin{framed}
@@ -529,7 +559,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects "Calculate path" from the user interface.
+		\item The user selects "Calculate path" from the user interface as seen on figure \ref{fig:mockupcover}.
 		\item A path is calculated and displayed on the map. 
 		\item The "Calculate path" option is changed to "Start"
 	\end{enumerate}	
@@ -566,7 +596,7 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects "Start".
+		\item The user selects "Start" as seen on figure \ref{fig:mockupcover}.
 		\item The "Start" button on the user interface changes to read "Running...".
 		\item The boat runs a control loop based on direction data from the calculated coverage path.
 		\item The position of the boat on the user interface map is continually updated using GPS.
@@ -607,11 +637,13 @@ The parameter profile has been edited
 	
 	\subsubsection*{Main scenario:}
 	\begin{enumerate}
-		\item The user selects stop.
+		\item The user selects the "Stop" button as seen on figure \ref{fig:mockupcover}.
 		\item The "Running..." button changes to a "Calculate path" button.
 		\item The boat turns off its motors and comes to a halt.
 	\end{enumerate}	
 \end{framed}	
 
 \section{Non-functional requirements}
-Who knows
+Since the physical constraints of the end-system are unknown, there are no non-functional requirements at present.
+
+\end{document}
