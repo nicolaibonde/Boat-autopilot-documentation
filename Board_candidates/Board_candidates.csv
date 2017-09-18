@@ -1,0 +1,17 @@
+;Price (DKK);Processor;RAM;RTOS;WiFi module;UART;SPI;PWM;I2C;Supply;Ethernet port;GPIO;SupportLvl;Ref
+Raspberry Pi Zero w;90;1 GHz BCM2835;512 MB;Yes;Yes;Yes;Yes;Yes;Yes;5V;No;40;Very high;https://www.raspberrypi.org/
+NanoPi 2 Fire;140;1.4 GHz ARM A9;1 GB;Yes;No;Yes;Yes;Yes;Yes;5V;Yes;40;Low;http://nanopi.io/nanopi2-fire.html
+PineA64+;180;1.2 GHz ARM A53;2 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;20;Low;https://www.pine64.org/?page_id=1194
+Raspberry Pi 3b;220;1.2 GHz BCM2837;2 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;40;Very high;https://www.raspberrypi.org/
+Odroid C2;290;1.5 GHz ARM V8;2 GB;Yes;No;Yes;No;No;Yes;5V;Yes;40;Low;http://www.hardkernel.com/main/products/prdt_info.php?g_code=G145457216438&tab_idx=2
+OrangePi Plus 2;300;1.6 GHz ARM A7;2 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;40;Very low;http://www.orangepi.org/orangepiplus2/
+C.H.I.P. Pro;310;1 GHz ARM V7-A;256 MB;Yes;Yes;Yes;Yes;Yes;Yes;3-23V;No;27;High;https://docs.getchip.com/chip_pro_devkit.html
+NanoPC-T3;350;1.4 GHz ARM A53;2 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;30;Low;http://www.friendlyarm.com/index.php?route=product/product&product_id=123
+Asus Tinker Board;440;1.8 GHz ARM A17;2 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;40;Medium;https://www.asus.com/uk/Single-Board-Computer/Tinker-Board/specifications/
+Intel Edison;570;0.5 GHz Intel Atom;1 GB;Yes;Yes;Yes;Yes;Yes;Yes;3.3-5V;No;70;High;https://software.intel.com/en-us/iot/hardware/edison/documentation
+BeagleBone Black wireless;580;1 GHz ARM A8;512 MB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;92;High;https://beagleboard.org/black-wireless
+Banana Pi;810;1.8 GHz ARM A7-A83T;2 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;40;Very low;http://www.banana-pi.org/m3.html
+PixiePro;810;1 GHz .iMX6Q + ARM A9;2 GB;Yes;Yes;Yes;Yes;?;Yes;5V;No;10;Very low;https://store.treats4geeks.com/index.php/pixiepro-27.html
+Udoo Quad;840;1 GHz NXP i.MX6Q + Atmel SAM3X8E;1 GB;Yes;Yes;Yes;Yes;Yes;Yes;5V;Yes;76;Low;https://shop.udoo.org/eu/quad-dual/udoo-quad.html
+Parallella;1000;0.8 GHz ARM A9;1 GB;Yes;No;Yes;Yes;?;Yes;5V;Yes;48;Low;https://www.parallella.org/docs/parallella_manual.pdf
+BeagleBoard X15;1490;1.5 GHz ARM A15;2 GB;Yes;No;Yes;Yes;Yes;Yes;12V;Yes;240;High;https://beagleboard.org/x15
