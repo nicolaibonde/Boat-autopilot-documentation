@@ -1,0 +1,19 @@
+Valg af GPS-teknologi (præcision, pris)
+
+https://www.novatel.com/products/span-gnss-inertial-systems/span-receivers/span-enclosures/
+
+-
+
+-
+
+-
+
+%%RTK-GPS: Kompliceret at sætte op og dyrt
+
+%%Alm. GPS: Lav præcision men billig
+
+%%WAAS: Udmærket præcision (sub-meter) og ikke så dyrt
+
+WAAS-GPS'er
+
+http://www.junipersys.com/Juniper-Systems-Rugged-Handheld-Computers/products/Geode-Sub-Meter-GPS-Receiver
