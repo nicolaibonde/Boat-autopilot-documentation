@@ -37,15 +37,15 @@ Table~\ref*{table: General IBD} shows the signal list for the general system.
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\textbf{Signal type} 	&\textbf{Name}		&\textbf{Description} \\\hline
-		24V			&Vsupply	&24V supply to Power regulator\\\hline
+		8.4V			&Vsupply	&8.4V supply to Power regulator from battery\\\hline
 		
-		24V			&Vcc24		&24V supply to Motor\\\hline
-		12V			&Vcc12		&12V supply to GPS\\\hline
+		8.4V			&Vcc8		&8.4V supply to Motor Controller\\\hline
 		5V			&Vcc5		&5V supply to Controller and Motor Controller\\\hline
+		3.3V			&Vcc3		&3.3V supply to GPS\\\hline
 		0V			&0V			&System ground\\\hline
-		PWM[1..2]	&MotConPWM	&PWM-signal to Motor Control, one or two instances\\\hline
-		PWM[1..2]	&MotorPWM	&PWM-signal to Motor, one or two instances\\\hline
-		CMOS		&GPS		&GPS data to Controller, CMOS-standard\\\hline	
+		PWM	&MotConPWM	&PWM-signal to Motor Control, 5V\\\hline
+		PWM	&MotorPWM	&PWM-signal to Motor, 8.4V\\\hline
+		UART		&GPS		&GPS data to Controller through UART\\\hline	
 		WiFi		&WiFi		&WiFi signal between Controller and User interface\\\hline
 		Ethernet	&Ethernet	&Ethernet signal between Controller and User interface\\\hline
 		
