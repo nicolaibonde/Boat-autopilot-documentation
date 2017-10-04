@@ -1,0 +1,135 @@
+\section{Software design}
+
+\subsection{UI}
+\subsubsection{Edit parameters}
+
+\paragraph{Public methods:}
+These public methods are called on click in the ui.
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+	\item[NewProfile( )] creates a new profile object and appends it to the list of profiles, ie. the member Profiles_. This action then saves the Profiles_ to a file.
+	\item[DeleteProfile( index )] deletes the profile in the member Profiles_ with the designated index. This action then saves the Profiles_ to a file.
+	\item[EditProfile( index )] displays the profile in the list Profiles_ with the index, its profile name, parameters names and their values. Revert_profile_ is set to contain the same values.
+	\item[ActivateProfile( index )] sets the Active_profile_ as the profile in Profiles_ with the given index.
+	\item[SaveProfile( )]  saves the Profiles_ to a file, with the data in the data fields.
+	\item[RevertProfile( )] sets Profile_ to contain the same values as Revert_profile_.
+	\item[AddParam( name )] adds a parameter to the parameter list in Profile_.
+	\item[RemoveParam( index )] removes the parameter from the list of parameters in Profile_ with the given index.
+\end{description}\end{adjustwidth}
+
+
+\paragraph{Private methods:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+	\item[saveToFile( url, content )] sends a POST call to the server at the given url, with the content.
+\end{description}\end{adjustwidth}
+
+\paragraph{Public members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+	\item [Profile_data_] contains all the Profiles in an encapsulating javascript object.
+	\item [Profiles_] contains all the Profiles, and resides in the Profile_data_ object.
+	\item [Profile] is set to Selected_profile_ when EditProfile( ) is called.
+	\item [Active_profile_] is the active profile.
+	\item [Selected_profile_] is the selected profile in Profiles_.
+	\item [Revert_profile_] holds the initial configuration of Profile_.
+	\item [Editing_parameter_] checks whether or not a parameter is being edited.
+	\item [Editing_profile_name_] checks whether or not a profile name is being edited.
+\end{description}\end{adjustwidth}
+
+\subsubsection{Status}
+
+%TODO describe what a status object is in protocols
+
+\paragraph{Private methods:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [getDataFromNav( path )] sends a GET call to the server and gets the file at the path. It must include a status object and a time-stamp object to be valid.
+		\item [updateStatusDisplay( status, timestamp )] should dynamically create the user interface elements that correspond to the different statuses in the status object. 
+		\item [setupMap( )] sets up the map with appropriate settings.
+		\item [updateBoatPose( pose )] updates the position and orientation of the boat on the map.
+\end{description}\end{adjustwidth}
+
+\paragraph{Public members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [Status_panels_] contains the html for the different statuses.
+		\item [Time_since_last_data] contains how much time has passed since the last time-stamp, as well css class for the ui, which colors the panel according to how much time has passed; blue recent, red dated, orange in between.
+\end{description}\end{adjustwidth}
+
+
+\paragraph{Private members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [update_status_interval_] is the delay between calls of the getDataFromNav() function.
+\end{description}\end{adjustwidth}
+
+\subsubsection{Point to point}
+
+\paragraph{Public methods:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [Action( )] begins execution of the main task by calling saveToFile( ). Action( ) first calculates the path, and then runs the path on the subsequent call if the path has been calculated. Likewise, the function will not calculate a new path before a previous path has been completed. 
+		\item [Stop( )] stops execution by calling saveToFile( ) and resets the state of the Action( ) function by resetting action_state_.
+\end{description}\end{adjustwidth}
+
+\paragraph{Private methods:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [calculatePath( end_coord )] writes the end_coord to the toNav.JSON file.
+		\item [waitForPath( )]
+		\item [start( )]
+		\item [waitForCompletion( )]
+		\item [setup( )]
+		\item [setupMap( )]
+		\item [updateBoatPose( )]
+		\item [updateEndCoord( )]
+\end{description}\end{adjustwidth}
+
+\paragraph{Public members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [End_coord_]
+		\item [Boat_pose_]
+		\item [Path_]
+		\item[Completed_path_]
+		\item[ETE_] 
+\end{description}\end{adjustwidth}
+
+
+\paragraph{Private members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [action_state_] 
+\end{description}\end{adjustwidth}
+
+\subsubsection{Coverage}
+
+\paragraph{Public methods:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [Action( )]
+		\item [Stop( )] 
+\end{description}\end{adjustwidth}
+
+\paragraph{Private methods:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [calculatePath( start_coord, end_coord )] 
+		\item [waitForPath( )]
+		\item [start( )]
+		\item [waitForCompletion( )]
+		\item [setup( )]
+		\item [setupMap( )]
+		\item [updateBoatPose( )]
+		\item [updateStartCoord( )]
+		\item [updateEndCoord( )]
+\end{description}\end{adjustwidth}
+
+\paragraph{Public members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [End_coord_]
+		\item [Start_coord_]
+		\item [Boat_pose_]
+		\item [Path_]
+		\item[Completed_path_]
+		\item[ETE_] 
+\end{description}\end{adjustwidth}
+
+
+\paragraph{Private members:}
+\begin{adjustwidth}{2.5em}{0pt}\begin{description}
+		\item [action_state_] 
+\end{description}\end{adjustwidth}
+
+
+
+\subsection{Controller}
