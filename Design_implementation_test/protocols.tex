@@ -1,1 +1,11 @@
 \section{Protocols}
+
+{This section describes the various protocols used throughout the system.}
+
+\subsection{Communication between server and client}
+
+The server and client communicate using two .JSON files; toNav.JSON and fromNav.JSON. As the names suggest, one is used to send data from the client to the server (and from there to the navigation module), and one is used to send data from the server to the client. The contents of these two files is critical for both sides of the system to function properly, so having a standard format in each one is important. 
+
+\subsubsection{toNav.JSON}
+
+The file used to transfer data from the client to the server is used to send commands to the navigation module. This could be calculating a new coverage path for an area, adding a new parameter profile, or setting the endpoint in the point to point page. Along with the function name 
