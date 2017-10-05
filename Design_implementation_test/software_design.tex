@@ -1,6 +1,15 @@
 \section{Software design}
 
 \subsection{UI}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/Design/User_Interface_overview}
+	\caption{An overview of how the functions of the User Interface are structured}
+	\label{fig:userinterfaceoverview}
+\end{figure}
+
+
 \subsubsection{Edit parameters}
 
 \paragraph{Public methods:}
@@ -26,11 +35,11 @@ These public methods are called on click in the ui.
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
 	\item [Profile_data_] contains all the profiles in an encapsulating javascript object.
 	\item [Profiles_] contains all the profiles, and resides in the \texttt{Profile_data_} object.
-	\item [Profile] is set to \texttt{Selected_profile_} when \texttt{EditProfile( )} is called.
+	\item [Profile_] is set to \texttt{Selected_profile_} when \texttt{EditProfile( )} is called.
 	\item [Active_profile_] is the active profile.
 	\item [Selected_profile_] is the selected profile in \texttt{Profiles_}.
 	\item [Revert_profile_] holds the initial configuration of \texttt{Profile_}.
-	\item [Editing_parameter_] checks whether or not a parameter is being edited.
+	\item [Editing_profile_] checks whether or not a profile is being edited.
 	\item [Editing_profile_name_] checks whether or not a profile name is being edited.
 \end{description}\end{adjustwidth}
 
