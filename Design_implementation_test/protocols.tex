@@ -10,7 +10,7 @@ The server and client communicate using two .JSON files; toNav.JSON and fromNav.
 \subsubsection{toNav.JSON}
 
 The file used to transfer data from the client to the server is used to send commands to the navigation module. This could be calculating a new coverage path for an area, telling the boat to stop, or setting the endpoint in the point to point page.
-The protocol is based on JSON there for anything can be contained.
+The protocol is based on JSON so any kind of data can be contained within.
 
 \begin{lstlisting}[caption = {Example of the least information in the toNav.JSON file}, captionpos=b, label={lst:toNavBasic}, language=json,firstnumber=1]
 {
@@ -18,9 +18,9 @@ The protocol is based on JSON there for anything can be contained.
 }
 \end{lstlisting}
 
-The example show in listing \ref{lst:toNavBasic} shows the least amount of information that can be contained in the toNav.JSON file. the func_ name can hold a string, this is expected to be one of some predefined functions, in the example the string is \texttt{none}\\
-The functions that can be inputted are; \texttt{none}, \texttt{calcP2P}, \texttt{calcCoverage}, \texttt{start}, and \texttt{stop}.
-If one wants to send a \texttt{calcP2P} it is required that the write adds a container for a coordinate \texttt{target_position_} as in listing \ref{lst:toNavCalcP2P}. A coordinate is two number inputs one called \texttt{latitude_} and one called \texttt{longitude_}
+The example shown in listing \ref{lst:toNavBasic} demonstrates the least amount of information that can be contained in the toNav.JSON file. The func_ name can hold a string, which is expected to be one of some predefined functions. In the example the string is \texttt{none}.
+The functions that can be input are; \texttt{none}, \texttt{calcP2P}, \texttt{calcCoverage}, \texttt{start}, and \texttt{stop}.
+If one wants to send a \texttt{calcP2P} it is required that the write adds a container for a coordinate \texttt{target_position_} as in listing \ref{lst:toNavCalcP2P}. A coordinate is made up of two numbers; one called \texttt{latitude_} and one called \texttt{longitude_}
 
 \begin{lstlisting}[caption = {Example of a calcP2P call in the toNav.JSON}, captionpos=b, label={lst:toNavCalcP2P}, language=json,firstnumber=1]
 {
@@ -32,7 +32,7 @@ If one wants to send a \texttt{calcP2P} it is required that the write adds a con
 }
 \end{lstlisting}
 
-\texttt{calcCoverage} needs two coordinates that describe a rectangle, and they are given in the format of a \texttt{coverage_rectangle_}, which contains a \texttt{start_coord_} and a \texttt{end_coord_} these are coordinates as in \texttt{calcP2P}. An example of this can be seen in listing \ref{lst:toNavCalcCoverage}.
+\texttt{calcCoverage} requires two coordinates that describe a rectangle, and they are given in the format of a \texttt{coverage_rectangle_}, which contains a \texttt{start_coord_} and a \texttt{end_coord_}. These are coordinates as in \texttt{calcP2P}. An example of this can be seen in listing \ref{lst:toNavCalcCoverage}.
 
 \begin{lstlisting}[caption = {Example of a calcCoverage call in the toNav.JSON}, captionpos=b, label={lst:toNavCalcCoverage}, language=json,firstnumber=1]
 {
