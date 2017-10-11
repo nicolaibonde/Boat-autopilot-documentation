@@ -1,6 +1,7 @@
 \section{Protocols}
 
-{This section describes the various protocols used throughout the system.}
+%TODO Write some more
+This section describes the various protocols used throughout the system.
 
 \subsection{Communication between server and client}
 
@@ -8,4 +9,43 @@ The server and client communicate using two .JSON files; toNav.JSON and fromNav.
 
 \subsubsection{toNav.JSON}
 
-The file used to transfer data from the client to the server is used to send commands to the navigation module. This could be calculating a new coverage path for an area, adding a new parameter profile, or setting the endpoint in the point to point page. Along with the function name 
+The file used to transfer data from the client to the server is used to send commands to the navigation module. This could be calculating a new coverage path for an area, telling the boat to stop, or setting the endpoint in the point to point page.
+The protocol is based on JSON there for anything can be contained.
+
+\begin{lstlisting}[caption = {Example of the least information in the toNav.JSON file}, captionpos=b, label={lst:toNavBasic}, language=json,firstnumber=1]
+{
+	"func_": "none"
+}
+\end{lstlisting}
+
+The example show in listing \ref{lst:toNavBasic} shows the least amount of information that can be contained in the toNav.JSON file. the func_ name can hold a string, this is expected to be one of some predefined functions, in the example the string is \texttt{none}\\
+The functions that can be inputted are; \texttt{none}, \texttt{calcP2P}, \texttt{calcCoverage}, \texttt{start}, and \texttt{stop}.
+If one wants to send a \texttt{calcP2P} it is required that the write adds a container for a coordinate \texttt{target_position_} as in listing \ref{lst:toNavCalcP2P}. A coordinate is two number inputs one called \texttt{latitude_} and one called \texttt{longitude_}
+
+\begin{lstlisting}[caption = {Example of a calcP2P call in the toNav.JSON}, captionpos=b, label={lst:toNavCalcP2P}, language=json,firstnumber=1]
+{
+	"func_": "calcP2P",
+	"target_position_": {
+		"latitude_":56.187317092640775,
+		"longitude_":10.18372267484665
+	}
+}
+\end{lstlisting}
+
+\texttt{calcCoverage} needs two coordinates that describe a rectangle, and they are given in the format of a \texttt{coverage_rectangle_}, which contains a \texttt{start_coord_} and a \texttt{end_coord_} these are coordinates as in \texttt{calcP2P}. An example of this can be seen in listing \ref{lst:toNavCalcCoverage}.
+
+\begin{lstlisting}[caption = {Example of a calcCoverage call in the toNav.JSON}, captionpos=b, label={lst:toNavCalcCoverage}, language=json,firstnumber=1]
+{
+	"func_": "calcCoverage",
+	"coverage_rectangle_": {
+		"start_coord_": {
+			"latitude_": 56.17261819336624,
+			"longitude_": 10.191444754600525
+		},
+		"end_coord": {
+			"latitude_": 56.17248978086438,
+			"longitude_": 10.191691517829895
+		}
+	}
+}
+\end{lstlisting}
