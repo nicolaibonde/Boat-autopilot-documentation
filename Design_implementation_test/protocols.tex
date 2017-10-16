@@ -5,7 +5,7 @@ This section describes the various protocols used throughout the system.
 
 \subsection{Communication between server and client}
 
-The server and client communicate using two .JSON files; toNav.JSON and fromNav.JSON. As the names suggest, one is used to send data from the client to the server (and from there to the navigation module), and one is used to send data from the server to the client. The contents of these two files is critical for both sides of the system to function properly, so having a standard format in each one is important. 
+The server and client communicate using three .JSON files; toNav.JSON, fromNav.JSON, and activeParam.JSON. As the names suggest, one is used to send data from the client to the server (and from there to the navigation module), and one is used to send data from the server to the client, The last is used to transfer parameters specific to the hardware. The contents of these three files is critical for both sides of the system to function properly, so having a standard format in each one is important. 
 
 \subsubsection{toNav.JSON}
 
@@ -47,5 +47,114 @@ If one wants to send a \texttt{calcP2P} it is required that the write adds a con
 			"longitude_": 10.191691517829895
 		}
 	}
+}
+\end{lstlisting}
+
+\subsubsection{fromNav.JSON}
+This file is used to transfer data from the server to the client, it could be results from the navigation menu or the information for a status panel. 
+The protocol is based on JSON so any kind of data can be contained within. The protocol is build up of objects;  \texttt{Completed_path_}, \texttt{Path_}, \texttt{Progress_}, \texttt{Status}, \texttt{Telemetry_}, and \texttt{Timestamp_}.
+
+A \texttt{Completed_path_}, is used to communicate where the boat has been since it began running its path. It contains a list called \texttt{line_} which is build up of coordinates.
+The line list should be appended to every time the controller samples a new position. An example of the \texttt{Completed_path_} object can be seen in listing \ref{lst:fromNavCompletedPath}
+
+\begin{lstlisting}[caption = {Example of a Completed_path_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavCompletedPath}, language=json,firstnumber=1]
+"Completed_path_" : {
+		"line_": [
+         {
+             "latitude_": 56.17594780945529,
+             "longitude_": 10.198659896850586
+         },
+         {
+             "latitude_": 56.175900032253004,
+             "longitude_": 10.199346542358398
+         }
+     ]
+}
+\end{lstlisting}
+
+\texttt{Path_} is an object that contains the desired path, i.e. the path that the controller calculates before running. It like the \texttt{Completed_Path_} contains a list called \texttt{line_} is constructed of coordinates. \texttt{Path_} also contains a string object \texttt{timestamp_} which is used to differentiate between a new path object and one that has already been read, therefore it should only be updated when a new path has been calculated. An example can be found in listing \ref{lst:fromNavPath}
+
+\begin{lstlisting}[caption = {Example of a Path_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavPath}, language=json,firstnumber=1]
+"Path_": {
+  "line_": [
+      {
+          "latitude_": 56.17594780945529,
+          "longitude_": 10.198659896850586
+      },
+      {
+          "latitude_": 56.175900032253004,
+          "longitude_": 10.199346542358398
+      }
+  ],
+  "timestamp_": 1508137484027
+}
+\end{lstlisting}
+
+To track the progress of the executing path, there is the \texttt{Progress_} object as seen in listing \ref{lst:fromNavProgress}.
+Progress contains a string object \texttt{ete_} containing the calculated estimated time en route, as a string. It also contains a \texttt{percentage_} a number that contains how far along the path it is in percentage. It can be any number but if it is greater then or equal 100 it should be interpreted as a completed path.
+
+\begin{lstlisting}[caption = {Example of a Progress_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavProgress}, language=json,firstnumber=1]
+"Progress_": {
+ "ete_": "2 min 56 sec",
+ "percentage_": 74
+}
+\end{lstlisting}
+
+\texttt{Status_} is a list that can contain a status object, an empty \texttt{Status_} can be seen in listing \ref{lst:fromNavStatus}.
+
+\begin{lstlisting}[caption = {Example of a empty Status_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavStatus}, language=json,firstnumber=1]
+"Status_": [
+
+]
+\end{lstlisting}
+
+The \texttt{Status_} list can contains any status from anything, as long as it follows the example in listing \ref{lst:fromNavStatusItem}, which says that a status has to contains a list \texttt{items_}. This list contains \texttt{data_} a number, \texttt{title_} which is a string, \texttt{unit_} again a string, and it can also optionally contain a \texttt{color_}, this has to be defined as a bootstrap progress-bar style.
+
+\begin{lstlisting}[caption = {Example of an object in Status_ in fromNav.JSON}, captionpos=b, label={lst:fromNavStatusItem}, language=json,firstnumber=1]
+{
+    "items_": [
+        {
+            "data_": 5,
+            "title_": "WiFi latency",
+            "unit_": "ms"
+        },
+        {
+            "color_": "progress-bar-danger",
+            "data_": 12,
+            "title_": "Packet loss",
+            "unit_": "%"
+        }
+    ],
+    "title_": "WiFi Connection"
+},
+\end{lstlisting}
+
+\texttt{Telemetry_} is the boats current position and orientation described as a \texttt{latitude_}, \texttt{longitude_} and \texttt{orientation_}, which can be seen in listing \ref{list:fromNavTelemetry}
+
+\begin{lstlisting}[caption = {Example of an Telemetry_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavTelemetry}, language=json,firstnumber=1]
+"Telemetry_": {
+    "latitude_": 56.172425,
+    "longitude_": 10.19155,
+    "orientation_": 110
+},
+\end{lstlisting}
+
+\texttt{Timestamp_} is simply the time-stamp of when the fromNav.JSON file was updated last. see listing \ref{lst:fromNavTimestamp} 
+
+\begin{lstlisting}[caption = {Example of an Timestamp_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavTimestamp}, language=json,firstnumber=1]
+"Timestamp_": 1506329007721
+\end{lstlisting}
+
+
+\subsubsection{activeParam.JSON}
+When communicating what the P, I, and D parts of a PID loop should be, it is passed through the activeParam.JSON file from the User interface to the navigation module. activeParam.JSON has to have a \texttt{name_} and can also have a \texttt{create_timestamp_} to differentiate if there exists two with the same name. the parameters are grouped in two lists \texttt{parameter_names_} and \texttt{parameters_} these list can contain what ever parameters are wanted, it is up to the navigation module to pick out the parameters it needs.\\
+\texttt{parameter_names_} and \texttt{parameters_} should always be the same length, since the data is paired.
+An example can be seen in listing \ref{lst:activeParam}.
+\begin{lstlisting}[caption = {Example of activeParam.JSON}, captionpos=b, label={lst:activeParam}, language=json,firstnumber=1]
+{
+	"name_": "Saint Princess",
+	"parameter_names_": ["P", "I", "D", "Tool Width"],
+	"parameters_": [10, 5, 1, 10],
+	"creation_timestamp_": 1507201741743
 }
 \end{lstlisting}
