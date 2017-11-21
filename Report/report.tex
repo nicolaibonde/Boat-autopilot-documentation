@@ -1,0 +1,64 @@
+%%%% Bachelor projekt rapport gruppe 17115 %%%%
+%%%% Efterår 2017 %%%%
+
+% Kan anvendes til journaler eller afleveringer
+\input{preamble}
+
+%TODO think about page breaks when the report is done
+
+\begin{document}
+
+	\selectlanguage{english}
+
+	\input{Frontpage}
+
+	\input{Abstract}
+	\input{Resume}
+	
+	\pagebreak
+	
+	\selectlanguage{english}
+	\setcounter{tocdepth}{1}
+	\begin{KeepFromToc}
+	\tableofcontents
+	\end{KeepFromToc}
+	
+	
+	\pagebreak
+		
+	
+	\setcounter{chapter}{0}
+	
+	\input{Preface}
+		
+	\input{Introduction}
+	
+	\input{Requirements}
+
+	\input{Delimination} %Is this right?
+	
+	\input{Method}
+	
+	\input{Analysis}
+	
+	\input{Architecture}
+	
+	\input{Design}
+	
+	\input{Implementation}
+	
+	\input{Test}
+	
+	\input{Results}
+	
+	\input{Discussion}
+	
+	\input{Conclusion}
+	
+	\input{Future_work}
+	
+	\printbibliography[title={Bibliography}]
+	
+	%\include{<sti/filnavn>}
+
+\end{document}
