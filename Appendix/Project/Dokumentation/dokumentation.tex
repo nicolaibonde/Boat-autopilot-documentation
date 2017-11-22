@@ -7,38 +7,29 @@
 \begin{document}
 
 	\selectlanguage{english}
-		
+	
+	\input{frontpage}
+	
 	\setcounter{tocdepth}{1}
-	\tableofcontents
-	\pagebreak
-
+	\begin{KeepFromToc}
+		\tableofcontents
+	\end{KeepFromToc}\pagebreak
+	
 	\input{Introduction}
-
-	\pagebreak
 	
 	\input{Requirements_specification}
 	
-	\pagebreak
+	\input{Analysis}
 	
 	\input{Acceptance_test}
 	
-	\pagebreak
-	
 	\input{System_architecture}
-	
-	\pagebreak
 	
 	\input{Design_implementation_and_test}
 	
-	\pagebreak
+	\input{Integrationtest}
 	
 	\input{Acceptance_test_results}
-	
-	\pagebreak
-	
-	\input{Conclusion}
-	
-	\pagebreak
 	
 	\printbibliography[title={Bibliography}]
 	
