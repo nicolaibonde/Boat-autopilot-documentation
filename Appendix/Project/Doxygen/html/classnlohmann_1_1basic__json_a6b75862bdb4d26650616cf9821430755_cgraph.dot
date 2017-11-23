@@ -1,0 +1,9 @@
+digraph "nlohmann::basic_json::type_name"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node282 [label="nlohmann::basic_json\l::type_name",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node282 -> Node283 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node283 [label="nlohmann::detail::operator\<",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespacenlohmann_1_1detail.html#a09169efff3bd1771fff29bd92cea19e0",tooltip="comparison operator for JSON types "];
+}

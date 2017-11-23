@@ -1,0 +1,27 @@
+digraph "nlohmann::basic_json::patch"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node233 [label="nlohmann::basic_json\l::patch",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node233 -> Node234 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node234 [label="nlohmann::basic_json::at",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a73ae333487310e3302135189ce8ff5d8",tooltip="access specified array element with bounds checking "];
+  Node233 -> Node235 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node235 [label="nlohmann::basic_json\l::push_back",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#ac8e523ddc8c2dd7e5d2daf0d49a9c0d7",tooltip="add an object to an array "];
+  Node233 -> Node236 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node236 [label="nlohmann::basic_json\l::size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a25e27ad0c6d53c01871c5485e1f75b96",tooltip="returns the number of elements "];
+  Node233 -> Node237 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node237 [label="nlohmann::basic_json\l::insert",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a0136728f5db69d4051c77b94307abd6c",tooltip="inserts element "];
+  Node233 -> Node238 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node238 [label="nlohmann::basic_json\l::begin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a0ff28dac23f2bdecee9564d07f51dcdc",tooltip="returns an iterator to the first element "];
+  Node233 -> Node239 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node239 [label="nlohmann::basic_json\l::is_object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#af8f511af124e82e4579f444b4175787c",tooltip="return whether value is an object "];
+  Node233 -> Node240 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node240 [label="nlohmann::basic_json\l::find",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#aeed33787bd362c7ead59a4ba945392db",tooltip="find an element in a JSON object "];
+  Node233 -> Node241 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node241 [label="nlohmann::basic_json::end",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a13e032a02a7fd8a93fdddc2fcbc4763c",tooltip="returns an iterator to one past the last element "];
+  Node233 -> Node242 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node242 [label="nlohmann::basic_json\l::erase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a068a16e76be178e83da6a192916923ed",tooltip="remove element given an iterator "];
+  Node233 -> Node243 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node243 [label="nlohmann::basic_json\l::is_array",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#aef9ce5dd2381caee1f8ddcdb5bdd9c65",tooltip="return whether value is an array "];
+}
