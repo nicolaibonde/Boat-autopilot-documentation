@@ -29,56 +29,59 @@ The requirements for the product are prioritized using the MoSCoW method. Using 
 		\end{itemize}
 \end{itemize}
 
+\section{Mockups}
+To get a better understanding of what the system would require, some user interface mockups were created. 
+The first of which, describe how there should be the ability to edit and change different parameters of the system, on figure~\ref{fig:mockup:edit_param}, it is seen how a profile 1 contains parameters for a PID. There is also the ability to create new profiles and change which on is the currently active one.
+
+To describe a collection a parameters and to be able to switch the active one, there is a need for a term like a parameter profile.
+This parameter profile is just a collection of parameters, and a name. It makes it easy to save different parameters and easily switch between them.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Edit_param.pdf}
 	\caption{Mockup for Edit parameter menu}
+	\label{fig:mockup:edit_param}
 \end{figure}
 
-k
+The mockup in figure~\ref{fig:mockup:p2p} is describing how the user may define a waypoint for the boat to navigate. There is the ability of entering the coordinates by hand or by pressing the map. Also this page of the system allows the user to tell the ship to calculate a path with which to follow. An estimated time of arrival is also displayed.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Point_to_point.pdf}
 	\caption{Mockup for Point to point menu}
+	\label{fig:mockup:p2p}
 \end{figure}
 
-k
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Diagnostics.pdf}
-	\caption{Mockup for Diagnostics menu}
-\end{figure}
-
-k
+There is also a mockup that describes how the user should define a rectangle to cover, seen in figure~\ref{fig:mockup:coverage}. like to the point to point menu mockup, there is a way to enter coordinates of the rectangle manually or by pressing the map. In every other regard this menu is just like the point to point menu.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Coverage.pdf}
 	\caption{Mockup for Coverage menu}
+	\label{fig:mockup:coverage}
 \end{figure}
 
-k
+Lastly there is a menu describe by the mockup on figure~\ref{fig:mockup:diagnostics} that show how the user of the system might see diagnostics data about the boat at any given time. The idea is that the boxes of information are interchangeable so if more information is required in the future is is easy to adapt the user interface.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/Requirements_specification/UI_Mockup_Diagnostics.pdf}
+	\caption{Mockup for Diagnostics menu}
+	\label{fig:mockup:diagnostics}
+\end{figure}
+
 
 The following two diagrams specify the actor context to the system, and the use cases for the system.
+
+\section{Actors}
+The following section describes the system's actors. Every actor has a type and a short description of its function and impact on the system. On figure~\ref{fig:actor} the actor context diagram is described. Actors on the left are primary actors, and on the right they are secondary actors.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{Images/Requirements_specification/Actor_context_diagram}
 	\caption{Actor context diagram}
+	\label{fig:actor}
 \end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{Images/Requirements_specification/Usecase_diagram}
-	\caption{Use case diagram}
-	\label{fig:usecasediagram}
-\end{figure}
-
-
-\section{Actor description}
-The following section describes the system's actors. Every actor has a type and a short description of its function and impact on the system.
 
 \begin{framed}
 	\subsection{Actor: Technician}
@@ -109,11 +112,16 @@ The following section describes the system's actors. Every actor has a type and 
 	
 \end{framed}
 
-\pagebreak
-
 \section{Fully dressed Use cases }
+Use cases are used to describe the intended use of a system. When a system has a user interface, use cases make a lot of sense since for every action a user or actor has there should be some feedback of some kind. To get an overview of all the use cases a use case diagram can be created, it shows all primary and secondary actors of a system, an also which use cases they are involved in, as well as which they initiate, this is show with an arrow on figure~\ref{fig:usecasediagram}.
 
-%TODO Skriv noget om hvad en parameter profil er!
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{Images/Requirements_specification/Usecase_diagram}
+	\caption{Use case diagram}
+	\label{fig:usecasediagram}
+\end{figure}
+
 
 \begin{framed}
 \subsection{Use case 1 - New parameter profile}
@@ -613,6 +621,12 @@ The parameter profile has been edited
 	\end{enumerate}	
 \end{framed}	
 
-\section{Non-functional requirements}
+%\section{Non-functional requirements}
+
 %WAAS GPS
 %Controller: Ethernet port, built-in WiFi
+
+
+
+
+
