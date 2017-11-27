@@ -56,125 +56,200 @@ Table~\ref*{table: General IBD} shows the signal list for the general system.
 \end{table}
 
 \section{Software architecture}
-k
+Software architecture is in this project used to get an overview of how the different parts of the system are going to interact.
+This means defining a domain model, application model and a many sequence diagrams. 
 
-\begin{figure}[H]
+A domain model figure \ref{fig:domain_model} can be used to describe the boundaries of a system, where does the user interact and should the system respond. I the case of CAPTAIN we have 2 actors, the Technician and the User. The technicians goal when using the system is to set it up, by entering various parameters and settings into the system that result in a working autopilot, these settings could be for example be PID controller terms. The Interface in this case a web interface should then tell the rest of the system about these changes.
+
+The technician is not the actor who operates the system generally, that would be the user. The users goal is to get the boat to move in certain ways. This is done through the web interface, where there is the ability to run different modes, including stopping the boat. the user can also get feedback from the system from the web interface.
+
+When the web interface gets commands from the user it save the necessary data. Then it sends commands to the controller, which is in charge of calculating the path the boat should take. It is also controlling the motors.They then move the boat to a new position, this new position i sensed by the GPS.the controller gets this new position from the GPS and is able to tell the motors where to go next.
+
+The current position, calculated path and other status related information, is send from the controller to the Web interface, where the user can then observe it and take appropriate actions.
+
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/System_architecture/Domain_Model}
+	\includegraphics[width=1\linewidth]{Images/System_architecture/Domain_Model}	
 	\caption{Domain Model}
+	\label{fig:domain_model}
 \end{figure}
 
-k
+From the domain model and use cases, an application model can be devised, see figure \ref{fig:appliction_model}. From the domain model there can be extracted three types of elements; boundary, control and entity.
+a boundary is some sort of interface to the real world, in CAPTAIN this is the web interface, motor(s) and the GPS. Then there is the control which is the Controller, this is responsible for the flow between boundaries and entities. 
 
-\begin{figure}[H]
+From the use cases the functionality of the the four elements can be described:
+The web interface is has responsibility in three areas; profiles, diagnostics, navigation.
+The profiles responsibility includes:
+\begin{itemize}
+\item Creating new parameter profiles
+\item Delting parameter profiles
+\item Editing parameter profiles
+\item Displaying parameter profiles
+\item Setting an active parameter profile
+\item Displaying the active parameter profile
+\end{itemize}
+The diagnostics responsibility includes:
+\begin{itemize}
+\item Requesting diagnostics data from the controller
+\item Getting connection diagnostics data.
+\end{itemize}
+Finally the navigation responsibility includes:
+\begin{itemize}
+\item Defining a point to point destination
+\item Defining a coverage rectangle
+\item Displaying data on a map
+\item Displaying coordinates
+\item Telling the controller to calculate a point to point path
+\item Telling the controller to calculate a coverage rectangle path
+\item Display a path from the controller
+\item Display the postion and orientation of the boat
+\item Telling the controller to run a path
+\item Telling the controller to stop the boat
+\end{itemize}
+The controller is responsible for:
+\begin{itemize}
+\item Setting the the parameters from the active profile
+\item Getting diagnostics from different parts of the system
+\item Calculating the point to point path
+\item Calculating the coverage path
+\item Calculating the estimated time enroute
+\item Run the boat, steer according to GPS and path
+\item Stop the boat
+\end{itemize}
+
+The GPS is responsible for, getting the gps data, and its own diagnostics data.
+
+Finally the motor(s) are responsible for setting and getting the thrust of the actual motors.
+
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Application_Model}
 	\caption{Application Model}
+	\label{fig:appliction_model}
 \end{figure}
 
-k
+With the functionality of the elements defined, sequence diagrams have been created to illustrate the flow of the different functions, in relation to the use cases.
+
+In figure \ref{fig:seq:uc1} a technician actor creates a new parameter profile, and the web interface responds by displaying a default parameter profile back to the technician.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_1_SD}
+	\includegraphics[width=0.8\linewidth]{Images/System_architecture/Use_case_1_SD}
 	\caption{Sequence diagram for Use case 1 - New parameter profile}
+	\label{fig:seq:uc1}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc2} a technician actor deletes a selected parameter profile.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_2_SD}
+	\includegraphics[width=0.7\linewidth]{Images/System_architecture/Use_case_2_SD}
 	\caption{Sequence diagram for Use case 2 - Delete parameter profile}
+	\label{fig:seq:uc2}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc2} a technician actor wants edit an parameter profile so first the parameter profile is displayed to the on the web interface. Next the technician edits the parameter profile with some parameters.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_3_SD}
 	\caption{Sequence diagram for Use case 3 - Edit parameter profile}
+	\label{fig:seq:uc3}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc4} a technician actor wants to set a parameter profile as the currently active one, this is done by setting a selected parameter profile active, the web interface displays the active parameter profile, and sends the active parameter profile to the controller
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_4_SD}
 	\caption{Sequence diagram for Use case 4 - Set active parameter profile}
+	\label{fig:seq:uc4}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc5} a user or technician actor Request diagnostics from web interface. The interface responds by asking the controller for diagnostics. The controller then gets; the speed of the thruster(s), the GPS data, and GPS diagnostics. Then the controller ask the web interface for connection diagnostics. Once all of the data is gathered it is all returned to the web interface, which then displays the diagnostics and the boats position on a map.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_5_SD}
 	\caption{Sequence diagram for Use case 5 - Request diagnostics}
+	\label{fig:seq:uc5}
 \end{figure}
 
-k
+in figure \ref{fig:seq:uc6} a user actor sets a destination for a point to point operation. the coordinate of the destination is then displayed on the map as well as displaying it as text.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_6_SD}
 	\caption{Sequence diagram for Use case 6 - Set point to point destination}
+	\label{fig:seq:uc6}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc7} a user actor wants to calculate a point to point path, and the user has already selected a destination. The web interface asks the controller to calculate a path with the coordinate specified by the user. The controller get the GPS data and calculates a line from the boat position to the destination and returns it to the web interface. The web interface then displays this path.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_7_SD}
 	\caption{Sequence diagram for Use case 7 - Calculate point to point path}
+	\label{fig:seq:uc7}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc8} a user actor wants to run the a point to point path. Before this can be done, first the user must have calculated a path. The web interface tells the controller to run the point to point path previously calculated. The controller now gets the GPS data, and set the thruster(s) accordingly, it then displays the GPS data on the web interface. Then it calculates the estimated time enroute, to display on the web interface. Everything from getting the GPS data is repeated until the destination is reached.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_8_SD}
 	\caption{Sequence diagram for Use case 8 - Run point to point path}
+	\label{fig:seq:uc8}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc9} the system is already doing the loop from use case 8 as seen on figure \ref{fig:seq:uc8}. But this time a user actor wants to stop the boat, so he calls stop on the web interface this breaks the loop. The web interface relays the stop call to the controller and it set the thrust to 0\% or stopped.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_9_SD}
 	\caption{Sequence diagram for Use case 9 - Stop point to point path}
+	\label{fig:seq:uc9}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc10} an user actor wants to define a coverage area, he does this with 2 coordinates. The web interface displays the coordinates on a map and as some text as well. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_10_SD}
 	\caption{Sequence diagram for Use case 10 - Set coverage area}
+	\label{fig:seq:uc10}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc11} a user actor wants to calculate a coverage path, it is a prerequisite that use case 10 has been completed before this so the web interface knows on what to calculate the path. The web interface tells the controller to calculate the path with 2 coordinates defined in use case 8. The controller gets the GPS data to know where the boat is at and returns a calculated path. The web interface then displays the path.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_11_SD}
 	\caption{Sequence diagram for Use case 11 - Calculate coverage path}
+	\label{fig:seq:uc11}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc12} a user actor wants to run the a coverage path. Before this can be done, first the user must have calculated a path. The web interface tells the controller to run the coverage path previously calculated. The controller now gets the GPS data, and set the thruster(s) accordingly, it then displays the GPS data on the web interface. Then it calculates the estimated time enroute, to display on the web interface. Everything from getting the GPS data is repeated until the destination is reached.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_12_SD}
 	\caption{Sequence diagram for Use case 12 - Run coverage path}
+	\label{fig:seq:uc12}
 \end{figure}
 
-k
+In figure \ref{fig:seq:uc13} the system is already doing the loop from use case 12 as seen on figure \ref{fig:seq:uc12}. But this time a user actor wants to stop the boat, so he calls stop on the web interface this breaks the loop. The web interface relays the stop call to the controller and it set the thrust to 0\% or stopped.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/Use_case_13_SD}
 	\caption{Sequence diagram for Use case 13 - Stop coverage path}
+	\label{fig:seq:uc13}
 \end{figure}
 
-k
+
+To summarize the architecture of the system. This system is able to define, calculate and run 2 different paths. It can get different types of diagnostics data. An lastly it can create and manipulate parameter profiles so the system is able to be configured. 
+
+
+
 
