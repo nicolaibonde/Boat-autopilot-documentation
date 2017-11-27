@@ -1,59 +1,88 @@
 \chapter{System architecture}
 
+
+
 \section{Hardware architecture}
+Choosing the right components is essential for keeping cost low and meeting the requirements for the system. Therefore it is important to have a well thought out hardware architecture. 
+
 \subsection{Overview}
-%intro
+The Boat autopilot system can be broken down in to two parts a User interface and then controller.
+The controller can be broken down even more. It can be split up into a programmable controller, actuators and sensors, and some components to bind this together.
 
-Choosing the right components is essential for keeping cost low and meeting the requirements for the system.
+The programmable controller need a WiFi and Ethernet interface to communicate with the user interface. it also need an interface to communicate with sensors and actuators. 
 
-%controller
+Since the only sensor in this version of the Boat autopilot is a GPS, we only need a serial UART interface, which is the standard if the GPS uses the NMEA protocol. 
 
-%gps
+The actuators in the system are motors that can be controlled by Pulse width modulation, and so PWM is the protocol used to control the actuators. Motors cant run off of the low amperage of a controller, therefore a motor controller is required, which can take a low voltage PWM signal and step it up to higher voltage. It also has to be able to deliver the required amount amperage of the motor. 
+
+To power the system a battery is required and to use it all over the system a power regulator is a good idea, since motors, sensors and the controller require different voltages.
 
 \subsubsection{General BDD}
+
+To get an overview of the different part of the system a block definition diagram (BDD) has been drawn up.
+In figure \ref{fig:general_bdd} the system blocks can be seen. There is the entire system Boat autopilot, which is broken down in to 2 parts Captain and User Interface. The User interface is what the user interacts with to control the system. It need a WiFi and/ or Ethernet connection to talk with the Captain part. Captain requires a WiFi and/or a Ethernet connection to the User Interface, it also need a battery, a 8.4 volt battery has been chosen. 
+
+Captain can be broken down in to further parts, A Controller, Power regulator, Motor Controller, Motor, and GPS.
+The Controller is a programmable controller, with a WiFi and Ethernet adapter, it is responsible for controlling the other parts of Captain. It has a 5 V input to power it, and outputs a 3.3 V output to power the GPS, from the GPS it gets a serial UART signal in the form of NMEA protocol. It also output 1 to 2 PWM signal to 1 to 2 Motor Controllers which drive 1 to 2 Motors.
+
+To power all the parts a Power regulator is need, it takes the battery voltages and steps it down to 5 V for the controller, and passes 8.4 V to the motor controller.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/General_BDD}
 	\caption{General BDD}
+	\label{fig:general_bdd}
 \end{figure}
 
-k
+To further describe the system a internal block diagram or IBD can be drawn, figure \ref{fig:general_ibd}, it describes the connections of the blocks from the BDD in figure \ref{fig:general_bdd}. 
+
+Every block from the BDD gets and box, and inside a box is all of its blocks. On the edge of the blocks there are arrow indicating how the signals of the system correspond to each other.
 
 \subsubsection{General IBD}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/General_IBD}
 	\caption{General IBD}
+	\label{fig:general_ibd}
 \end{figure}
 
-k
+\paragraph{Signal list}
 
-\subsubsection{Signal list}
-
-%TODO change ibd so every signal has a name
-Table~\ref*{table: General IBD} shows the signal list for the general system.
+Table~\ref{table:general_ibd} shows the signal list for the system, and a description
 \begin{table}[htbp]
 	\centering
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\textbf{Signal type} 	&\textbf{Name}		&\textbf{Description} \\\hline
-		8.4V			&Vsupply	&8.4V supply to Power regulator from battery\\\hline
+		8.4V			&Battery	&8.4V supply from a battery\\\hline
 		
 		8.4V			&Vcc8		&8.4V supply to Motor Controller\\\hline
 		5V			&Vcc5		&5V supply to Controller and Motor Controller\\\hline
 		3.3V			&Vcc3		&3.3V supply to GPS\\\hline
 		0V			&0V			&System ground\\\hline
-		PWM	&MotConPWM	&PWM-signal to Motor Control, 5V\\\hline
-		PWM	&MotorPWM	&PWM-signal to Motor, 8.4V\\\hline
-		UART		&GPS		&GPS data to Controller through UART\\\hline	
+		PWM	&ControlSignal	&PWM-signal to Motor Control, 5V\\\hline
+		PWM	&MotorSignal	&PWM-signal to Motor, 8.4V\\\hline
+		UART		&NMEA		&GPS data to Controller through serial UART\\\hline	
 		WiFi		&WiFi		&WiFi signal between Controller and User interface\\\hline
 		Ethernet	&Ethernet	&Ethernet signal between Controller and User interface\\\hline
 		
 		
 	\end{tabular}
 	\caption{Signal list for General IBD}
-	\label{table: General IBD}
+	\label{table:general_ibd}
 \end{table}
+
+\paragraph{PWM}
+Pulse with modulation is a technique of modulating a digital signal, so it appears to to have different amplitudes to a slow system, for example a motor. This is done by switching the signal on and off with a defined frequency, but changing the duty cycle. The duty cycle is the amount of time the signal is on in a given period.\cite{PWM}
+
+\paragraph{NMEA}
+The NMEA is a protocol described by National marine electronics association. And is the standard used for most GPS systems, it sends it data over a serial UART connection. \cite{NMEA}
+
+\paragraph{WiFi}
+WiFi is a wireless local area network standard defined be IEEE\cite{WIFI}. It is used for communication between different devices on a local network or ad-hoc, meaning a device hosts a network for other devices to connect to. 
+
+\paragraph{Ethernet}
+Ethernet is a wired communication standard defined be IEEE\cite{ethernet}. In this system it is used in the same way as WiFi, to let different devices communicate.
 
 \section{Software architecture}
 Software architecture is in this project used to get an overview of how the different parts of the system are going to interact.
