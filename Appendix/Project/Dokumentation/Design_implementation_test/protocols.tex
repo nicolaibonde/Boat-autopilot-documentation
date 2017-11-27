@@ -158,3 +158,97 @@ An example can be seen in listing \ref{lst:activeParam}.
 	"creation_timestamp_": 1507201741743
 }
 \end{lstlisting}
+
+
+\subsection{NMEA 0183 version 2}
+The NMEA 0183 version 2 protocol is a serial protocol defined by the National Marine Electronics Association \cite{NMEA}. 
+The protocol is serial EIA-422, and has a bit-rate of 4800 b/s. The protocol is defined by sentences which are ascii strings with up to 80 characters in each, if more characters are needed then there will be sent more sentences. 
+
+A sentence is defined to start with a \$ and ends with a carriage return line feed.There can be alot of variables in a sentence, all of which are separated by commas. After the \$ the talker identifier is described this can be a variety of things, for a GPS this is GP, after the talker identifier, there is a sentence identifier. There are many sentence identifiers, but the once that will be discussed are the GGA, VTG and APB, since they are used in this system. The different sentence identifiers define what variables that there are in a sentence, after these variables there is a * which defines the start of the checksum.
+
+The checksum is XOR of all the characters in the sentence excluding; \$, *, and the checksum it self. The checksum is a 2 character long hex number.
+
+An example of a sentence can be seen in example \ref{ex:gga}
+\begin{ex}
+\texttt{\$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47}
+\label{ex:gga}
+\end{ex}
+
+\subsubsection{GGA}
+Global Positioning System Fix Data. Time, Position and fix related data for a GPS receiver. This is the definition of the GGA sentence in the NMEA 0183 standard. an example GGA sentences can be seen in example \ref{ex:gga}.
+
+\noindent A GGA sentence is built up of 14 variables in this order:
+\begin{description}
+\item[Fix time] the last time the fix was updated
+\item[Latitude] is one component of the position
+\item[North or South] the latitude hemisphere
+\item[Longitude] is the other component of the position
+\item[East or West] the longitude hemisphere
+\item[Fix] is the GPS quality indicator
+\begin{description}
+\item[0] invalid GPS connection
+\item[1] Standard precision
+\end{description}
+\item[Satellites] is the number of satellites in view, up to 12
+\item[HDOP] horizontal dilution of precision
+\item[Altitude] above mean sea level.
+\item[Unit of altitude]
+\item[Height] of geoid above WGS84 ellipsoid
+\item[Unit of height]
+\item[Time] in seconds since last DGPS update
+\item[DGPS] station ID number
+\end{description}
+
+This sentence is used to get the position of a GPS receiver and to know how good the precision of the data is. 
+
+\subsubsection{VTG}
+Track Made Good and Ground Speed, is the NMEA 0183 sentence for getting the ground speed and track of a GPS receiver.
+It is build up of these 8 variables:
+\begin{description}
+\item[Track Degrees] The true track of the GPS receiver 
+\item[T] specifies that the track is true
+\item[Track Degrees] The magnetic track of the GPS receiver
+\item[M] specifies that the track is magnetic
+\item[Speed] the speed in knots 
+\item[N] the unit of the speed in knots
+\item[Speed] the speed in kilometers per hour
+\item[K] the unit for speed in kilometers per hour
+\end{description}
+
+An example of this sentence can be seen in example \ref{ex:vtg}
+\begin{ex}
+\texttt{\$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48}
+\label{ex:vtg}
+\end{ex}
+
+\subsubsection{APB}
+Autopilot Sentence "B", is the NMEA 0183 sentence that contain the variables calculated by an autopilot, an example sentence can be found in example \ref{ex:apb}
+
+\begin{ex}
+\texttt{\$GPAPB,A,A,0.10,R,N,V,V,011,M,DEST,011,M,011,M*3C }
+\label{ex:apb}
+\end{ex}
+
+The APB sentence is built up of 14 variables in this order:
+\begin{description}
+\item[Status] can be V or A for LORAN-C blink warning flag or general warning respectively 
+\item[Status] can be V or A for Loran-C cycle lock warning flag or OK respectively
+\item[Cross track error magnitude] is the how far away from the desired line the GPS receiver is.  
+\item[Direction to steer] What way to steer to get back to the desired line.
+\item[Cross track unit] N for nautical miles, and K for kilometers
+\item[Status] A if the GPS receiver is inside the arrival circle
+\item[Status] A if the GPS receiver has passed the perpendicular line at the waypoint
+\item[Bearing] origin to destination 
+\item[Bearing unit] M for magnetic, T for true
+\item[Destination Waypoint ID]
+\item[Bearing] present position to destination 
+\item[Bearing unit] M for magnetic, T for true
+\item[Heading to steer] to destination waypoint 
+\item[Heading unit] M for magnetic, T for true
+\end{description}
+
+
+
+
+
+
