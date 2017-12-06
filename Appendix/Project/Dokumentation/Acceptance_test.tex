@@ -24,7 +24,7 @@ A couple of things that a tester might need to know; default parameters are some
 			}}} \\  \hline
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
-		1 & Press the "New Profile" button on the user interface & A new parameter profile should appear in the list of parameter profiles. \\ \hline
+		1 & Press the "New" button on the user interface & A new parameter profile should appear in the list of parameter profiles. \\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 1 - New parameter profile - Main scenario}
 \end{table}
@@ -42,7 +42,7 @@ A couple of things that a tester might need to know; default parameters are some
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
 		1 & Select a parameter profile from the list of parameter profiles & The parameter profile selected is highlighted\\ \hline
-		2 & Press the "Delete profile" button in the user interface & The previously selected parameter profile should be delete from the list of parameter profiles\\ \hline
+		2 & Press the "Delete" button in the user interface & The previously selected parameter profile should be delete from the list of parameter profiles\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 2 - Delete parameter profile - Main scenario}
 \end{table}
@@ -60,8 +60,8 @@ A couple of things that a tester might need to know; default parameters are some
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
 		1 & Select a parameter profile from the list of parameter profiles & The parameter profile selected is highlighted\\ \hline
-		2 & Press the "Set Profile" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
-		3 & Make sure that the now active profile is still selected, then press the "Delete profile" button in the user interface & The previously selected parameter profile should be deleted from the list of parameter profiles, and under the text "Active Profile" it should now say "None" \\ \hline
+		2 & Press the "Activate" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
+		3 & Make sure that the now active profile is still selected, then press the "Delete" button in the user interface & The previously selected parameter profile should be deleted from the list of parameter profiles, and under the text "Active Profile" it should now say "None" \\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 2 - Delete parameter profile - Extension 1: Active profile deleted}
 \end{table}
@@ -79,7 +79,7 @@ A couple of things that a tester might need to know; default parameters are some
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
 		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted\\ \hline
-		2 & Press the "Edit Profile" button in the user interface & The parameter profile values should be loaded and displayed in the edit section of the user interface\\ \hline
+		2 & Press the "Edit" button in the user interface & The parameter profile values should be loaded and displayed in the edit section of the user interface\\ \hline
 		3 & Change the values either by moving the sliders or by directly entering values in the input fields & The values changed should correspond to what they were changed to\\ \hline
 		4 & Press the "Save" button & Nothing should visually happen, but the values should be saved.\\ \hline
 	\end{tabularx}
@@ -99,7 +99,7 @@ A couple of things that a tester might need to know; default parameters are some
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
 		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted\\ \hline
-		2 & Press the "Edit Profile" button in the user interface & The parameter profile values should be loaded and displayed in the edit section of the user interface\\ \hline
+		2 & Press the "Edit" button in the user interface & The parameter profile values should be loaded and displayed in the edit section of the user interface\\ \hline
 		3 & Change the values either by moving the sliders or by directly entering values in the input fields & The values changed should correspond to what they were changed to\\ \hline
 		4 & Press the "Revert" button & The values changed should now go back to what they were set to before they were changed\\ \hline
 	\end{tabularx}
@@ -119,7 +119,7 @@ A couple of things that a tester might need to know; default parameters are some
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
 		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted\\ \hline
-		2 & Press the "Set Profile" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
+		2 & Press the "Activate" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 4 - Set active parameter profile}
 \end{table}
@@ -138,7 +138,7 @@ A couple of things that a tester might need to know; default parameters are some
 		}}}\\  \hline
 		\bfseries Step  & \bfseries Action &  \bfseries Expected \\ \hline 
 		%Copy below when adding more steps
-		1 & Select the "Diagnostics" menu in the user interface & The Diagnostics menu should open, and it should display diagnostics data for the gps, motor and connection to the boat, as well as the boats current position and orientation\\ \hline
+		1 & Select the "Status" menu in the user interface & The Diagnostics menu should open, and it should display diagnostics data for the gps, motor and connection to the boat, as well as the boats current position and orientation\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 5 - Request Diagnostics - Main scenario}
 \end{table}
@@ -214,7 +214,7 @@ A couple of things that a tester might need to know; default parameters are some
 		%Copy below when adding more steps
 		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map\\ \hline
 		2 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the selected position on the map. Also after calculating the "Calculating..." button should change to "Start"\\ \hline
-		3 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has reached the position chosen in the first step, also while the boat is moving the ETA on the user interface is continually updated with an approximate ETA. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the destination the "Running..." button should change to "Calculate path"\\ \hline
+		3 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has reached the position chosen in the first step, also while the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the destination the "Running..." button should change to "Calculate path"\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 9 - Run point to point path - Main scenario}
 \end{table}
@@ -234,7 +234,7 @@ A couple of things that a tester might need to know; default parameters are some
 		%Copy below when adding more steps
 		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map\\ \hline
 		2 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the selected position on the map. Also after calculating the "Calculating..." button should change to "Start"\\ \hline
-		3 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving. While the boat is moving the ETA on the user interface is continually updated with an approximate ETA. On the map the icon of the boat should also change to correspond with the real position of the boat.\\ \hline
+		3 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving. While the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat.\\ \hline
 		4 & Press the "Stop" button in the user interface, before the boat has reached its destination & In the user interface the button "Running..." changes to "Calculate path". The boats turns off its motors and comes to a halt.\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 9 - Stop point to point path - Main scenario}
@@ -291,7 +291,7 @@ A couple of things that a tester might need to know; default parameters are some
 		%Copy below when adding more steps
 		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
 		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
-		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint of the Bézier curves covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 11 - Calculate coverage path - Main scenario}
 \end{table}
@@ -312,8 +312,8 @@ A couple of things that a tester might need to know; default parameters are some
 		%Copy below when adding more steps
 		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
 		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
-		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint of the Bézier curves covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
-		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has completed the coverage of the area chosen in the first step, also while the boat is moving the ETA on the user interface is continually updated with an approximate ETA. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the endpoint the "Running..." button should change to "Calculate path"\\ \hline
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint  covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
+		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has completed the coverage of the area chosen in the first step, also while the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the endpoint the "Running..." button should change to "Calculate path"\\ \hline
 	\end{tabularx}
 	\caption{Test of: Use case 12 - Run coverage path - Main scenario}
 \end{table}
@@ -333,7 +333,7 @@ A couple of things that a tester might need to know; default parameters are some
 		%Copy below when adding more steps
 		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly\\ \hline
 		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly\\ \hline
-		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint of the Bézier curves covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint covering the selected area. Also after calculating, the "Calculating..." button should change to "Start"\\ \hline
 		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving, also while the boat is moving the ETA on the user interface is continually updated with an approximate ETA. On the map the icon of the boat should also change to correspond with the real position of the boat. \\ \hline
 		5 & Press the "Stop" button in the user interface, before the boat has reached the endpoint & In the user interface the button "Running..." changes to "Calculate path". The boats turns off its motors and comes to a halt.\\ \hline
 	\end{tabularx}
