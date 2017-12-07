@@ -1,6 +1,12 @@
 \chapter{Acceptance test results}
 \label{sec:acceptance_test_results}
 
+This section is an execution of the acceptance test defined in section~\ref{sec:acceptance_test} on page~\pageref{sec:acceptance_test}.
+
+The test was performed outside with access to a GPS connection, but it was not performed in a pool of water. The pool of water was considered unnecessary, since the boat is difficult to retrieve after testing, and there is a risk of capsizing, which can result in all of the electronics shorting and getting destroyed. Also a very large amount of time is also required to tune the PID loop so the boat will behave in a predictable manner. Therefore the test was conducted by carrying the boat and following its directions, meaning if it turns the rudder left we move the boat right an vice versa.
+
+A WiFi connection was setup for the Raspberry pi inside the boat, called "\texttt{WindowsAP}" which it is setup to connect to with the password "\texttt{1i3J804\^}". When a connection is gained, the website can be reached by navigating to either the ip assigned or "\texttt{http://rasp\-berry\-pi.\-local}" which is the host name. Between each test the website is refreshed to clear any cached data, like inputted coordinates, and also to reset the buttons for calculating start and so forth. 
+
 \begin{table}[H] 			
 	\centering
 	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
