@@ -213,9 +213,186 @@ saveToFile = function(url, content) {
 }
 \end{lstlisting}
 
+All of this functionality is data binded and wrapped into the website, an example can be seen in figure~\ref{fig:editpage}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/edit_page}
+\caption{The Edit parameter page of the website}
+\label{fig:editpage}
+\end{figure}
 
 \subsubsection{Point to point}
+
+The Point to point page consists of 2 sections one with the coordinates and controls and one with map, this can be seen in figure~\ref{fig:p2ppage}. The map is a leaflet map, but since the website is built with AngularJS, a special leaflet map is one called angular-leaflet-directive\cite{leaflet}. 
+
+For the point to point page, the map need to be able to display a marker of the boat and one for where the user wants the boat to go. Also the website need to be able to draw a path, calculated by the navigation. There for the map is setup with marker that takes the boats boats position, and one that starts out being invisible for the position where the user wants the boat to go. The user can either click the map or, input coordinates directly in the input fields. What ever the user chooses the updateEndCoord function is called, this function show in listing~\ref{lst:updateendcoord}, takes the position inputted. It then assigns it to the marker on the map, since the markers position is data bound to the input fields it automatically update. Also the marker is set to be visible 
+
+\begin{lstlisting}[caption = {updateEndCoord in p2p.js}, captionpos=b, label={lst:updateendcoord}, language=C++,firstnumber=1]
+updateEndCoord = function(end_coord) {
+        if (end_coord.lat != undefined) {
+            $scope.Cached_data_.markers_p2p_[1].lat = end_coord.lat;
+        }
+        if (end_coord.lng != undefined) {
+            $scope.Cached_data_.markers_p2p_[1].lng = end_coord.lng;
+        }
+        $scope.Cached_data_.markers_p2p_[1].opacity = 1;
+    }
+\end{lstlisting}
+
+To make sure that the boat position is always up to date, a loop is created from where all other functions are called. This can be seen in listing~\ref{lst:getdata}. Every second the function getDataFromNav is called which get the content of the fromNav file which contains the GPS coordinates for the boat, and much more. The boat pose is then updated on the map.
+
+\begin{lstlisting}[caption = {Updating the boat pose in p2p.js}, captionpos=b, label={lst:getData}, language=C++,firstnumber=1]
+
+let main_interval_ = 1000; //The interval for getting new navData
+
+let main_promise = $interval(function() {
+        getDataFromNav("../savedData/fromNav.json");
+    }, main_interval_); //Update frequency for the boat data
+
+...
+
+getDataFromNav = function(path) {
+        return $http.get(path).then(function(response) {
+            //Parse fromNav.json, add telemetry data
+            updateBoatPose(response.data.Telemetry_);
+            $scope.Cached_data_.Path_ = response.data.Path_;
+        }).catch(function(data) {
+            $scope.Cached_data_.Boat_pose_ = {
+                //Default boat position, for testing purposes
+                latitude_: 0,
+                longitude_: 0,
+                orientation_: 0
+            };
+        });
+    }
+    
+...
+
+updateBoatPose = function(pose) {
+        $scope.Cached_data_.Boat_pose_ = pose;
+        //Boat marker, set to the boats current position
+        $scope.Cached_data_.markers_p2p_[0].lat = pose.latitude_
+        $scope.Cached_data_.markers_p2p_[0].lng = pose.longitude_
+        $scope.Cached_data_.markers_p2p_[0].iconAngle = pose.orientation_
+    }
+\end{lstlisting}
+
+When a position on the map has been chosen and boat position is updated. The user can press the "Calculate path" button which call the Action function this function is in charge of change the state of the button as well as sending right task to the navigation. Since this is the first time the User presses the button, it changes it look to reflect that it is calculating, and then function calculatePath is called. This function builds the JSON object that should be send to the navigation, when it has been saved. It calls the function waitForPath, as seen in listing~\ref{lst:calcPath}. In side the waitForPath function an asynchronous loop is setup and constantly getting the data from the navigation. 
+
+\begin{lstlisting}[caption = {calculatePath and waitForPath in p2p.js}, captionpos=b, label={lst:calcPath}, language=C++,firstnumber=1]
+calculatePath = function(end_coord) {
+        saveToFile("toNav", {
+            "func_": "calcP2P",
+            "target_position_": {
+                latitude_: end_coord.lat,
+                longitude_: end_coord.lng
+            }
+        });
+        //Wait for navigation unit to send a new path
+        waitForPath();
+        //Return when the Path object has been updated by the controller
+    }
+
+    waitForPath = function() {
+        let current_timestamp = $scope.Cached_data_.Path_.timestamp_;
+        $scope.waitForPathPromise = $interval(function() {
+            getDataFromNav("../savedData/fromNav.json");
+            $http.get("../savedData/fromNav.json").then(function(response) {
+                $scope.Cached_data_.Path_ = response.data.Path_;
+		if (current_timestamp < $scope.Cached_data_.Path_.timestamp_) {
+			$interval.cancel($scope.waitForPathPromise);
+                	$scope.Cached_data_.action_state_p2p_ = 1;
+		 	setPath(response.data.Path_.line_)
+			$scope.Action();
+                }
+            });
+        }, wait_for_path_interval_); //Update frequency for the boat data
+    }
+\end{lstlisting}
+
+When the waitForPath function get data from the navigation it calls the setPath function, which is show in listing~\ref{lst:setpath}. setPath takes the data from the navigation and displays it on the map as a blue line. After the path is drawn it calls the Action function, which now changes the button state to be start.
+
+\begin{lstlisting}[caption = {setPath in p2p.js}, captionpos=b, label={lst:setpath}, language=C++,firstnumber=1]
+setPath = function(path) {
+		$scope.Cached_data_.paths_p2p_.p2.latlngs.splice (0,$scope.Cached_data_.paths_p2p_.p2.latlngs.length);
+		//Run through all elements in the path and overwrite what is in the paths_ object
+		for (let i = 0; i < path.length; i++) {
+			$scope.Cached_data_.paths_p2p_.p2.latlngs[i] = {
+				lat: path[i].latitude_,
+				lng: path[i].longitude_
+			}
+		}
+	}
+\end{lstlisting}
+
+When the user presses the start button the Action function is called. The action state dictates that the start function should be called.  The website save a start task in the toNav.JSON file, then it calls the waitForCompletion function, as seen in listing~\ref{lst:start}. Which starts an asynchronous loop that read the data in fromNav.JSON. With this data it updates the progress and ETE, as well as displaying the completed path on the map as a green line. 
+
+\begin{lstlisting}[caption = {the start and waitForCompletion functions in p2p.js}, captionpos=b, label={lst:start}, language=C++,firstnumber=1]
+    //Send command to navigation unit
+    start = function() {
+        saveToFile("toNav", {
+            "func_": "start"
+        });
+        $scope.Cached_data_.ETE_.class_p2p_ = "progress-bar"
+        //Wait for navigation unit to send a new path
+        waitForCompletion()
+        //Return when the path has been traversed
+    }
+
+    waitForCompletion = function() {
+        $scope.Cached_data_.ETE_.time_p2p_ = "Calculating ...";
+        $scope.waitForCompletionPromise = $interval(function() {
+            if ($scope.Cached_data_.ETE_.progress_p2p_ >= 100) {
+                $scope.Cached_data_.ETE_.time_p2p_ = "Arrived at target";
+                $scope.Cached_data_.ETE_.class_p2p_ = "progress-bar-success"
+                $scope.Cached_data_.action_state_p2p_ = 3;
+                saveToFile("toNav", {
+                    "func_": "none"
+                });
+                $scope.Action()
+                $interval.cancel($scope.waitForCompletionPromise);
+            } else {
+                getDataFromNav("../savedData/fromNav.json");
+                $http.get("../savedData/fromNav.json") .then(function(response) {
+					$scope.Cached_data_.ETE_.progress_p2p_ = response.data.Progress_.percentage_;
+                    $scope.Cached_data_.ETE_.time_p2p_ = response.data.Progress_.ete_;
+                    setCompletedPath(response.data.Completed_path_.line_);
+                })
+            }
+        }, wait_for_completion_interval_)
+    }
+\end{lstlisting}
+
+At any point in time the user can press the "Stop" button which call the Stop function. It sends a stop task to the navigation through the toNav.JSON file, seen in listing~\ref{lst:stop}. Also the Stop function updates some visuals, for example it makes the progress bar red, and makes the ETE say "Canceled".
+
+\begin{lstlisting}[caption = {Stop function in p2p.js}, captionpos=b, label={lst:stop}, language=C++,firstnumber=1]
+    $scope.Stop = function() {
+            //Reset action state and destroy both waiting promises if they exist
+            $scope.Cached_data_.action_state_p2p_ = 0;
+            if ($scope.waitForPathPromise) {
+                $interval.cancel($scope.waitForPathPromise);
+            }
+            if ($scope.waitForCompletionPromise) {
+                $interval.cancel($scope.waitForCompletionPromise);
+            }
+            $timeout.cancel($scope.p2ptimeout);
+            $scope.Cached_data_.action_p2p_ = {
+                text_: "Calculate Path",
+                class_: "btn-warning",
+                icon_: "glyphicon glyphicon-flash"
+            }
+    
+            //Update command file
+            saveToFile("toNav", {
+                "func_": "stop"
+            });
+    
+            $scope.Cached_data_.action_state_p2p_ = 0
+            $scope.Cached_data_.ETE_.time_p2p_ = "Canceled";
+            $scope.Cached_data_.ETE_.class_p2p_ = "progress-bar-danger"
+        }
+\end{lstlisting}
 
 \subsubsection{Coverage}
 
@@ -223,3 +400,37 @@ saveToFile = function(url, content) {
 
 \subsection{Nodejs server}
 \label{sec:nodejs_server}
+The Nodejs server can be thought of as the back-end of the website, it is what needs to run for the website to be live. Nodejs is a javascript runtime\cite{nodejs}. This project uses the server to handle three of post calls that the client can make through the website, and also hosting the website on port 80. 
+
+When a post call comes from the client with either a "/profiles", "/active" or "/toNav" url, the server takes the data it gets and writes it to the appropriate file, lets take "/profiles" as an example, The node package fs, is used to save the data to the profiles.json file in the savedData folder in the website, as seen in listing~\ref{lst:post}. After the file is saved then it returns a status 200, if it did not work it returns a status 500, which is a server error.
+
+\begin{lstlisting}[caption = {Handeling a POST call to url "/profiles"}, captionpos=b, label={lst:post}, language=C++,firstnumber=1]
+app.post('/profiles',function(req, res){
+	console.log(req.body);
+	res.set("Connection", "close");
+	res.setHeader('Content-Type', 'application/json');
+
+	fs.writeFile(website_path+'/savedData/profiles.json', JSON.stringify(req.body), function(err) {
+	    if(err) {
+			res.sendStatus(500);
+	        return console.log(err);
+	    }
+	});
+	res.sendStatus(200);
+
+});
+\end{lstlisting}
+
+To host the website, the server is listening for a client, and if one connects the server, serves the client with the website. This can be seen in listing~\ref{lst:host}.
+
+\begin{lstlisting}[caption = {Hosting server}, captionpos=b, label={lst:host}, language=C++,firstnumber=1]
+app.use(express.static(website_path))
+
+...
+
+//wait for a connection
+app.listen(80, function () {
+  console.log('Server is running. Point your browser to: '+ip.address()+':80');
+});
+\end{lstlisting}
+
