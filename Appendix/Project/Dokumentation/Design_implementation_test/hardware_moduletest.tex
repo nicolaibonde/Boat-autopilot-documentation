@@ -136,7 +136,7 @@ Now that the servo signal is set up it can be measured with an oscilloscope. In 
 
 The exact same thing can be done to test whether or not Raspberry pi is able to output a 30 kHz signal, this time a new piece of test code is need, it can be seen in listing~\ref{lst:rpi_motor}. Just like before the GPIO library need to be initialized, and the pin needs to be set to be an output. This time the function \texttt{gpioHardwarePWM} is used to be able to set a high PWM frequency, and a duty cycle with a high degree of steps. The frequency is set to 30.000 Hz or 30 kHz and the duty cycle is set to 10.000 which is equivalent to 1\% since the highest duty cycle is 1.000.000. The output pin is like before pin 18.
 
-\begin{lstlisting}[caption = {Test code to make the Raspberry pi run a motor a 30kHz}, captionpos=b, label={lst:rpi_servo}, 
+\begin{lstlisting}[caption = {Test code to make the Raspberry pi run a motor a 30kHz}, captionpos=b, label={lst:rpi_motor}, 
 language=C++,firstnumber=1]
 #include <pigpio.h>
 

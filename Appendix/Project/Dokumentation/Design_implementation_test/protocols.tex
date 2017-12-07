@@ -127,7 +127,7 @@ The \texttt{Status_} list can contains any status from anything, as long as it f
 },
 \end{lstlisting}
 
-\texttt{Telemetry_} is the boats current position and orientation described as a \texttt{latitude_}, \texttt{longitude_} and \texttt{orientation_}, which can be seen in listing \ref{list:fromNavTelemetry}
+\texttt{Telemetry_} is the boats current position and orientation described as a \texttt{latitude_}, \texttt{longitude_} and \texttt{orientation_}, which can be seen in listing \ref{lst:fromNavTelemetry}
 
 \begin{lstlisting}[caption = {Example of an Telemetry_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavTelemetry}, language=json,firstnumber=1]
 "Telemetry_": {
@@ -145,6 +145,7 @@ The \texttt{Status_} list can contains any status from anything, as long as it f
 
 
 \subsubsection{activeParam.JSON}
+\label{sec:active_param}
 When communicating what the P, I, and D parts of a PID loop should be, it is passed through the activeParam.JSON file from the User interface to the navigation module. activeParam.JSON has to have a \texttt{name_} and can also have a \texttt{create_timestamp_} to differentiate if there exists two with the same name. the parameters are grouped in two lists \texttt{parameter_names_} and \texttt{parameters_} these list can contain what ever parameters are wanted, it is up to the navigation module to pick out the parameters it needs.\\
 \texttt{parameter_names_} and \texttt{parameters_} should always be the same length, since the data is paired.
 An example can be seen in listing \ref{lst:activeParam}.
