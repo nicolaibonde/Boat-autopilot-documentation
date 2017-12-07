@@ -1,4 +1,404 @@
 \chapter{Acceptance test results}
 \label{sec:acceptance_test_results}
 
-Saul Goodman??
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 1 - New parameter profile} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+				\textbullet"Edit parameter" menu is open in user interface
+			}}} \\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Press the "New" button on the user interface & A new parameter profile should appear in the list of parameter profiles. 
+		& A new profile was added to the profile list with the name "New Profile" & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 1 - New parameter profile - Main scenario}
+\end{table}
+
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 2 - Delete parameter profile} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main Scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+				\textbullet "Edit parameter" menu is opened in user interface\\
+				\textbullet A parameter profile must exist
+			}}} \\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a parameter profile from the list of parameter profiles & The parameter profile selected is highlighted & The selected parameter profile is highlighted & Passed\\ \hline
+		2 & Press the "Delete" button in the user interface & The previously selected parameter profile should be delete from the list of parameter profiles & The selected parameter profile is deleted from the list of profiles. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 2 - Delete parameter profile - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 2 - Delete Parameter profile} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Extension 1: Active profile deleted} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+				\textbullet "Edit parameter" menu is opened in user interface\\
+				\textbullet A parameter profile must exist
+		}}} \\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a parameter profile from the list of parameter profiles & The parameter profile selected is highlighted & The selected parameter profile is highlighted & Passed\\ \hline
+		2 & Press the "Activate" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile & The selected parameter profile appears next to "Active profile:" on the user interface & Passed\\ \hline
+		3 & Make sure that the now active profile is still selected, then press the "Delete" button in the user interface & The previously selected parameter profile should be deleted from the list of parameter profiles, and under the text "Active Profile" it should now say "None" & The selected parameter profile is removed from the profile list, and the "Active profile" shows "None" & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 2 - Delete parameter profile - Extension 1: Active profile deleted}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 3 - Edit parameter profile} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main  scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet "Edit parameter" menu is opened in user interface\\
+					\textbullet A Parameter profile must exist
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline  
+		%Copy below when adding more steps
+		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted & The selected parameter profile is highlighted & Passed\\ \hline
+		2 & Press the "Edit" button in the user interface & The parameter profile values should be loaded and displayed in the edit section of the user interface & The selected parameter profile's edit section appears & Passed\\ \hline
+		3 & Change the values either by moving the sliders or by directly entering values in the input fields & The values changed should correspond to what they were changed to & The new values correspond to the changes made & Passed\\ \hline
+		4 & Press the "Save" button & Nothing should visually happen, but the values should be saved. & The edit section disappears & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 3 - Edit parameter profile - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 3 - Edit parameter profile} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Extension 1: Revert} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet "Edit parameter" menu is opened in user interface\\
+					\textbullet A Parameter profile must exist
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted & The selected parameter profile is highlighted & Passed\\ \hline
+		2 & Press the "Edit" button in the user interface & The parameter profile values should be loaded and displayed in the edit section of the user interface & The selected parameter profile's edit section appears & Passed\\ \hline
+		3 & Change the values either by moving the sliders or by directly entering values in the input fields & The values changed should correspond to what they were changed to & The new values correspond to the changes made & Passed\\ \hline
+		4 & Press the "Revert" button & The values changed should now go back to what they were set to before they were changed & The values have been reverted to the values they had when the edit section was opened & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 3 - Edit parameter profile - Extension 1: Revert}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 4 - Set active parameter profile} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet "Edit parameter" menu is open in user interface\\
+					\textbullet A parameter profile must exist
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a parameter profile form the list of parameter profiles & The selected parameter profile should be highlighted & The selected parameter profile is highlighted & Passed\\ \hline
+		2 & Press the "Activate" button in the user interface  & The name under the text "Active Profile:" now corresponds with previously selected profile & The selected parameter profile appears next to "Active profile:" on the user interface & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 4 - Set active parameter profile}
+\end{table}
+
+%TODO Use case 4, consider if bullet point number 5 makes sense
+
+%TODO Concider if there are missing prerequsites in use case 5
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 5 - Request diagnostics} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					None
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select the "Status" menu in the user interface & The Diagnostics menu should open, and it should display diagnostics data for the gps, motor and connection to the boat, as well as the boats current position and orientation & The menu opens and displays the diagnostics data. The menu is called "Status" & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 5 - Request Diagnostics - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 6 - Set point to point destination} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Point to point" menu is opened in user interface
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline
+		
+		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map & A marker appears on the map on the clicked area, and the latitude and longitude fields are updated & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 6 - Set point to point destination - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 6 - Set point to point destination} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Alternate flow 1: Coordinate input} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Point to point" menu is opened in user interface
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Input a coordinate by writing it in the input fields "longitude" and "latitude & On the map there should be an indication of the coordinate inputed in the input fields & A marker appears on the map, corresponding to the longitude and Latitude entered & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 6 - Set point to point destination - Alternate flow 1: Coordinate input}
+\end{table}
+
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 7 - Calculate point to point path} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet Use case 6 - Set point to point destination has been completed\\
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Point to point" menu is opened in user interface\\
+					\textbullet The boat must not be running a navigation task
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map &  A Marker appears on the map on the clicked area, and the latitude and longitude fields are updated & Passed\\ \hline
+		2 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the selected position on the map. Also after calculating the "Calculating..." button should change to "Start" & The button changes to "Calculating..." for a while, then a path is drawn on the map, and the button changes to "Start" & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 8 - Calculate point to point path - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 8 - Run point to point path} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Point to point" men is opened in user interface\\
+					\textbullet There must be an active parameter profile\\
+					\textbullet The boat must not be running a navigation task
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map &  A Marker appears on the map on the clicked area, and the latitude and longitude fields are updated & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 9 - Run point to point path - Main scenario}
+\end{table}
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		2 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the selected position on the map. Also after calculating the "Calculating..." button should change to "Start" & The button changes to "Calculating..." for a while, then a path is drawn on the map, and the button changes to "Start" & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 9 - Run point to point path - Main scenario - Continued 1}
+\end{table}
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		3 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has reached the position chosen in the first step, also while the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the destination the "Running..." button should change to "Calculate path" & The button changes to "Running..." while the path is being traversed, and ETE is updated continually along with the boats postion and orientation. The button changes to "Calculate path" when the path has been completed & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 9 - Run point to point path - Main scenario - Continued 2}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 9 - Stop point to point path} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Point to point" men is opened in user interface\\
+					\textbullet There must be an active parameter profile
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a position on the map & The user interface should indicate where you have pressed on map, and it should update the "latitude" and "longitude" input fields to correspond with latitude and longitude of the selected position on the map &  A Marker appears on the map on the clicked area, and the latitude and longitude fields are updated & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 9 - Stop point to point path - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		2 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the selected position on the map. Also after calculating the "Calculating..." button should change to "Start" & The button changes to "Calculating..." for a while, then a path is drawn on the map, and the button changes to "Start" & Passed\\ \hline
+		
+	\end{tabularx}
+	\caption{Test of: Use case 9 - Stop point to point path - Main scenario - Continued 1}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+	\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		3 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has reached the position chosen in the first step, also while the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the destination the "Running..." button should change to "Calculate path" & The button changes to "Running..." while the path is being traversed, and ETE is updated continually along with the boats position and orientation. & Passed\\ \hline
+		4 & Press the "Stop" button in the user interface, before the boat has reached its destination & In the user interface the button "Running..." changes to "Calculate path". The boats turns off its motors and comes to a halt. & The button changes to "Calculate path" when stop is pressed, and the motors are stopped. The progress bar turns red, and "Cancelled" is displayed in the ETE field & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 9 - Stop point to point path - Main scenario - Continued 2}
+\end{table}
+
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 10 - Set coverage area} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Select a position on the map & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly & A marker labeled "1" appears on the map on the clicked area, and the latitude and longitude fields are updated & Passed\\ \hline
+		2 & Select a different position on the map & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly & A marker labeled "2" appears on the map on the clicked area, and the latitude and longitude fields are updated, a orange square between the points are also drawn & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 10 - Set coverage area - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 10 - Set coverage area} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Alternate flow 1: Coordinate inputs} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly & A marker labeled "1" appears on the map corresponding to the inputted longitude and latitude & Passed\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly & A marker labeled "2" appears on the map corresponding to the inputted longitude and latitude, and a orange square between the points are also drawn. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 10 - Set coverage area - Alternate flow 1: Coordinate inputs}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 11 - Calculate coverage path} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface\\
+					\textbullet The boat must not be running a navigation task
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly & A marker labeled "1" appears on the map corresponding to the inputted longitude and latitude & Passed\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly & A marker labeled "2" appears on the map corresponding to the inputted longitude and latitude, and a orange square between the points are also drawn. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 11 - Calculate coverage path - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint covering the selected area. Also after calculating, the "Calculating..." button should change to "Start" & The button changes to "Calculating.." for a while, then a path is drawn on the map, and the button changes to "Start". & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 11 - Calculate coverage path - Main scenario - Continued}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 12 - Run coverage path} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" menu is opened in user interface\\
+					\textbullet There must be an active parameter profile\\
+					\textbullet The boat must not be running a navigation task
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly & A marker labeled "1" appears on the map corresponding to the inputted longitude and latitude & Passed\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly & A marker labeled "2" appears on the map corresponding to the inputted longitude and latitude, and a orange square between the points are also drawn. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 12 - Run coverage path - Main scenario}
+\end{table}
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint covering the selected area. Also after calculating, the "Calculating..." button should change to "Start" & The button changes to "Calculating.." for a while, then a path is drawn on the map, and the button changes to "Start". & Passed\\ \hline
+		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has completed the coverage of the area chosen in the first step, also while the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the endpoint the "Running..." button should change to "Calculate path" & The burron changes to "Running..." and while the path is being traversed, the ETE is updated continually along with the boat's position. The button changes to "Calculate path" when the path has been completed. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 12 - Run coverage path - Main scenario - Continued}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+		\hline
+		\bfseries Use case under test & \multicolumn{4}{|c|}{ Use case 13 - Stop coverage path} \\ \hline
+		\bfseries Scenario & \multicolumn{4}{| c |}{Main scenario} \\ \hline
+		\bfseries Prerequisite &  \multicolumn{4}{|l|}{\asg{\shortstack[l]{
+					\textbullet The user interface has an updated map\\
+					\textbullet The "Coverage" men is opened in user interface\\
+					\textbullet There must be an active parameter profile
+		}}}\\  \hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		%Copy below when adding more steps
+		1 & Input coordinate for point "1" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "1" to indicate the starting position of the coverage, the input fields for the position update correspondingly & A marker labeled "1" appears on the map corresponding to the inputted longitude and latitude & Passed\\ \hline
+		2 & Input coordinate for point "2" by writing it in the input fields "longitude" and "latitude" & The map indicates the position and labels it "2" to indicate the end position of the coverage, the input fields for the position update correspondingly & A marker labeled "2" appears on the map corresponding to the inputted longitude and latitude, and a orange square between the points are also drawn. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 13 - Stop coverage path - Main scenario}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|l|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		3 & Press the "Calculate path" button in the user interface & The button should change text to "Calculating..." for a while, while it is calculating, After calculating the calculated path should be displayed on the map, from the boat to the endpoint covering the selected area. Also after calculating, the "Calculating..." button should change to "Start" & The button changes to "Calculating.." for a while, then a path is drawn on the map, and the button changes to "Start". & Passed\\ \hline
+		4 & Press the "Start" button in the user interface & The button should change to "Running...", and the boat starts moving and keeps on doing so until it has completed the coverage of the area chosen in the first step, also while the boat is moving the ETE on the user interface is continually updated with an approximate ETE. On the map the icon of the boat should also change to correspond with the real position of the boat. After the boat is at the endpoint the "Running..." button should change to "Calculate path" & The button changes to "Running..." and while the path is being traversed, the ETE is updated continually along with the boat's position. & Passed \\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 13 - Stop coverage path - Main scenario - Continued 1}
+\end{table}
+
+\begin{table}[H] 			
+	\centering
+	\begin{tabularx}{\textwidth}{|c|X|X|X|l|}
+		\hline
+		\bfseries Step  & \bfseries Action &  \bfseries Expected &  \bfseries Actual &  \bfseries Assessment\\ \hline 
+		5 & Press the "Stop" button in the user interface, before the boat has reached the endpoint & In the user interface the button "Running..." changes to "Calculate path". The boats turns off its motors and comes to a halt. & The button changes to "Calculate path" when stop is pressed, and the motors are stopped. The progress bare turns red and "Cancelled" is displayed & Passed\\ \hline
+	\end{tabularx}
+	\caption{Test of: Use case 13 - Stop coverage path - Main scenario - Continued 2}
+\end{table}
