@@ -1,5 +1,5 @@
 \chapter{System architecture}
-
+\label{sec:sys-architecture}
 
 
 \section{Hardware architecture}
@@ -39,6 +39,7 @@ To further describe the system a internal block diagram or IBD can be drawn, fig
 Every block from the BDD gets and box, and inside a box is all of its blocks. On the edge of the blocks there are arrow indicating how the signals of the system correspond to each other.
 
 \subsubsection{General IBD}
+\label{sec:general_ibd}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/System_architecture/General_IBD}
@@ -47,6 +48,7 @@ Every block from the BDD gets and box, and inside a box is all of its blocks. On
 \end{figure}
 
 \paragraph{Signal list}
+
 
 Table~\ref{table:general_ibd} shows the signal list for the system, and a description
 \begin{table}[htbp]
@@ -85,6 +87,7 @@ WiFi is a wireless local area network standard defined be IEEE\cite{WIFI}. It is
 Ethernet is a wired communication standard defined be IEEE\cite{ethernet}. In this system it is used in the same way as WiFi, to let different devices communicate.
 
 \section{Software architecture}
+\label{sec:soft-architecture}
 Software architecture is in this project used to get an overview of how the different parts of the system are going to interact.
 This means defining a domain model, application model and a many sequence diagrams. 
 
