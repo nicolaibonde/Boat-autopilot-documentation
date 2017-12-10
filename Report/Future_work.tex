@@ -1,1 +1,33 @@
+%Her beskrives hvad der mangler for at gøre projektet færdigt, og hvilke fremtidige udvidelses- og anvendelsesmuligheder, der er i projektet.
 \chapter{Future work}
+There are a lot of things that could be better in the Captain project, and there are also some additions that would just make for a better product.
+
+One thing that was put under won't in the MoSCoW is polygon coverage, this was simply do to the fact that polygon coverage is a very large subject. Usually when one wants to cover an are it is not a square. Even then generally its not square with the longitude and latitude lines, like the system is limited to at this time. 
+
+Another thing that would be a nice to have is a way to navigate a none straight point to point path, if maybe a user wants to cover a river, this would be very impractical with the current point to point system. 
+
+The idea of saving an already calculated path, so it can be run in the exact same way at a later time. This would make it possible to compare data collected on separate occasions and eliminate the position differences as a factor.
+
+A thing that might not be optimal in the system at the moment is the communication between the website and the controller. It is handled by reading and writing to files. This was done for simplicity, but it might be a better idea to make the controller host a http server so it can handle GET and POST requests it self.  
+
+With the current implementation the controller only supports one boat type. But the software design is built up of rather generic interface so it should be possible in the future to include a variety of boat types.
+
+One thing that we were intending to get done for the project was an echo sounding device that would measure the depth of the sea bed below the boat. But we didn't end up getting around to it.
+
+The system could be classified as an mobile autonomous robot, but at this stage it does not have obstacle avoidance. This could be used to make sure that the boat is not going to run ashore, hit a bouy or even another boat. 
+
+If the system was ever to become anything other then a scale test bed, then it would both need a internet connection vis GSM. It would also probably need an RTK GPS receiver. An real time kinematic GPS receiver is sub centimeter precise and some can have interpolated position every 1/10 of a second, which could make the autopilot much more stable.
+
+Lastly on the topic of sensors, it would probably be a good idea to have some sort of battery monitoring system, if the system is going to be battery powered. 
+
+% Polygon coverage
+% Ikke lige linke p2p
+% At kunne gemme paths
+% Sensor integration
+% Manuel styring af båden
+% Bedre kommunikations protokol. ei ikke filer men post call direkte til c++ programmet.
+% Andre båd typer
+% obstacle avoidance
+% rtk gps
+% Gsm
+% Battery måler
