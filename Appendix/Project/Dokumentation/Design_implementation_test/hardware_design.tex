@@ -68,8 +68,8 @@ Now that the weight attributes have been figures out, the board to evaluate can 
 \item Parallella \cite{parallella}
 \item PineA64+ \cite{pinea64}
 \item PixiePro \cite{pixiepro}
-\item Raspberry Pi 3B \cite{rpi3b}
-\item Raspberry Pi Zero w \cite{rpi0w}
+\item Raspberry Pi 3B \cite{rpi}
+\item Raspberry Pi Zero w \cite{rpi}
 \item Udoo Quad \cite{udoo-quad}
 \end{itemize}
 
@@ -136,7 +136,7 @@ The choice of motor controller is bound by the motor that comes with Saint Princ
 \label{fig:motoramperagetest}
 \end{figure}
 
-Cytron MD30C rev. 2, is a brushed motor controller, what can handle 30 ampere continuously, and up to 80 amperes for up to a second. It also has a built in PWM generator, where the frequency can be controlled by either an internal or and external potentiometer. In this system the micro-computer generates the PWM, and it can also be set up to handle that, ei. an external PWM signal.
+Cytron MD30C rev. 2\cite{md30}, is a brushed motor controller, what can handle 30 ampere continuously, and up to 80 amperes for up to a second. It also has a built in PWM generator, where the frequency can be controlled by either an internal or and external potentiometer. In this system the micro-computer generates the PWM, and it can also be set up to handle that, ei. an external PWM signal.
 
 \begin{figure}[H]
 \centering
@@ -147,7 +147,7 @@ Cytron MD30C rev. 2, is a brushed motor controller, what can handle 30 ampere co
 
 \subsubsection{Connections}
 Now that all the components have been picked out, they need to be put together. 
-A battery of 8.4 V, is to high voltage for the Raspberry pi and the rudder servo. Therefore a step down circuit is needed, and just to make sure that the servo doesn't introduce a lot of noise in the supply to Raspberry pi, it should get its own step down. both step downs need to be able go down to 5 V. Once again the department of engineering had some in stock, the ones they got were LM2596 as seen on figure~\ref{fig:stepdown} \cite{stepdowm}. The LM2596 can deliver up to 2 amperes with out a heat sink, this enough for the raspberry pi, and it is reasonable to think that a servo in Saint Princess is not going to draw more then 2 amperes.
+A battery of 8.4 V, is to high voltage for the Raspberry pi and the rudder servo. Therefore a step down circuit is needed, and just to make sure that the servo doesn't introduce a lot of noise in the supply to Raspberry pi, it should get its own step down. both step downs need to be able go down to 5 V. Once again the department of engineering had some in stock, the ones they got were LM2596 as seen on figure~\ref{fig:stepdown} \cite{stepdown}. The LM2596 can deliver up to 2 amperes with out a heat sink, this enough for the raspberry pi, and it is reasonable to think that a servo in Saint Princess is not going to draw more then 2 amperes.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.4\linewidth]{Images/Design/stepdown}

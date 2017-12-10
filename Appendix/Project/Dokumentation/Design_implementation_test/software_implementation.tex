@@ -240,7 +240,7 @@ updateEndCoord = function(end_coord) {
     }
 \end{lstlisting}
 
-To make sure that the boat position is always up to date, a loop is created from where all other functions are called. This can be seen in listing~\ref{lst:getdata}. Every second the function getDataFromNav is called which get the content of the fromNav file which contains the GPS coordinates for the boat, and much more. The boat pose is then updated on the map.
+To make sure that the boat position is always up to date, a loop is created from where all other functions are called. This can be seen in listing~\ref{lst:getData}. Every second the function getDataFromNav is called which get the content of the fromNav file which contains the GPS coordinates for the boat, and much more. The boat pose is then updated on the map.
 
 \begin{lstlisting}[caption = {Updating the boat pose in p2p.js}, captionpos=b, label={lst:getData}, language=C++,firstnumber=1]
 
@@ -447,7 +447,7 @@ To display all of the status messages, it need somewhere to put it, there for in
 </div>
 \end{lstlisting}
 
-When the data from the fromNav.JSON file has been loaded, the updateStatusDisplay function is called with the javascript list \texttt{Status_}, and the timestamp of when the fromNav.JSON file was created. As it can be seen in listing~\ref{lst:statujs}, the code runs through all of the status items, and takes the relevant data, and encloses it in the necessary HTML. When the HTML is built for all of \texttt{Status_} it is assigned to the \texttt{div} tag from the html. It is important to notice that the code explicitly tells Angular that it can trust the HTML just created as HTML. This has to be done to tell Angular that we are sure that cross site scripting isn't possible with this HTML. 
+When the data from the fromNav.JSON file has been loaded, the updateStatusDisplay function is called with the javascript list \texttt{Status_}, and the timestamp of when the fromNav.JSON file was created. As it can be seen in listing~\ref{lst:statusjs}, the code runs through all of the status items, and takes the relevant data, and encloses it in the necessary HTML. When the HTML is built for all of \texttt{Status_} it is assigned to the \texttt{div} tag from the html. It is important to notice that the code explicitly tells Angular that it can trust the HTML just created as HTML. This has to be done to tell Angular that we are sure that cross site scripting isn't possible with this HTML. 
 
 \begin{lstlisting}[caption = {displaying status messages }, captionpos=b, label={lst:statusjs}, language=C++,firstnumber=1]
 updateStatusDisplay = function(status, timestamp) {
