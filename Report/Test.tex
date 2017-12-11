@@ -1,1 +1,65 @@
+%Her beskrives test af systemet, herunder en overordnet beskrivelse af hvordan modultest, integrationstest og accepttest er udført. For detaljer angives reference til jeres ”testdokument” i projektets bilag
+\newpage
 \chapter{Test}
+Testing was not initially something both team members had long experience with, but it soon became clear that verification would become an important part of the development process, particularly software. 
+
+One group member (Nicolai) had taken software testing the previous semester, and presented the general ideas and concepts before any controller code was written. 
+
+The team decided that unit testing would be mandatory for all C++ code that was possible to test, since it offered great benefits, and potentially a whole new way of thinking about software development. This also means that all classes that requires testing need an interface, to be able to make mock and fake classes.
+
+After debating and attempting different testing frameworks, it was decided that the Boost unit testing framework and the FakeIt isolation framework would be used. 
+
+This combination proved to be very effective, but since both members of the team had no experience with either framework, there were a few issues, and a lot of learning, before the frameworks were used to their full potential.
+
+At the end of development, over 170 tests totaling more than 8000 lines of code were written. 
+
+\section{Unit tests}
+
+Listing ~\ref{lst:servo_test} shows an example of a unit test of the Servo class.
+
+\begin{lstlisting}[caption = {Servo test of SetPosition}, captionpos=b, label={lst:servo_test}, language=C++,firstnumber=1]
+BOOST_AUTO_TEST_CASE(Servo_test_SetPosition_50_returns_1500)
+{
+	fakeit::Mock<IGPIO> gpioMock;
+	fakeit::Fake(Method(gpioMock, GpioServo));
+	fakeit::Fake(Method(gpioMock, GpioSetMode));
+
+	IGPIO & gpio = gpioMock.get();
+
+	Servo uut(gpio);
+
+	uut.SetPosition(50);
+
+	fakeit::Verify(Method(gpioMock, GpioServo).Matching([](auto gpio, auto pulsewidth)
+	{
+		//Ignore the gpio, since it could change and is not important
+		return pulsewidth == 1500;
+	})).Exactly(2); //It should call it once in the constructor and once again when we set it.
+}
+\end{lstlisting}
+
+Unit testing has three phases, Arrange, Act, and Assert. 
+
+In the example, mocks and fakes are first set up, or Arranged, to isolate the test from its external dependencies; other classes and functions. This way, an error in a function will only lead to errors when testing that function, and not when testing other functions which depend on it. 
+
+The unit under test (uut) is then constructed, and a function is called; this is the Act step. 
+
+Finally, the Assert step verifies that the function did exactly what was intended, in this case calling another function with a specific argument matching a specific value. This is done using a lambda function.
+
+Most unit tests in the project are much more complicated than this simple example, but the general structure and procedure is the same. 
+
+\section{Integration tests}
+
+For some of the integration tests, the previous unit tests were repeated without the mocks and fakes, to verify that everything still behaves as desired when the real classes are constructed instead of fakes and mocks from the interfaces.
+
+During this phase, a few design errors were found, including a dependency problem between the transmitter and navigation units. Without the unit test base, it is doubtful that this and other issues would have been resolved as quickly as they did, since they required some restructuring of those classes. 
+
+The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
+
+\section{Acceptance test}
+
+Finally, two special tests were made, verifying the entire code base including the UI. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The UI was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the UI. The second test calculates a coverage path and shows it in the UI.
+
+These two special tests were useful when verifying the final product, and enabled the development team to easily build a main program to run the acceptance test, since the entire code base's functionality had been verified.
+
+During the acceptance test, the boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the UI on the website. The reason for doing the acceptance test out of water was to be sure that nothing would go wrong with the waterproofing, and the system wouldn't be lost. 
