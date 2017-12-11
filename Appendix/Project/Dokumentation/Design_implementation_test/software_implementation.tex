@@ -32,6 +32,58 @@ The exact same thing happens with the calcP2P task, but it creates a TargetPosit
 
 To receive the active parameter profile the JSONReciever, parses the activeParam.json file with the "json for modern c++" library like before. Then it reads all the information and assigns it to the proper variables, so it can send to the Navigation and Autopilot, through the SetParameters function in both of them.
 
+\subsection{JSONTransmitter}
+The  JSONTransmitter class is responsible for collecting information from the motors, navigation, and gps modules, translate it to valid JSON format, and then update the fromNav.json file. To handle JSON format parsing in C++, the "JSON for modern C++" library by Niels Lohmann was used\cite{json}. 
+
+Because the Transmitter and the Navigation are mutually dependent, the Transmitter class has a pointer function that is called by the Navigation in its constructor, passing the Transmitter a this-pointer to the Navigation singleton. The Navigation itself has a reference to the JSONTransmitter.
+
+The Transmitter is called by the Navigation when a task has been performed, and is given a timestamp parameter. It then collects NavigationData from the Navigation class, MotorStatuses from the two motors, and a GPSStatus from the gps. From this it builds a JSON "tree" of objects, and packages them correctly, taking edge cases into account, as defined by the fromNav.json protocol. 
+
+Listing ~\ref{lst:TransmitFromNav} shows the final few lines of the TransmitFromNav function, where the fromNav JSON is assembled and overwrites the contents of the fromNav.json file.
+
+\begin{lstlisting}[caption = {Last lines of the TransmitFromNav function in the Transmitter class}, captionpos=b, label={lst:TransmitFromNav}, language=C++,firstnumber=1]
+//Construction of fromNav JS object
+nlohmann::json fromNav;
+
+fromNav["Completed_path_"] = nlohmann::json::parse(iterator_completed_path_string);
+fromNav["Path_"] = nlohmann::json::parse(iterator_path_string);
+fromNav["Status_"] = nlohmann::json::parse(status_str);
+fromNav["Telemetry_"] = telemetry;
+fromNav["Progress_"] = progress;
+fromNav["Timestamp_"] = nlohmann::json::parse(timestamp);
+
+//Dump of fromNav JS object to local file at the specified path
+std::ofstream file(filepath_ + "fromNav.json");
+file << fromNav.dump();
+\end{lstlisting}
+
+\subsection{Navigation}
+
+\subsection{DCMotor}
+The DCMotor class is responsible for controlling and regulating a DC Motor using a gpio pin on the controller. The speed percentage of the motor is a double between 0 and 100, which is translated into a Hardware PWM on the gpio pin in the \texttt{SetSpeed} function as seen in listing~\ref{lst:setspeed}. 
+
+\begin{lstlisting}[caption = {Function responsible for DC Motor speed percentage to hardware PWM translation}, captionpos=b, label={lst:setspeed}, language=C++,firstnumber=1]
+void DCMotor::SetSpeed(const double speed)
+{
+	if (speed < 0)
+	{
+		speed_ = 0;
+	}
+	else if (speed > 100)
+	{
+		speed_ = 100;
+	}
+	else
+	{
+		//Save position set
+		speed_ = speed;
+	}
+	gpio_.GpioHardwarePWM(pin_,frequency_, static_cast<unsigned>(speed_* 10000));
+}
+\end{lstlisting}
+
+As seen, the percentage speed is multiplied by a factor of 10000 and then cast, then finally used as an argument in the gpio GpioHardwarePWM function call, along with a pin number and a frequency. Aside from this, the DC Motor acts as a MotorStatusGetter when called by the JSONTransmitter, and return a MotorStatus object with information about the percentage of the motor and the motor type (in this case a SPEED motor in the MotorType enumerator).
+
 \subsection{Servo}
 The Servo class has responsibility of controlling any kind of servo via a GPIO pin. To set the position of the motor it takes a position described as a percentage ei. a double between 0-100. To move a servo from one extremity to the other, it does not require a duty-cycle from 0-100, but instead a period lenght between 500 µs and 2500 µs\cite{pigpio}. Therefore the percentage needs to be converted and this is done in the helper function \texttt{percentageToServo} as seen in listing~\ref{lst:percent2servo}. To set the GPIO pin to the correct period the \texttt{GpioServo} function is used, which is a wrapper function for the pigpio library\cite{pigpio}.
 
