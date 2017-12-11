@@ -1,2 +1,93 @@
+\newpage
 \section{Software integration tests}
 \label{sec:software_int}
+
+For some of the integration tests, the previous unit tests were repeated without the mocks and fakes, to verify that everything still behaves as desired when the real classes are constructed instead of fakes and mocks from the interfaces.
+
+During this phase, a few design errors were found, including a dependency problem between the transmitter and navigation units. Without the unit test base, it is doubtful that this and other issues would have been resolved as quickly as they did, since they required some restructuring of those classes. 
+
+The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
+
+Listing ~\ref{lst:software_integration_test} shows an example of an integration test of the JSONReceiver, Navigation, and JSONTransmitter classes.
+
+\begin{lstlisting}[caption = {ReceiveNavigationTransmitter_test}, captionpos=b, label={lst:software_integration_test}, language=C++,firstnumber=1]
+//This test will verify that the navigation can generate a path from a manual call to PerformTask, and then that the
+//transmitter will create the correct JSON file output
+BOOST_AUTO_TEST_CASE(Navigate_Transmit_ServoPercentage)
+{		
+	//Arrange
+	//Link mocks to interfaces
+	fakeit::Mock<IGPS> gpsMock;
+	fakeit::Mock<IAutopilot> autopilotMock;
+	fakeit::Mock<IMotorStatusGetter> dcMock;
+	fakeit::Mock<IMotorStatusGetter> servoMock;
+
+	//Instantiate mocks
+	IGPS& gps = gpsMock.get();
+	IAutopilot& auto_pilot = autopilotMock.get();
+	IMotorStatusGetter& dcMotor = dcMock.get();
+	IMotorStatusGetter& servo = servoMock.get();
+
+	//Set function return values
+	const TargetPosition target = TargetPosition({ 56.01, 10.01 });
+	const std::vector<Coordinate> completed_path_vector = { Coordinate(56.08, 10.12), Coordinate(56.18, 10.22) };
+	const std::vector<Coordinate> path_vector = {
+		Coordinate(56.1, 10.1), Coordinate(56.2, 10.2), Coordinate(56.3, 10.3), Coordinate(56.4, 10.4)
+	};
+	//Path to save file
+	boost::filesystem::path filepath = boost::filesystem::current_path().parent_path().parent_path().parent_path().append(
+		"JSON\\Integration_tests\\NavTransmit_Servo\\");
+	fakeit::When(Method(dcMock, GetStatus)).AlwaysReturn(MotorStatus(15.44, SPEED));
+	fakeit::When(Method(servoMock, GetStatus)).AlwaysReturn(MotorStatus(45.44, POSITION));
+	fakeit::When(Method(gpsMock, GetStatus)).AlwaysReturn(GPSStatus(1.1, 2, 3.3, 4, Pose(Coordinate(56.0, 10.0), 7.45)));
+	fakeit::When(Method(gpsMock, GetPose)).AlwaysReturn(Pose(Coordinate(56.0, 10.0), 7.45));
+	fakeit::When(Method(gpsMock, GetSpeed)).AlwaysReturn(5.2);
+
+	//Instantiate objects
+	JSONTransmitter transmitter = JSONTransmitter(dcMotor, servo, gps, filepath.string());
+	Navigation nav = Navigation(gps, transmitter, auto_pilot);
+
+	//Act - Save the file to the specified folder
+	nav.PerformTask(CalcP2P,target);
+
+	//Read from file to build string for Assert step
+	std::ifstream fromNav(filepath.string() + "fromNav.json");
+	nlohmann::json from_nav_json;
+	fromNav >> from_nav_json;
+
+	//Create expected string
+	const std::string expected = "45.44";
+	std::string from_nav_result;
+
+	//Extract string from nested object
+	for (nlohmann::json::iterator it = from_nav_json.at("Status_").begin(); it != from_nav_json.at("Status_").end(); ++it)
+	{
+		if (it.value().at("title_") == "Position")
+		{
+			for (nlohmann::json::iterator it2 = from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()).at("items_").begin();
+				it2 != from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()).at("items_").end(); ++it2)
+			{
+				const double from_nav_result_double = it2.value().at("data_");
+				std::ostringstream from_nav_result_stringstream;
+				from_nav_result_stringstream << from_nav_result_double;
+				from_nav_result = from_nav_result_stringstream.str();
+			}
+		}
+	}
+
+	//Assert
+	BOOST_REQUIRE(from_nav_result == expected);
+}
+\end{lstlisting}
+
+Just like the unit tests, integrations tests have three phases, Arrange, Act, and Assert. 
+
+In the example, only the motors, gps, and autopilot are mocked and faked. It can be seen that the setup is much more complicated than in the simple unit test example, since all components of the system are interacting, even though some methods are stubbed.
+
+The unit under test (in this case nav) is then constructed just like before, and a function is called; this is the Act step. 
+
+Finally, the Assert step verifies that the function did exactly what was intended, in this case writing a specific value to a specific key in one of the .json-files. The file is read using the nlohmann JSON library, and the value is matched against an expected value.
+
+Two special tests were also made, verifying the entire code base including the UI. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The UI was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the UI. The second test calculates a coverage path and shows it in the UI.
+
+These two special tests were useful when verifying the final product, and enabled the development team to easily build a main program to run the acceptance test, since the entire code base's functionality had been verified.
