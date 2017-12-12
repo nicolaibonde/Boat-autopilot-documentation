@@ -58,6 +58,168 @@ file << fromNav.dump();
 \end{lstlisting}
 
 \subsection{Navigation}
+The Navigation class is responsible for perform tasks given by the user; calculating paths, and starting/stopping. To do this, it uses a number of algorithms, calls the GPS for new data, and finally transmits data back to the user as well as sending data to the autopilot if a path is being traversed.
+
+The two path types used in this project are a simple line to a destination called a "point to point" path, and a more complicated "coverage rectangle" which, as the name implies, covers an area.
+
+The first consideration in any navigation system is to decide how to treat straight on a non-planar surface. The standard approach for maps is to use the Mercator Projection, which is what is commonly seen on any 2D world map. This type of projection is favoured in many places because of the rectangular, well-behaved, result. However, projecting the earth down in this fashion does present some challenges, the most important for our project being that seemingly equally long lines on the map are in fact almost never of equal length. The Mercator projection maps are stretched by a factor that increase with the absolute latitude, meaning that the closer you get to the poles, the smaller distances are.
+
+The system has to take this into account, and there are multiple approaches to dealing with this issue. The common approach by freight ships is to use great circle lines, treating the earth as a spheroid and find the best "great circle" to get between two points. As one would expect, these lines are distorted when they undergo a Mercator projection. 
+
+In our project, the goal is not to get from A to B as quickly as possible, but to be able to map an area of the sea and give the user/client an intuitive user interface to input the desired area to map. 
+
+This makes great circle paths ill-suited as a way of treating the globe. The user should not have to think about the implementation of the system, but just define an area, in our case a rectangle, to map. For this reason, a way of navigation that produces straight lines when Mercator projected is necessary. These types of lines on a spheroid are called rhumb lines, and the difference between the great circle and rhumb lines can be seen in figure ~\ref{fig:rhumbgreatcirclemercator} below.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/Rhumb_vs_great_circle_mercator_projection}
+\caption{A comparison of rhumb lines and great circle lines after mercator projection}
+%https://blogs.esri.com/esri/arcgis/2012/03/05/mercators-500th-birthday/
+\label{fig:rhumbgreatcirclemercator}
+\end{figure}
+
+As seen, the rhumb line is straight while the great circle line is curved. In the real world though, the situation is reversed, and the rhumb line will be longer than the great circle line. This disparity is not a problem for our uses, since we're interested in mapping, and not getting somewhere as efficiently as possible. 
+
+The navigation unit uses the GeographicLib library to calculate rhumb lines and rhumb distances. Initially, an algorithm was written by the devleopment team to do this, but after comparing it to the one offered in the Geographic library, the performance and precision was much better, and it was decided to use the library for these two functions, and importing the WGS84 constants. All other Navigation algorithms and calculations have been designed, developed, and tested by the project team.
+
+The full calculation of a point to point path is seen below in listing ~\ref{lst:setspeed}, with "..." indicating a new function is called, or the root function is returned to.
+
+\begin{lstlisting}[caption = {Function responsible for calculating a P2P path}, captionpos=b, label={lst:calculateP2PPath}, language=C++,firstnumber=1]
+std::vector<Coordinate> Navigation::calculateP2PPath(const TargetPosition target_position)
+{
+	//The path_ and completed_path_ lists are first emptied
+	path_ = {};
+	completed_path_ = {};
+
+	//The current coordinate is extracted from the GPS
+	const Coordinate start = gps_.GetPose().Coordinate_;
+
+	//The target coordinate is extracted from the TargetPosition input
+	const std::vector<Coordinate> end = {target_position.get_target_postion()};
+
+	//Construct the path_ object as a list of the 
+	const std::vector<Coordinate> path_segments = calculatePathSegments(start, end, 0);
+...
+std::vector<Coordinate> Navigation::calculatePathSegments
+(const Coordinate current_position, const std::vector<Coordinate> key_method_positions, const int method) const
+{
+	switch (method)
+	{
+	case 0: //Point to Point
+		{
+			//Create the point to point segment vector, insert current position and end position
+			std::vector<Coordinate> point_to_point_segments = std::vector<Coordinate>{current_position, key_method_positions[0]};
+
+			//Return the current position and the end position.
+			return point_to_point_segments;
+		}
+...
+	//Translate the segments to points
+	const std::vector<Coordinate> path = calculatePointsFromSegments(path_segments, 1);
+...
+std::vector<Coordinate> Navigation::calculatePointsFromSegments(std::vector<Coordinate> path_segments,const int method)const
+{
+	//Create the path vector
+	std::vector<Coordinate> path = { { path_segments.front().Latitude_, path_segments.front().Longitude_ } };
+
+	switch (method)
+	{
+	case 0: //Point to Point
+	{
+		GeographicLib::Rhumb rhumb(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
+		double s12, azi12;
+		rhumb.Inverse(path_segments.front().Latitude_, path_segments.front().Longitude_, path_segments.back().Latitude_,
+			path_segments.back().Longitude_, s12, azi12);
+		const GeographicLib::RhumbLine line = rhumb.Line(path_segments.front().Latitude_, path_segments.front().Longitude_,
+			azi12);
+
+		// Nominal distance between points
+		const double ds0 = parameters_.distance_between_points_;
+
+		// The number of intervals
+		const int num = int(ceil(s12 / ds0));
+
+		// Use intervals of equal length
+		const double ds = s12 / num;
+
+		for (int i = 1; i <= num; ++i)
+		{
+			double lat, lon;
+			line.Position(i * ds, lat, lon);
+			if (path.back().Latitude_ != lat || path.back().Longitude_ != lon) //Check for duplicates
+			{
+				path.push_back(Coordinate(lat, lon));
+			}
+		}
+		break;
+	}
+	...
+	//Update path_. This is important for the public GetNavData function,
+	// and in case the trip is stopped and then resumed at some point
+	path_ = path;
+	
+	return path;
+}
+\end{lstlisting}
+
+As seen in the source code, the general idea is to create a rhumb line between the current coordinate and the target position, and then sample the rhumb line with the distance_between_points_ variable. Figure ~\ref{fig:p2p_path} below shows the UI when a point to point path has been calculated, and figure ~\ref{fig:p2p_path_traversed} shows the point to point path and the part of the path that has already been completed.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/P2P_path_being_traversed}
+\caption{A calculated point to point path in the UI}
+\label{fig:p2p_path}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/P2P_path_calculated}
+\caption{A calculated point to point path being traversed in the UI}
+\label{fig:p2p_path_traversed}
+\end{figure}
+
+The equivalent process cannot be applied to the coverage rectangle of course, since the goal is the map the specified area. It was decided early on that the project would not incorporate general polygon coverage, since this topic is vastly complicated, and would require much more development time. The problem was instead simplified to deal only with rectangular areas.
+
+An area is mapped by defining a tool width, the width of the mapping tool used, or just the desired sampling of the area, and then drawing parallel lines over the coverage area seperated by this tool width. 
+
+The CoverageRectangle case in calculatePathSegments thus calculates the start and end points of these ines. It was chosen that each line would have a constant latitude to ease this process, but had the project been further developed, perhaps it could have been made possible to rotate this rectangle. Between these parallel lines, the boat must turn pi radians and get onto another line. This was done by connecting the parallel lines with half spheres at the ends in a sensible manner, and deal with all the edge cases this creates. 
+
+The calculatePointsFromSegments for the CoverageRectangle case samples between the parallel lines, and adds some points found on a half circle between the endpoints. It also checks whether the tool_width and total latitude difference divide nicely, and if not, changes its route slightly at the start of the coverage rectangle to correct for this. An example of a drawn coverage rectange in the UI can be seen in figure ~\ref{fig:coverage_rectangle_path}. A zoomed-in version of the end of this coveragerectangle can be seen in figure ~\ref{fig:coverage_rectangle_path_zoom}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/Coverage_rectangle_on_map}
+\caption{A calculated coverage rectangle path in the UI}
+\label{fig:coverage_rectangle_path}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/Coverage_rectangle_on_map_zoom}
+\caption{A zoomed-in calculated coverage rectangle path in the UI}
+\label{fig:coverage_rectangle_path_zoom}
+\end{figure}
+
+As seen, the parallel lines are all connected as desired, and the endpoint is reached.
+
+Apart from calculating these paths, the navigation is also responsible for calculate data for the autopilot when the task is "start" indicating that the user wants to traverse a calculated path. It outputs this information in the NMEA format describes in the protocol section. The data is which way to turn to reach the next waypoint, which waypoint is next, how many degrees must be turned, the cross track error, and other (less important) information.
+
+The bearings and which way to turn is simply calculated by comparing the angle between the previous and next point, and the orientation, or absolute heading, of the boat itself. Calculating the cross track error is a more challenging process, and the navigation section will conclude with a short description of how it is obtained. 
+
+The cross track error and important metrics used in the navigation algorithm that calculates it is seen in figure ~\ref{fig:xte}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Images/Implementation/xte}
+\caption{Calculating the cross track error}
+\label{fig:xte}
+\end{figure}
+
+As seen, the cross track error is the distance between the boat and the line connecting the previous and next point on the path. The algorithm to calculate the xte first finds the distance between the boat and the next waypoint, indicated by "a". This distance is then traversed by rhumb lines in both directions from the next waypoint relative to the line connecting the previous and next point. 
+
+This line must necessarily contain the global minimum for the xte of the boat, since it cannot possibly have an xte higher than the distance to the next waypoint. The algorithm sets the xte to this distance + 1, just to get a "too high" value, and then iterates through the line, updating the xte if the rhumb distance from any point is lower than the current xte. 
+
+When this algorithm has been run, the value in the xte variable is necessarily the correct value, with the accuracy given by the distance_between_xte_points_ member.
 
 \subsection{DCMotor}
 The DCMotor class is responsible for controlling and regulating a DC Motor using a gpio pin on the controller. The speed percentage of the motor is a double between 0 and 100, which is translated into a Hardware PWM on the gpio pin in the \texttt{SetSpeed} function as seen in listing~\ref{lst:setspeed}. 
