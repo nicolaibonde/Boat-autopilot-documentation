@@ -157,22 +157,24 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [ReceiveToNav()] reads the toNav.json file
+		\item [ReceiveActiveParam()] reads the activeParam.json file and sets the corresponding parameters in the Navigation and Autopilot
 \end{description}\end{adjustwidth}
 
 \paragraph{Private methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [func_ToTask()] reads the task from the toNav.json file and calls the correct function overload of PerformTask in the Navigation
+		\item [is_empty()] checks if a file is empty
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [active_profile_] is a JSON object containing the current active parameter profile
+		\item [navigation_] is a reference to a Navigation interface
+		\item [auto_pilot_] is a reference to an Autopilot interface
+		\item [saved_data_path_] is the filesystem path to the savedData folder in the website
+		\item [active_param_path_] is the filesystem path to the active parameter JSON file
+		\item [to_nav_path_] is the filesystem path to the toNav JSON file
 \end{description}\end{adjustwidth}
 
 \subsubsection{JSONTransmitter}
@@ -186,22 +188,22 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [NavAcquisition()] is a function to enable the Navigation and Transmitter unit to call each other. Since two classes can't have mutual references, the Transmitter is created first, the Navigation is then created with a reference to the Transmitter, and calls this function in its constructor. See the doxygen documents for more information on this method.
+		\item [TransmitFromNav] is the point of the transmitter; transmitting the data the navigation unit has calculated. This function calls GetStatus in the motors and the GPS, as well as GetNavData on the Navigation unit to collect all the required data. It then packages it and writes to a JSON file. 
 \end{description}\end{adjustwidth}
 
 \paragraph{Private methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [formatEte()] formats the estimated time enroute
+		\item [formatPathString] formats the Path_ string received from the Navigation unit.
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [navigation_] a pointer to a Navigation interface
+		\item [dc_motor_] a reference to a MotorStatusGetter interface
+		\item [servo_] a reference to a MotorStatusGetter interface
+		\item [gps_] a reference to a GPS interface
 \end{description}\end{adjustwidth}
 
 \subsubsection{Navigation}
@@ -215,22 +217,41 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [PerformTask()] is the first overload of the PerformTask function, and is called by the JSONReceiver if the current task is Start or Stop. In short, the function calls the start() or stop() functions, updates the timestamp_ and then calls the JSONTransmitter's TransmitFromNav function.
+		\item [PerformTask()] is the second overload of the PerformTask function, and is called JSONReceiver if the current task is CalculateP2PPath. This function then calls calculateP2PPath(), and after a path has been calculated the timestamp_ will be set and the JSONTransmitter's TransmitFromNav function will be called.
+		\item [PerformTask()] is the third overload of the PerformTask function, and is called JSONReceiver if the current task is CalculateCoverageRectanglePath. This function then calls calculateCoverageRectanglePath(), and after a path has been calculated the timestamp_ will be set and the JSONTransmitter's TransmitFromNav() function will be called.
+		\item [GetNavData()] gets the Navigation data which is continually updated by the GPS.
+		\item [SetParameters()] sets the parameters relevant for the Navigation unit, for example the tool_width of the survey equipment. All other relevant parameters could also be set here if wanted.
 \end{description}\end{adjustwidth}
 
 \paragraph{Private methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [calculateP2PPath()] calculates a point to point path for the boat to traverse. 
+		\item [calculateCoverageRectanglePath()] calculates a coverage rectangle path for the boat to traverse
+		\item [calculatePathSegments()] calculates path segments for the current task, this is called by both calculateP2PPath() and calculateCoverageRectanglePath()
+		\item [calculatePointsFromSegments()] calculates waypoints for the current task based on the previously calculated path segments. This is called by both calculateP2PPath() and calculateCoverageRectanglePath()
+		\item [calculateTelegramData()] calculates data for the APB telegram which is sent to the Autopilot in the start() function
+		\item [calculateRhumbDistanceAndBearing()] calculates the rhumb distance and absolute bearing between two coordinates
+		\item [calculateXte()] calculates the cross track error for the boat, given the current position and path to follow
+		\item [appendChecksumToTelegram()] calculates and appends a checksum to a telegram, then finishes the telegram
+		\item [calculateEte()] calculates the estimated time enroute; the time the system expects it will take to reach the destination. This function uses the path_start_time_ and timestamp_ as well as the path_ and completed_path_ to give an estimate of this
+		\item [setTimestamp()] sets the current millisecond timestamp in unix time
+		\item [start()] calls calculateTelegramData(), then assembles the NMEA telegrams, calls appendChecksumToTelegram() for each telegram and then calls the Autopilot's Run() function with each telegram
+		\item [stop()] calls Stop() in the Autopilot.
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [gps_] a reference to a GPS interface
+		\item [transmitter_] a reference to a Transmitter interface
+		\item [auto_pilot_] a reference to an Autopilot interface
+		\item [completed_path_] the completed part of the current Path_
+		\item [path_] the current Path_ the boat has been asked to traverse by the user
+		\item [path_start_time_] the start time of the current Path_. Used in calculateEte()
+		\item [timestamp_] the timestamp of the last command completion
+		\item [equitorial_radius_] the equitorial radius of the earht in the WGS84 standard
+		\item [ellipsoid_flattening_] the ellipsoid flattening of the earht in the WGS84 standard
+		\item [parameters_] the parameters of the system relevant for the Navigation unit
 \end{description}\end{adjustwidth}
 
 \subsubsection{Autopilot}
@@ -244,22 +265,23 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [Run()] gives the autopilot information about bearings, xte, which direction to turn, checkpoint number etc.
+		\item [Stop()] tells the autopilot to stop the motors
+		\item [SetParameters()] sets the PID parameters of the servo PID loop
 \end{description}\end{adjustwidth}
 
 \paragraph{Private methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [checksum()] validates received NMEA messages by calculating and checking their checksum
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [p_] is the product term of the position motor PID loop
+		\item [i_] is the integral term of the position motor PID loop
+		\item [d_] is the derivative term of the position motor PID loop
+		\item [rudder_] is a reference to a position motor interface
+		\item [thruster_] is a reference to a speed motor interface
 \end{description}\end{adjustwidth}
 
 \subsubsection{DCMotor}
@@ -273,22 +295,16 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Private methods:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [SetSpeed()] sets the speed of the dc motor
+		\item [GetStatus()] gets the status of the dc motor, a MotorStatus object
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [speed_] the speed of the dc motor
+		\item [gpio_] a reference to a GPIO object
+		\item [pin_] the gpio the dc motor is controlled by
+		\item [frequency_] the frequency of the dc motor
 \end{description}\end{adjustwidth}
 
 \subsubsection{Servo}
@@ -302,22 +318,15 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Private methods:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [SetPosition()] sets the position of the servo
+		\item [GetStatus()] gets the status of the servo, a MotorStatus object
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [position_] the position of the servo
+		\item [gpio_] a reference to a GPIO object
+		\item [pin_] the gpio the servo is controlled by
 \end{description}\end{adjustwidth}
 
 \subsubsection{uBlox Neo 7-M}
@@ -331,22 +340,26 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [Setup()] sets up the GPS
+		\item [GetPose()] gets the current pose
+		\item [GetSpeed()] gets the current speed
+		\item [GetStatus()] gets the current status
+		\item [StopThread()] stops the asynchronous thread the GPS runs on
 \end{description}\end{adjustwidth}
 
 \paragraph{Private methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Public members:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [getGPSData()] gets the current GPS data
+		\item [checksum()] validates received NMEA messages by calculating and checking their checksum
+		\item [convertDegreesMinutes2Degrees()] converts between units
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [serial_] is a serial interface
+		\item [pose_] is the current pose
+		\item [speed_] is the current speed
+		\item [status_] is the current status of the GPS
 \end{description}\end{adjustwidth}
 
 \subsubsection{Helper classes}
@@ -360,22 +373,22 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Private methods:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [get_target_position()] gets the target position
+		\item [get_start_position()] gets the start position
+		\item [get_end_position()] gets the end position
 \end{description}\end{adjustwidth}
 
 \paragraph{Public members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [Latitude_] is the latitude of a Coordinate
+		\item [Longitude_] is the longitude of a Coordinate
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [target_position_] is a coordinate with the target position
+		\item [start_position_] is a coordinate with the starting position for a coverage rectangle
+		\item [end_position_] is a coordinate with the end position for a coverage rectangle
 \end{description}\end{adjustwidth}
 
 \subsubsection{Status classes}
@@ -389,20 +402,23 @@ These public methods are called on click in the ui.
 
 \paragraph{Public methods:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
-\end{description}\end{adjustwidth}
-
-\paragraph{Private methods:}
-\begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [GetString()] of the GPSStatus outputs a string with the GPS information, and is called by the JSONTransmitter
+		\item [GetString()] of the MotorStatus outputs a string with the motor information, and is called by the JSONTransmitter
 \end{description}\end{adjustwidth}
 
 \paragraph{Public members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )} 
+		\item [Coordinate_] is the Coordinate of the current position of the boat 
+		\item [Orientation_] is the orientation, or current absolute bearing of the boat
 \end{description}\end{adjustwidth}
 
 \paragraph{Private members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
-		\item [Action( )] \texttt{Action( )}
+		\item [fix_] describes the fix level of the GPS
+		\item [satellites_] is how many satellites the GPS is currently receiving from
+		\item [hdop_] is the horizontal dilution of precision
+		\item [fix_timestamp_] is the timestamp of the current fix 
+		\item [pose_] is the pose of the boat
+		\item [motor_type_] is the type of motor for a MotorStatus
+		\item [percentage_] is the percentage (0-100) for a given motor
 \end{description}\end{adjustwidth}
