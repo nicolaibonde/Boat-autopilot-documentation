@@ -32,16 +32,16 @@ All of the electrical components of the system were connected together on a perf
 In this section, the choices of compilers and programming languages will be discussed. Also the concrete code implementation will be looked at, at a very high level.
 
 \subsection{Programming languages}
-This system is built up of 2 distinct parts, at least when discussing software. There is the website user interface, and then there is the controller or what could be thought of as the backend. The website user interface, is marked up in HTML and CSS with the help of a framework called Boostrap~\cite{bootstrap}. In terms of code, javascript was used with AngularJS as a framework. 
+This system is built up of 2 distinct parts, at least when discussing software. There is the website user interface, and then there is the controller or what could be thought of as the backend. The website user interface, is marked up in HTML and CSS with the help of a framework called Boostrap~\cite{bootstrap}. In terms of code, JavaScript was used with AngularJS as a framework. 
 
-Boostrap was chosen simply because it makes it easier to create a website that look somewhat descent. AngularJS was chosen because it makes data binding to the html page very simple, and because it supposedly is a widely used javascript framework.
+Boostrap was chosen simply because it makes it easier to create a website that look somewhat descent. AngularJS was chosen because it makes data binding to the html page very simple, and because it supposedly is a widely used JavaScript framework.
 
 For the other part of the system, the controller. C++ was the language of choice, this simply because a it is what is familiar. C++ has the advantage of being a very fast. But then the draw back of being a rather low abstraction. 
  
 \subsection{Compiler}
-For the website there is no real compiler since javascript is an interpreted. But the server that runs the website is a nodeJs server. NodeJs is runtime built on the Chrome V8 javascript engine. The client browser used to display the website was a Chrome web browser which is also built on the Chrome V8 javascript engine. 
+For the website there is no real compiler since JavaScript is an interpreted. But the server that runs the website is a nodeJs server. NodeJs is runtime built on the Chrome V8 javascript engine. The client browser used to display the website was a Chrome web browser which is also built on the Chrome V8 javascript engine. 
 
-The controller is written in C++ and is therefore compiled, the compiler used while developing the system was the was VS 2017 C++ Build tools. The compiler used on the Raspberry pi is GCC 6.3.0 for raspbian. They are both C++11 compatible which makes some things easier while developing. 
+The controller is written in C++ and is therefore compiled, the compiler used while developing the system was the was VS 2017 C++ Build tools\cite{VC-2017}. The compiler used on the Raspberry pi is GCC 6.3.0 for raspbian\cite{GCC}. They are both C++11 compatible which makes some things easier while developing. 
 
 \subsection{Code}
 %To start with lets have a look at the controller code. It is broken up just like the design states. 
