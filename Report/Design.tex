@@ -4,11 +4,11 @@
 
 \section{Protocols}
 
-This section describe the protocols used in the system. Communication between the the controller, server and client takes place using several .json files, JavaScript Object Notation. Communication between the GPS, Navigation, and Autopilot modules in the controller uses the NMEA-0183 standard commonly used in marine navigation systems\cite{NMEA_wiki}. 
+This section describe the protocols used in the system. Communication between the the controller, server and client takes place using several .json files, JavaScript Object Notation. Communication between the GPS receiver, Navigation, and Autopilot modules in the controller uses the NMEA-0183 standard commonly used in marine navigation systems\cite{NMEA_wiki}. 
 
 \subsection{Communication between server and client}
 
-The system uses three .json files to send data between the controller, server, and client modules; fromNav.json, toNav.json, and activeParam.json. The latter contains the parameters the technician has specified for the system in the UI, and an example can be seen in listing \ref{lst:activeParam}.
+The system uses three .json files to send data between the controller, server, and client modules; fromNav.json, toNav.json, and activeParam.json. The latter contains the parameters the technician has specified for the system in the user interface, and an example can be seen in listing \ref{lst:activeParam}.
 
 \begin{lstlisting}[caption = {Example of activeParam.JSON}, captionpos=b, label={lst:activeParam}, language=json,firstnumber=1]
 {
@@ -75,7 +75,7 @@ Figure ~\ref{fig:hardware_design} shows the overall hardware design.
 
 All components are supplied by a battery, which is stepped down for the controller and servo, and a logic level shifter is used between the controller and servo.
 
-The controller chosen for the system is the Raspberry Pi 3b, and the GPS receiver a Ublox Neo 7-M. The motor controller is a Cytron MD30C rev. 2, and the stepdown circuits used for the servo and controller are LM2596's which were available at the engineering school's Embedded Stock. The logic level shifter was likewise found in Embedded Stock.
+The controller chosen for the system is the Raspberry Pi model 3b, and the GPS receiver a Ublox Neo 7-M. The motor controller is a Cytron MD30C rev. 2, and the stepdown circuits used for the servo and controller are LM2596's which were available at the engineering school's Embedded Stock. The logic level shifter was likewise found in Embedded Stock.
 
 A detailed explanation of why these components were chosen can be found in the hardware design section of the design, implementation, and test chapter in the documentation.
 
