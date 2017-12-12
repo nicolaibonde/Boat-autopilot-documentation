@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(Navigate_Transmit_ServoPercentage)
 		Coordinate(56.1, 10.1), Coordinate(56.2, 10.2), Coordinate(56.3, 10.3), Coordinate(56.4, 10.4)
 	};
 	//Path to save file
-	boost::filesystem::path filepath = boost::filesystem::current_path().parent_path().parent_path().parent_path().append(
+	boost::filesystem::path filepath = boost::filesystem::current_path()\-.parent_path()\-.parent_path()\-.parent_path()\-.append(
 		"JSON\\Integration_tests\\NavTransmit_Servo\\");
 	fakeit::When(Method(dcMock, GetStatus)).AlwaysReturn(MotorStatus(15.44, SPEED));
 	fakeit::When(Method(servoMock, GetStatus)).AlwaysReturn(MotorStatus(45.44, POSITION));
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(Navigate_Transmit_ServoPercentage)
 		if (it.value().at("title_") == "Position")
 		{
 			for (nlohmann::json::iterator it2 = from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()).at("items_").begin();
-				it2 != from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()).at("items_").end(); ++it2)
+				it2 != from_nav_json.at("Status_").at(it - from_nav_json\-.at("Status_").begin())\-.at("items_")\-.end(); ++it2)
 			{
 				const double from_nav_result_double = it2.value().at("data_");
 				std::ostringstream from_nav_result_stringstream;
