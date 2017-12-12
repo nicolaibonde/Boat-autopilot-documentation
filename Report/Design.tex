@@ -43,7 +43,7 @@ The fromNav.json file contains all the user-relevant information for what's happ
 
 The NMEA standard is a naval standard developed by the National Marine Electronics Association. The protocol is comprised of ASCII characters, and are transferred over a serial connection. 
 
-The messages used in the system are the GGA (GPS information) message from the GPS to the navigation unit, an APB (Autopilot message with direction to steer, cross track error, and other information) message from the navigation to the autopilot, and a VTG (Vector Track and speed over the Ground) message also from the navigation to the autopilot. By using these standard messages, it is possible to remove a component from the system and insert a replacement that also follows this protocol, making the system much more modular.
+The messages used in the system are the GGA (GPS information) message from the GPS receiver to the navigation unit, an APB (Autopilot message with direction to steer, cross track error, and other information) message from the navigation to the autopilot, and a VTG (Vector Track and speed over the Ground) message also from the navigation to the autopilot. By using these standard messages, it is possible to remove a component from the system and insert a replacement that also follows this protocol, making the system much more modular.
 
 The contents of these messages can be seen in the protocols section of the design, implementation, and test chapter in the documentation. 
 
@@ -75,7 +75,7 @@ Figure ~\ref{fig:hardware_design} shows the overall hardware design.
 
 All components are supplied by a battery, which is stepped down for the controller and servo, and a logic level shifter is used between the controller and servo.
 
-The controller chosen for the system is the Raspberry Pi 3b, and the GPS a Ublox Neo 7-M. The motor controller is a Cytron MD30C rev. 2, and the stepdown circuits used for the servo and controller are LM2596's which were available at the engineering school's Embedded Stock. The logic level shifter was likewise found in Embedded Stock.
+The controller chosen for the system is the Raspberry Pi 3b, and the GPS receiver a Ublox Neo 7-M. The motor controller is a Cytron MD30C rev. 2, and the stepdown circuits used for the servo and controller are LM2596's which were available at the engineering school's Embedded Stock. The logic level shifter was likewise found in Embedded Stock.
 
 A detailed explanation of why these components were chosen can be found in the hardware design section of the design, implementation, and test chapter in the documentation.
 
@@ -89,7 +89,7 @@ Coordinate which contains a latitude and longitude, CoverageRectangle which cont
 
 NavigationData contains information about the path to complete, the estimated time enroute, and how much of the path has already been traversed. Pose contains a Coordinate for the current position, and an orientation. 
 
-Along with the helper classes, Navigation has references to several interfaces: The Autopilot, GPS, Receiver, and Transmitter interfaces. The Navigation module's own interface is seen at the top of the figure.
+Along with the helper classes, Navigation has references to several interfaces: The Autopilot, GPS receiver, Receiver, and Transmitter interfaces. The Navigation module's own interface is seen at the top of the figure.
 
 \begin{figure}[H]
 \centering

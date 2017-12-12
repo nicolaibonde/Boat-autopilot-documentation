@@ -10,9 +10,9 @@ Setting up the map was done with Leaflet, or rather a version of Leaflet called 
 
 The website hosted on a NodeJS server\cite{nodejs}, this was chosen because NodeJS is incredibly easy to set up and host locally for testing purposes, and requires very few packages installed to get working. These and other factors make it a very fast and responsive server solution. It is also written in JavaScript, which was a good fit when the group was working with JS on the client side as well.
 
-The controller is a Raspberry Pi 3b, and this was chosen for a variety of reasons. The RPi 3b was one among 16 candidates that were considered for the system controller. A detailed analysis of this can be found in the documentation in section~\ref{sec:hardware_design} on page~\pageref{sec:hardware_design}, but ultimately the choice came down primarily to price and available documentation, and the latter would turn out to be relevant later on.
+The controller is a Raspberry Pi 3b, and this was chosen for a variety of reasons. The Raspberry Pi 3b was one among 16 candidates that were considered for the system controller. A detailed analysis of this can be found in the documentation in section~\ref{sec:hardware_design} on page~\pageref{sec:hardware_design}, but ultimately the choice came down primarily to price and available documentation, and the latter would turn out to be relevant later on.
 
-The GPS is a Ublox Neo 7-M. This unit offers reasonable performance for a non-RTK GPS, which is the only reasonable type to use in the system. Only bigger projects with a lot more funding would invest in an RTK GPS, whose price can easily exceed tens of thousands of DKK. The availability of this unit in the workshop contributed to its selection, but other similar GPS modules didn't offer considerably different performance, so the choice ultimately fell on the Ublox.
+The GPS receiver is a Ublox Neo 7-M. This unit offers reasonable performance for a non-RTK GPS receiver, which is the only reasonable type to use in the system. Only bigger projects with a lot more funding would invest in an RTK GPS receiver, whose price can easily exceed tens of thousands of DKK. The availability of this unit in the workshop contributed to its selection, but other similar GPS receivers didn't offer considerably different performance, so the choice ultimately fell on the Ublox.
 
 GeographicLib was used for geographic calculations, specifically for calculating rhumb lines and distances. Early in the development of the navigation unit, these functions were programmed manually, but it turned out that the algorithms offered by GeographicLib were much faster and more precise than our own. It was then decided to use GeographicLib, but exclusively for these two functions.
 
@@ -20,7 +20,7 @@ The MiniPID \cite{minipid} library was used to implement the Autopilot PID loops
 
 PiGpio \cite{pigpio} was chosen for controlling the Raspberry Pi pin outputs. Initially it seemed like using Python scripts would be the way to control the outputs, but this C++ library was recommend by many developers, and contained the required functionality for the motor classes to access the corresponding hardware.
 
-The NMEA\cite{NMEA} protocol was used for communication between the GPS, Navigation, and Autopilot components, as specified in the original problem description given by EIVA. Several write-ups of the original NMEA-0183 protocol were found, and the necessary command message structures were identified and implemented.
+The NMEA\cite{NMEA} protocol was used for communication between the GPS receiver, Navigation, and Autopilot components, as specified in the original problem description given by EIVA. Several write-ups of the original NMEA-0183 protocol were found, and the necessary command message structures were identified and implemented.
 
 A C++ JSON library, created by Niels Lohmann\cite{json}, was used to parse to and from the JSON format used in shared data files.
 
