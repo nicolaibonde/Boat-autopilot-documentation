@@ -4,7 +4,7 @@
 
 \section{Protocols}
 
-This section describe the protocols used in the system. Communication between the the controller, server and client takes place using several .json files, JavaScript Object Notation. Communication between the GPS, Navigation, and Autopilot modules in the controller uses the NMEA-0183 standard commonly used in marine navigation systems. 
+This section describe the protocols used in the system. Communication between the the controller, server and client takes place using several .json files, JavaScript Object Notation. Communication between the GPS, Navigation, and Autopilot modules in the controller uses the NMEA-0183 standard commonly used in marine navigation systems\cite{NMEA_wiki}. 
 
 \subsection{Communication between server and client}
 
@@ -53,12 +53,12 @@ Despite mainly being a software project, a considerable amount of hardware is re
 
 \subsection{Boat}
 
-The boat was acquired at Navitas, one group having used it for a previous project already. The boat hull type is a deep v with a d-drive inboard motor configuration. A picture of the boat is seen below in figure ~\ref{fig:saintprincess}
+The boat was acquired at Navitas, one group having used it for a previous project already. The boat hull type is a deep vee\cite{hull-types} with a d-drive inboard motor configuration\cite{motor_config}. A picture of the boat is seen below in figure~\ref{fig:saintprincess}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{saint_princess}
-\caption{Saint Princess, a remote controlled yacht}
+\includegraphics[width=0.5\linewidth]{saint_princess}
+\caption{Saint Princess, a remote controlled yacht\cite{saint_princess}}
 \label{fig:saintprincess}
 \end{figure}
 
@@ -80,7 +80,7 @@ The controller chosen for the system is the Raspberry Pi 3b, and the GPS a Ublox
 A detailed explanation of why these components were chosen can be found in the hardware design section of the design, implementation, and test chapter in the documentation.
 
 \section{Software design}
-
+%TODO der skal ikke stå noge tom kode her
 The project contains code in many different languages, totaling over 30000 lines. For brevity, this section only the design of the navigation and autopilot classes and their dependencies is included here. The full design can be seen in the software design section of the design, implementation, and test chapter in the documentation. 
 
 Figure ~\ref{fig:Navigation} shows the overview of the navigation class and its dependencies. It is seen that the navigation uses a number of helper classes.
@@ -93,12 +93,12 @@ Along with the helper classes, Navigation has references to several interfaces: 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.2\linewidth]{Navigation_class_diagram}
+\includegraphics[width=1\linewidth]{Navigation_class_diagram}
 \caption{Navigation class diagram}
 \label{fig:Navigation}
 \end{figure}
 
-Figure ~\ref{fig:Autopilot} shows the overview of the autopilot class and its dependencies. This module has an interface for the Navigation and Receiver to access, and has references to two interfaces; a rudder and a thruster. 
+Figure ~\ref{fig:Autopilot} shows the overview of the autopilot class and its dependencies. This module has an interface for the Navigation and Receiver to access, and has references to two interfaces; a position motor and a speed motor. 
 
 \begin{figure}[H]
 \centering

@@ -1,6 +1,5 @@
 %Her beskrives kort hvilken metode der skal anvendes for at løse opgavens tekniske del, f.eks. hvilken analyse- og designmetode, der anvendes. Læseren skal gives et overblik over de anvendte metoder, f.eks. SysML eller UML, med relevante referencer til yderligere litteratur om emnet. Her er det også vigtigt at beskrive eventuelle afvigelser fra teorien i anvendelsen af de metoder I har valgt at benytte. Her beskrives yderligere kort (1-2 sider) den gennemførte proces, set ud fra et interpersonelt synspunkt, dvs. den ikke-tekniske, ”bløde” del af projektet. Dvs. her beskrives overordnede emner som: gruppedannelse, anvendelse af samarbejdsaftaler, arbejdsfordeling, planlægning, møder, projektledelse, projektadministration, iterationer i projektet (iterationer er ”sprints”, hvis der anvendes Scrum). Den gennemførte proces beskrives nærmere i procesbeskrivelsen i projektets bilag.
-\newpage
-\chapter{Method}
+\chapter{Methods}
 In the following sections the methods used to design and implement the system are described.
 
 \section{ASE model}
@@ -26,11 +25,11 @@ The V model in figure ~\ref{fig:V_model} is used for hardware as well as softwar
 	\label{fig:V_model}
 \end{figure}
 
-The model shows that an acceptance test is specified from the requirements specification, several integration tests are defined from the design, and that the functionality of each module in the system is verified with unit tests. This model is very effective in breaking down the project into several phases and getting an overview of which test phase corresponds to which development phase. The group made extensive use of this approach during development, more about tests can be found in the test section of this document.
+The model shows that an acceptance test is specified from the requirements specification, several integration tests are defined from the design, and that the functionality of each module in the system is verified with unit tests. This model is very effective in breaking down the project into several phases and getting an overview of which test phase corresponds to which development phase. The group made extensive use of this approach during development, more about tests can be found in the section~\ref{sec:test} on page~\pageref{sec:test}.
 
 \section{SysML}
 
-In developing the architecture and design of the system, SysML has been used as in previous projects. SysML is a way of modeling systems with software and hardware components, where UML, another modeling language, primarily describes software systems. Figure ~\ref{fig:SysML} below gives an overview of the different diagram types in SysML used to describe functionality and design.
+In developing the architecture and design of the system, SysML has been used as in previous projects. SysML is a way of modeling systems with software and hardware components, where UML, another modeling language, primarily describes software systems. Figure~\ref{fig:SysML} below gives an overview of the different diagram types in SysML used to describe functionality and design.
 
 \begin{figure}[H]
 	\centering
@@ -47,4 +46,6 @@ The two structure diagrams used in this system is the Internal Block Diagram (IB
 
 The behavioural diagrams used in this system are the Sequence Diagram (SD) and the Use Case diagram (UC). Use case diagrams describe the actors that interact with the system, and which use cases the system contains. For the software design, an Application Model and Domain Model have been used to describe the behaviour of the software and the overall structure. This is further detailed in the documentation, with class diagrams and function descriptions for each module.
 
-The hardware has been designed from what's called a black-box approach, where the individual components in the IBD are treated as self-contained units. Each component is described in the hardware design section of the documentation.
+The hardware has been designed from what's called a black-box approach, where the individual components in the IBD are treated as self-contained units. Each component is described in the documentation section~\ref{sec:hardware_design} on page~\pageref{sec:hardware_design}.
+
+

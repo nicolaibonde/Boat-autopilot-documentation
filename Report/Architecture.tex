@@ -1,10 +1,10 @@
-\newpage
+
 \chapter{Architecture}
 %Her beskrives den overordnede systemarkitektur vha. en domænemodel efterfulgt af SysML/UML. Der tages stilling til hvilke dele af projektet, der skal realiseres i HW og hvilke der skal realiseres vha. SW. De vigtigste dele af arkitekturen beskrives for systemets HW og SW i en sådan grad, at læseren får det fornødne overblik over systemet. Der fokuseres på opdeling i blokke, moduler, pakker, klasser etc. Der fokuseres ligeledes på hvordan disse blokke/moduler/pakker/klasser kommunikerer indbyrdes, dvs. de overordnede signaler/protokoller beskrives. For beskrivelse af detaljer angives reference til jeres ”arkitekturdokument” i projektets bilag.
 
 In this section the hardware and software architecture of the system will be discussed. The architecture is the ground work that enables the team to go ahead with designing the system. This essentially boils down to taking the requirements and dividing it in to blocks, modules, etc.
 
-For a more in depth explanation of the different subjects discussed in this section, one can have a look at the \nameref{sec:sys-architecture}, section~\ref{sec:sys-architecture}, on page~\pageref{sec:sys-architecture} in the documentation.
+For a more in depth explanation of the different subjects discussed in this section, refer to the \nameref{sec:sys-architecture}, section~\ref{sec:sys-architecture}, on page~\pageref{sec:sys-architecture} in the documentation.
 
 \section{Hardware architecture}
 To get a better understanding of the components which are needed for this system, a block definition diagram or BDD was devised, as seen in figure~\ref{fig:generalbdd}. 
@@ -16,11 +16,11 @@ To get a better understanding of the components which are needed for this system
 \label{fig:generalbdd}
 \end{figure}
 
-The system can be broken down into two separate parts. One is the user interface; this is a client's personal computer. This personal computer needs to have either WiFi or an Ethernet port, this is so it can connect to the system. The system is the other part, and it has been named CAPTAIN. 
+The Boat autopilot can be broken down into two separate parts. One is the user interface; this is a client's personal computer. This personal computer needs to have WiFi and an Ethernet port, this is so it can connect to the system. The system is the other part, and it has been named CAPTAIN. 
 
-CAPTAIN is the hardware platform for this project, and it also requires WiFi and an Ethernet port, so it can be connected to the user interface. Furthermore it needs an external battery to power it.  CAPTAIN is also built up of subcomponents, or parts; a GPS, 1 to 2 motors, 1 to 2 motor controllers, a power regulator, and a controller unit. The controller can be considered the brains of the operation; it communicates with the user interface, dictates what the motors should do, and it reads from the GPS receiver. The power regulator is used to regulate the battery voltage, so the controller, the motor, and the motor controller can all use it simultaneously. The motor controller drives the motor according to the control signals from the controller. 
+In this diagram, Captain is the hardware platform for this project, and it also requires WiFi and an Ethernet port, so it can be connected to the user interface. Furthermore it needs an external battery to power it.  CAPTAIN is also built up of subcomponents, or parts; a GPS, 1 or 2 motors, 1 or 2 motor controllers, a power regulator, and a controller unit. The controller can be considered the brains of the operation; it communicates with the user interface, dictates what the motors should do, and it reads from the GPS receiver. The power regulator is used to regulate the battery voltage, so the controller, the motor, and the motor controller can all use it simultaneously. The motor controller drives the motor according to the control signals from the controller. 
 
-With the block now defined, an IBD or internal block diagram can be created, seen in figure~\ref{fig:generalibd}. This diagram describes how the different blocks of the BDD connect to each other, via the signals that are defined in the BDD as well. A full signal list and description can be found in the documentation in section~\ref{sec:general_ibd} on page~\pageref{sec:general_ibd}.
+With these blocks now defined, an IBD or internal block diagram can be created, seen in figure~\ref{fig:generalibd}. This diagram describes how the different blocks of the BDD connect to each other, via the signals that are defined in the BDD as well. A full signal list and description can be found in the documentation in section~\ref{sec:general_ibd} on page~\pageref{sec:general_ibd}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../Appendix/Project/Dokumentation/Images/System_architecture/General_IBD}
