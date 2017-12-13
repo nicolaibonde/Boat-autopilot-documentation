@@ -3,21 +3,27 @@
 \chapter{Future work}
 There are a lot of things that could be bettered in the CAPTAIN project, and there are also some additions that would just make for a better product.
 
-One thing that was labeled under Won't in the MoSCoW is polygon coverage, this was simply to do with the fact that polygon coverage is a very large subject. Usually when one wants to cover an area it is not a square. Even then, generally it's not square with latitudinal lines, like the system is limited to at this time. 
+A depth sensor was never attached to the final product, since it would require a lot of time to evalute another hardware component to purchase, order, and integrate in the system. It was decided early that this module would not be the focus, but that the system, and specifically the protocols used, should be so generic and robust that additions like this one could easily be made by a future team. The development team felt that there was great value in having a system that could easily be expanded upon or changed, and much less value in introducing additional hardware when time was limited because of the many mandatory components that had to be developed. 
+
+In the same vein, polygon coverage was labeled under Won't in the MoSCoW very early on due to its potentially immense complexity. Many projects taking considerably more time than ours and with much larger development teams are dedicated solely to developing efficient and robust polygon coverage algorithms. Developing an area coverage algorithm turned out to take considerable time by itself due to edge cases and making sure the algorithm wasn't too slow for the system to work, so rejecting polygon coverage from the outset seems to have been a very reasonable decision.
 
 Another thing that would be a nice to have is a way to navigate a non-straight point to point path. If the user for example wants to cover a river, this would be very impractical with the current point to point implementation. 
 
 The idea of saving an already calculated path, so it can be run in the exact same way at a later time would make it possible to compare data collected on separate occasions and eliminate the positional differences as a factor. This functionality would have been implemented, had there been time enough to develop it, and some preliminary work was done to enable this, but later scrapped due to lack of time.
 
-A thing that might not be optimal in the system at the moment is the communication between the website and the controller. It is handled by reading and writing to files, which can be slow and potentially unsafe. This was done for simplicity, but it might be a better idea to make the controller host a http server so it can handle GET and POST requests itself instead of relying on the files.  
+The question of whether to use files to hold the data exchanged between the controller, server, and website or finding another solution was debated in the group when coding the website early in development. It was decided that this simple solution would suffice since most of the system has no time-critical components (excluding the navigation algorithms themselves), since it relies upon user input, and a GPS receiver which updates only once per second; a very long time relative to the speed of the processor. This was done for simplicity, but it may be a better idea to make the controller host a http server so it can handle GET and POST requests itself instead of relying on the files. 
 
 With the current implementation, the controller only supports one boat type. But the software design is built from rather generic interfaces so it should be possible in the future to include a variety of boat types.
 
-One thing that we were intending to get done for the project hand-in was anecho sounding device, or one simulated in software, that would measure the depth of the sea bed below the boat. We didn't, however, have time to implement this feature.
+One thing that we were intending to get done for the project hand-in was an echo sounding device, or one simulated in software, that would measure the depth of the sea bed below the boat. We didn't, however, have time to implement this feature.
 
 The system could be classified as a mobile autonomous robot, but at this stage it does not have obstacle avoidance. This could be used to make sure that the boat is not going to run ashore, hit a bouy or even another naval vessel. 
 
 If the system was ever to become anything other then a scale test bed, then it would both need a internet connection via GSM and probably an RTK GPS receiver. A real time kinematic GPS receiver features sub-centimeter precision and some can have interpolated position updates every 1/10 of a second, which could make the autopilot much more stable.
+
+It was also possible to develop a function to save a path object to a file, which could then be read at a later time to repeat a coverage rectangle, very useful for a survey team studying a certain region of the sea floor over time. This functionality was, similar to others dicussed in this section, deemed unnecessary for the final product, but would have been added had there been more time.
+
+On the navigation side of things, it was possible to have used great circle lines instead of rhumb lines. The decision to use rhumb lines was made strictly because is gives the user much better coherence between what she sees in the user interface, and the path the system actually calculates. Rhumb lines become straight lines on a mercator projection, which is what the map uses to transform coordinates from an oblate spheroid and a rectangular map. Besides, it's rare that a survey is conducted across great distances, and so the advantages of using great circle lines are negligible.
 
 Lastly on the topic of sensors, it would probably be a good idea to have some sort of battery monitoring system, if the system is going to be powered by battery. 
 
