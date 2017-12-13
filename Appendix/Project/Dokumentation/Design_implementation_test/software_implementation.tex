@@ -1,5 +1,5 @@
 \section{Software implementation}
-
+\label{sec:software_implementation}
 \subsection{Autopilot}
 The Autopilot is mad up of 2 separate PID loops, to implement PID loops the MiniPID library was used\cite{minipid}. It allows for setting output limits, which setup in the constructor of the Autopilot as seen in listing~\ref{lst:autopilot_con}. It can also be seen that the PID terms are all set to -1, this is used to indicate an invalid valued. There is only one set of PID terms because terms for the thruster was not parameterized out to the website. Therefore some relaxed values are set, so the motor is not going to accelerate to much. 
 

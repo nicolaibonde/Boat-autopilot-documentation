@@ -36,7 +36,7 @@ As seen, this command is to calculate a path to a certain coordinate given in la
 
 The fromNav.json file contains all the user-relevant information for what's happening in the system. This includes the current path to traverse, how much of this path has already been completed, estimated time enroute (ETE), diagnostics data, such as connectivity data, motor status and telemetry, and timestamps in order to differentiate the file from previous versions.
 
- Examples of these components of the fromNav.json file, and more examples of the toNav.json and activeParam.json files, can be found in the protocols section of the design, implementation, and test chapter in the documentation.
+ Examples of these components of the fromNav.json file, and more examples of the toNav.json and activeParam.json files, can be found in section~\ref{sec:protocols} on page~\pageref{sec:protocols} in the documentation.
 
 \subsection{NMEA 0183 v2}
 
@@ -44,7 +44,7 @@ The NMEA standard is a naval standard developed by the National Marine Electroni
 
 The messages used in the system are the GGA (GPS information) message from the GPS receiver to the navigation unit, an APB (Autopilot message with direction to steer, cross track error, and other information) message from the navigation to the autopilot, and a VTG (Vector Track and speed over the Ground) message also from the navigation to the autopilot. By using these standard messages, it is possible to remove a component from the system and insert a replacement that also follows this protocol, making the system much more modular.
 
-The contents of these messages can be seen in the protocols section of the design, implementation, and test chapter in the documentation. 
+The contents of these messages can be found in the documentation section~\ref{sec:protocols} on page~\pageref{sec:protocols}. 
 
 \section{Hardware design}
 
@@ -80,7 +80,7 @@ A detailed explanation of why these components were chosen can be found in the h
 
 \section{Software design}
 %TODO der skal ikke stå noge tom kode her
-The project contains code in many different languages, totaling over 30000 lines. For brevity, this section only the design of the navigation and autopilot classes and their dependencies is included here. The full design can be seen in the software design section of the design, implementation, and test chapter in the documentation. 
+The project contains code in many different languages, totaling over 30000 lines. For brevity, this section only the design of the navigation and autopilot classes and their dependencies is included here. The full design can be seen in section~\ref{sec:software_design} on page~\pageref{sec:software_design} of the documentation.
 
 Figure ~\ref{fig:Navigation} shows the overview of the navigation class and its dependencies. It is seen that the navigation uses a number of helper classes.
 

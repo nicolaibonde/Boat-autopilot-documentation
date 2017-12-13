@@ -46,11 +46,11 @@ The Navigation class is responsible for perform tasks given by the user; calcula
 
 The two path types used in this project are a simple line to a destination called a "point to point" path, and a more complicated "coverage rectangle" which, as the name implies, covers an area.
 
-So for our project, the goal is not to get from A to B as quickly as possible, but to be able to map an area of the sea and give the user/client an intuitive user interface to input the desired area to map. For this reason, rhumb lines were chosen over great circle lines to represent lines on the globe, for more information see the documentation, software implementation section.
+So for our project, the goal is not to get from A to B as quickly as possible, but to be able to map an area of the sea and give the user/client an intuitive user interface to input the desired area to map. For this reason, rhumb lines were chosen over great circle lines to represent lines on the globe, for more information see the documentation, section~\ref{sec:software_implementation} on page~\pageref{sec:software_implementation}.
 
 The navigation unit uses the GeographicLib library to calculate rhumb lines and rhumb distances. Initially, an algorithm was written by the devleopment team to do this, but after comparing it to the one offered in the Geographic library, the performance and precision was much better, and it was decided to use the library for these two functions, and for importing the WGS84 constants. All other Navigation algorithms and calculations have been designed, developed, and tested by the project team.
 
-How the algorithms on the Navigation unit work can be seen in the documentation, software implementation section.
+How the algorithms on the Navigation unit work can be seen in the documentation, section~\ref{sec:software_implementation} on page~\pageref{sec:software_implementation}.
 
 The navigation uses the JSONTrasmitter to send data to the user interface.
 
