@@ -1,5 +1,4 @@
 %Her beskrives test af systemet, herunder en overordnet beskrivelse af hvordan modultest, integrationstest og accepttest er udført. For detaljer angives reference til jeres ”testdokument” i projektets bilag
-\newpage
 \chapter{Test}
 \label{sec:test}
 Testing was not initially something both team members had long experience with, but it soon became clear that verification would become an important part of the development process, particularly software. 
@@ -55,12 +54,14 @@ For some of the integration tests, the previous unit tests were repeated without
 
 During this phase, a few design errors were found, including a dependency problem between the transmitter and navigation units. Without the unit test base, it is doubtful that this and other issues would have been resolved as quickly as they did, since they required some restructuring of those classes. 
 
-The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
-
-\section{Acceptance test}
-%TODO flyt no automatic test op til integrations tests
 Finally, two special tests were made, verifying the entire code base including the user interface. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The user interface was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the user interface. The second test calculates a coverage path and shows it in the user interface.
 
 These two special tests were useful when verifying the final product, and enabled the development team to easily build a main program to run the acceptance test, since the entire code base's functionality had been verified.
 
+The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
+
+\section{Acceptance test}
 During the acceptance test, the boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was to be sure that nothing would go wrong with the waterproofing, and the system wouldn't be lost. 
+
+
+%TODO skriv noget mere til dette afsnit

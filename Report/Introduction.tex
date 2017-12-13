@@ -1,5 +1,4 @@
 %Første egentlige afsnit i rapporten er indledningen, som skal få læseren til at forstå produktet (i modsætning til forordet, der handler om rapporten). Produktets faglige baggrund og produktets problemstilling beskrives her. I dette afsnit indsættes den konkrete problemformulering som I har udarbejdet på baggrund af et evt. projektoplæg. For at oprette fokus på produktet beskrives det samlede system, der er tænkt realiseret i projektet. Anvend illustrationer for at uddybe systemets funktionalitet for læseren. Beskrivelsen bør ligeledes fortælle, om systemet er bygget som en prototype eller som et endeligt produkt. Indledningen kan også beskrive vigtige begreber, definitioner, anvendte forkortelser m.m. Dette afsnit skal også indeholde en oversigt over, hvilke projektdeltagere der har hvilke produktmæssige hovedansvarsområder. En sådan kan med fordel beskrives i en tabel.
-\newpage
 \chapter{Introduction}
 In recent years, there has been an increased focus on autonomous vehicles, both by land, sea, and air. Self-driving cars, drones, and automatic survey vessels are examples of this, and the trend seems to continue as the technology matures and becomes accepted more broadly in society.
 
@@ -23,106 +22,106 @@ A command computer to communicate with the controller and view the user interfac
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{rich_image}
+	\includegraphics[width=0.6\linewidth]{rich_image}
 	\caption{Rich image of system}
 	\label{table:rich_image}
 \end{figure}
 
-\section{Areas of responsibility}
-Table \ref{table:overview} shows the general outline of which group member had the responsibility for which area. As seen, each section was a shared effort, but generally not equally time-consuming for each developer.
-
-Requirements specification, architecture, defining the acceptance test, and choosing system components was done as a collaborative effort, only when the project entered the design and implementation phase did tasks become individual. 
-
-Tables \ref{table:website}, \ref{table:controller}, and \ref{table:hardware} shows a more detailed view of these responsibilities.
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline 
-\textbf{Overview} & \\ 
-\hline 
-\textbf{Area} & \textbf{Developer} \\ 
-\hline 
-Website & Troels and Nicolai \\ 
-\hline 
-Controller & Troels and Nicolai \\ 
-\hline 
-Hardware & Troels and Nicolai \\ 
-\hline 
-\end{tabular} 
-\caption{Overview of areas of responsibility}
-\label{table:overview}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline 
-\textbf{Website} & \\ 
-\hline 
-\textbf{Task} & \textbf{Developer} \\ 
-\hline 
-Initial setup in bootstrap & Nicolai \\ 
-\hline 
-Edit parameters & Troels and Nicolai \\ 
-\hline 
-Coverage & Nicolai \\ 
-\hline 
-Point to point & Troels \\ 
-\hline 
-Status & Nicolai \\ 
-\hline 
-\end{tabular} 
-\caption{Areas of responsibility for the website}
-\label{table:website}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline 
-\textbf{Controller} & \\ 
-\hline 
-\textbf{Class} & \textbf{Developer} \\ 
-\hline 
-JSONReceiver & Nicolai \\ 
-\hline 
-Navigation & Troels \\ 
-\hline 
-Autopilot & Nicolai \\ 
-\hline 
-DCMotor & Troels and Nicolai \\ 
-\hline 
-Servo & Troels and Nicolai \\ 
-\hline 
-JSONTransmitter & Troels \\ 
-\hline 
-GPS & Nicolai \\ 
-\hline 
-Unit tests & Troels and Nicolai \\ 
-\hline 
-Integration tests & Troels \\ 
-\hline 
-\end{tabular} 
-\caption{Areas of responsibility for the controller}
-\label{table:controller}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline 
-\textbf{Hardware} & \\ 
-\hline 
-\textbf{Area} & \textbf{Developer} \\ 
-\hline 
-Component analysis and acquisition & Troels and Nicolai \\ 
-\hline 
-Design & Nicolai \\ 
-\hline 
-Implementation & Nicolai \\ 
-\hline 
-\end{tabular} 
-\caption{Areas of responsibility for the hardware}
-\label{table:hardware}
-\end{table}
+%\section{Areas of responsibility}
+%Table \ref{table:overview} shows the general outline of which group member had the responsibility for which area. As seen, each section was a shared effort, but generally not equally time-consuming for each developer.
+%
+%Requirements specification, architecture, defining the acceptance test, and choosing system components was done as a collaborative effort, only when the project entered the design and implementation phase did tasks become individual. 
+%
+%Tables \ref{table:website}, \ref{table:controller}, and \ref{table:hardware} shows a more detailed view of these responsibilities.
+%
+%\begin{table}[H]
+%\centering
+%\begin{tabular}{|c|c|}
+%\hline 
+%\textbf{Overview} & \\ 
+%\hline 
+%\textbf{Area} & \textbf{Developer} \\ 
+%\hline 
+%Website & Troels and Nicolai \\ 
+%\hline 
+%Controller & Troels and Nicolai \\ 
+%\hline 
+%Hardware & Troels and Nicolai \\ 
+%\hline 
+%\end{tabular} 
+%\caption{Overview of areas of responsibility}
+%\label{table:overview}
+%\end{table}
+%
+%\begin{table}[H]
+%\centering
+%\begin{tabular}{|c|c|}
+%\hline 
+%\textbf{Website} & \\ 
+%\hline 
+%\textbf{Task} & \textbf{Developer} \\ 
+%\hline 
+%Initial setup in bootstrap & Nicolai \\ 
+%\hline 
+%Edit parameters & Troels and Nicolai \\ 
+%\hline 
+%Coverage & Nicolai \\ 
+%\hline 
+%Point to point & Troels \\ 
+%\hline 
+%Status & Nicolai \\ 
+%\hline 
+%\end{tabular} 
+%\caption{Areas of responsibility for the website}
+%\label{table:website}
+%\end{table}
+%
+%\begin{table}[H]
+%\centering
+%\begin{tabular}{|c|c|}
+%\hline 
+%\textbf{Controller} & \\ 
+%\hline 
+%\textbf{Class} & \textbf{Developer} \\ 
+%\hline 
+%JSONReceiver & Nicolai \\ 
+%\hline 
+%Navigation & Troels \\ 
+%\hline 
+%Autopilot & Nicolai \\ 
+%\hline 
+%DCMotor & Troels and Nicolai \\ 
+%\hline 
+%Servo & Troels and Nicolai \\ 
+%\hline 
+%JSONTransmitter & Troels \\ 
+%\hline 
+%GPS & Nicolai \\ 
+%\hline 
+%Unit tests & Troels and Nicolai \\ 
+%\hline 
+%Integration tests & Troels \\ 
+%\hline 
+%\end{tabular} 
+%\caption{Areas of responsibility for the controller}
+%\label{table:controller}
+%\end{table}
+%
+%\begin{table}[H]
+%\centering
+%\begin{tabular}{|c|c|}
+%\hline 
+%\textbf{Hardware} & \\ 
+%\hline 
+%\textbf{Area} & \textbf{Developer} \\ 
+%\hline 
+%Component analysis and acquisition & Troels and Nicolai \\ 
+%\hline 
+%Design & Nicolai \\ 
+%\hline 
+%Implementation & Nicolai \\ 
+%\hline 
+%\end{tabular} 
+%\caption{Areas of responsibility for the hardware}
+%\label{table:hardware}
+%\end{table}

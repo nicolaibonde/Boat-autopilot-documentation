@@ -4,23 +4,12 @@ In this section, the implementation of Captain system will be discussed. This in
 More detailed descriptions of everything discussed in this section can be found in the documentation in section~\ref{sec:implementation}, on page~\pageref{sec:implementation}.
 
 \section{Hardware}
-There are two types of hardware in this project, mechanical and electronic. The mechanics are the boat, rudder, thruster and so on. The electronics are motor driver, power regulator and so forth.
-
-\subsection{Mechanics}
-%TODO merge with design
-The mechanical part of this project is the boat, "Saint Princess", as seen in figure~\ref{fig:saintprincess}. This boat was chosen simply because it was what was available, and since the project has been rather generic about the choice of hardware up to this point, it doesn't really matter. The boat has a motor in a so-called D-drive inboard configuration\cite{motor_config}, which means that the motor is inside the boat and is connected to the propeller via a shaft that goes out through the hull of the boat. The propeller sits just in front of the rudder, which is controlled by a servo on the inside. The hull of the boat is a deep vee hull\cite{hull-types}, it is a planning mode hull, which makes wakes smaller then other hull types.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{../Appendix/Project/Dokumentation/Images/Design/saint_princess}
-\caption{Saint Princess, a remote controlled yacht \cite{saint_princess}}
-\label{fig:saintprincess}
-\end{figure}
+There are two types of hardware in this project, mechanical and electronic. The mechanics are the boat, rudder, thruster and so on. The electronics are motor driver, power regulator and so forth. Only the electronics will be discussed, since the mechanics are already implemented as a boat.
 
 \subsection{Electronics}
 All of the electrical components of the system were connected together on a perfboard\cite{perfboard}. The perfboard is used to distribute the power from the battery to voltage regulators. The signals from the Raspberry Pi are also routed through the perfboard, to the servo and the motor controller. All of the signals are routed through detachable wires, to make it easy to measure and rearrange in case something requires signal testing or debugging. This perfboard system can be seen in figure~\ref{fig:integration}. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{../Appendix/Project/Dokumentation/Images/Implementation/integration}
 \caption{Perfboard, used to connect all components}

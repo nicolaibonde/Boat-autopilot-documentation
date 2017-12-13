@@ -1,5 +1,4 @@
 %Her gives en overordnet beskrivelse af systemets HW-design og SW-design. Den interne funktionalitet i de blokke/moduler/pakker/klasser, som blev beskrevet i afsnittet ”Arkitektur”, beskrives i en sådan grad at læseren efterfølgende kan forstå hvordan systemet er implementeret (bygget) HW-mæssigt og SW-mæssigt. HW-designet beskriver diagrammer (schematics) og beregning af komponentværdier. SW-designet beskriver særligt interessante/vanskelige dele af den interne logik i ”vanskelige” klasser/metoder, som er essentielle for at forstå deres funktionalitet. I projektrapporten skal HW/SW-designet beskrives på et overordnet plan. For yderligere detaljer angives reference til jeres ”designdokument” i projektets bilag.
-\newpage
 \chapter{Design}
 
 \section{Protocols}
@@ -51,9 +50,9 @@ The contents of these messages can be seen in the protocols section of the desig
 
 Despite mainly being a software project, a considerable amount of hardware is required. The system requires a boat model, a controller unit, two motors, a battery, and a way to decouple the three modules from each other to avoid overcurrent and noise on the controller supply. 
 
-\subsection{Boat}
 
-The boat was acquired at Navitas, one group having used it for a previous project already. The boat hull type is a deep vee\cite{hull-types} with a d-drive inboard motor configuration\cite{motor_config}. A picture of the boat is seen below in figure~\ref{fig:saintprincess}
+\subsection{Boat}
+The mechanical part of this project is the boat, "Saint Princess", as seen in figure~\ref{fig:saintprincess}. This boat was chosen simply because it was what was available, and since the project has been rather generic about the choice of hardware up to this point, it doesn't really matter. The boat has a motor in a so-called D-drive inboard configuration\cite{motor_config}, which means that the motor is inside the boat and is connected to the propeller via a shaft that goes out through the hull of the boat. The propeller sits just in front of the rudder, which is controlled by a servo on the inside. The hull of the boat is a deep vee hull\cite{hull-types}, it is a planning mode hull, which makes wakes smaller then other hull types.
 
 \begin{figure}[H]
 \centering
@@ -93,7 +92,7 @@ Along with the helper classes, Navigation has references to several interfaces: 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Navigation_class_diagram}
+\includegraphics[max width=1\linewidth]{Navigation_class_diagram}
 \caption{Navigation class diagram}
 \label{fig:Navigation}
 \end{figure}
@@ -102,7 +101,7 @@ Figure ~\ref{fig:Autopilot} shows the overview of the autopilot class and its de
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Autopilot_class_diagram}
+\includegraphics[max width=1\linewidth]{Autopilot_class_diagram}
 \caption{Autopilot class diagram}
 \label{fig:Autopilot}
 \end{figure}

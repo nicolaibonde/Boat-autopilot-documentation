@@ -1,5 +1,4 @@
 %Her formidles projektets resultater fra testen i kort, nøgtern form, f. eks. ved anvendelse aftabeller, grafer og/eller billeder. De opnåede resultater er dokumenteret detaljeret i projektets bilag, så der kan henvises til dette dokument. Det er vigtigt, at præsentationen af resultaterne er utvetydig, nøgtern og objektiv
-\newpage
 \chapter{Results}
 This section presents the results of the acceptance test, and a more detailed write-up can be found in section 8 of the Documentation. Table \ref{table:acceptance_test_results} shows the overall results of the acceptance tests.
 
@@ -10,6 +9,25 @@ Use case 5 have to do with the diagnostics window of the user interface, and whe
 Use cases 6-9 cover the functionality of the point to point interface. The system must be able to set markers either by clicking on the map, or setting a latitude/longitude pair, which creates a marker in the specified position. It must also calculate, start traversing, and stop a point to point path. All these four use cases passed the tests.
 
 Finally, use cases 10-13 describe the coverage rectangle interface. Like the previous four, coordinates must be put onto the map by clicking or typing them in, and a path must then be calculated, traversed, and stopped. All four of these use cases have strong similarity to the point to point use cases, and it was thus expected that the result would be the same for these similar tests. This assumption turned out to be true, and all four tests passed in a similar manner to the point to point tests.
+
+The finished hardware and an image of the finished user interface can be seen in figure~\ref{fig:result}.
+
+\begin{figure}[H]
+	\centering
+	\subfloat[The finished website, opened on the coverage page] {
+		\includegraphics[width=0.45\textwidth]{../Appendix/Project/Dokumentation/Images/Implementation/coverage_page}
+		\label{fig:finised_website}
+	}
+	\hfill
+	\subfloat[All hardware put together]{
+		\includegraphics[width=0.45\textwidth]{../Appendix/Project/Dokumentation/Images/Implementation/all_hardware_in_boat}
+		\label{fig:finished_boat_hardware}
+	}
+	\caption{The final product}
+	\label{fig:result}
+\end{figure}
+
+
 
 \begin{table}[H]
 \centering
