@@ -80,7 +80,7 @@ This makes great circle paths ill-suited as a way of treating the globe. The use
 
 As seen, the rhumb line is straight while the great circle line is curved. In the real world though, the situation is reversed, and the rhumb line will be longer than the great circle line. This disparity is not a problem for our uses, since we're interested in mapping, and not getting somewhere as efficiently as possible. 
 
-The navigation unit uses the GeographicLib library to calculate rhumb lines and rhumb distances. Initially, an algorithm was written by the devleopment team to do this, but after comparing it to the one offered in the Geographic library, the performance and precision was much better, and it was decided to use the library for these two functions, and importing the WGS84 constants. All other Navigation algorithms and calculations have been designed, developed, and tested by the project team.
+The navigation unit uses the GeographicLib library to calculate rhumb lines and rhumb distances. Initially, an algorithm was written by the devleopment team to do this, but after comparing it to the one offered in the Geographic library, the performance and precision was much better, and it was decided to use the library for these two functions, and for importing the WGS84 constants. All other Navigation algorithms and calculations have been designed, developed, and tested by the project team.
 
 The full calculation of a point to point path is seen below in listing ~\ref{lst:setspeed}, with "..." indicating a new function is called, or the root function is returned to.
 
