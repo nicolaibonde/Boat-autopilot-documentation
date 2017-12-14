@@ -1,27 +1,27 @@
 \section{Protocols}
 \label{sec:protocols}
-This section describes the various protocols used throughout the system. The protocol between server and client is a proprietary protocol defined for this project, it is based on javascript object notation or JSON. The protocol between the system and a GPS is the NMEA 0183 version 2 protocol, the section describes the parts of the protocol that the system is using, but the protocol it self is much bigger. 
+This section describes the various protocols used throughout the system. The protocol between server and client is a proprietary protocol defined for this project, it is based on JavaScript Object Notation (JSON) \cite{jsobjectnotation}. The protocol between the system and a GPS receiver is the NMEA 0183 version 2 protocol, the section describes the parts of the protocol that the system is using, but the protocol it self is much bigger. 
 
 \subsection{Communication between server and client}
 
-The server and client communicate using three .JSON files; toNav.JSON, fromNav.JSON, and activeParam.JSON. As the names suggest, one is used to send data from the client to the server (and from there to the navigation module), and one is used to send data from the server to the client, The last is used to transfer parameters specific to the hardware. The contents of these three files is critical for both sides of the system to function properly, so having a standard format in each one is important. 
+The server and client communicate using three .json files; toNav.json, fromNav.json, and activeParam.json. As the names suggest, one is used to send data from the client to the server (and from there to the navigation module), and one is used to send data from the server to the client, The last is used to transfer parameters specific to the hardware. The contents of these three files is critical for both sides of the system to function properly, so having a standard format in each one is important. 
 
-\subsubsection{toNav.JSON}
+\subsubsection{toNav.json}
 
 The file used to transfer data from the client to the server is used to send commands to the navigation module. This could be calculating a new coverage path for an area, telling the boat to stop, or setting the endpoint in the point to point page.
 The protocol is based on JSON so any kind of data can be contained within.
 
-\begin{lstlisting}[caption = {Example of the least information in the toNav.JSON file}, captionpos=b, label={lst:toNavBasic}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of the least information in the toNav.json file}, captionpos=b, label={lst:toNavBasic}, language=json,firstnumber=1]
 {
 	"func_": "none"
 }
 \end{lstlisting}
 
-The example shown in listing \ref{lst:toNavBasic} demonstrates the least amount of information that can be contained in the toNav.JSON file. The func_ name can hold a string, which is expected to be one of some predefined functions. In the example the string is \texttt{none}.
+The example shown in listing \ref{lst:toNavBasic} demonstrates the least amount of information that can be contained in the toNav.json file. The \texttt{func_} name can hold a string, which is expected to be one of some predefined functions. In the example the string is \texttt{none}.
 The functions that can be input are; \texttt{none}, \texttt{calcP2P}, \texttt{calcCoverage}, \texttt{start}, and \texttt{stop}.
-If one wants to send a \texttt{calcP2P} it is required that the write adds a container for a coordinate \texttt{target_position_} as in listing \ref{lst:toNavCalcP2P}. A coordinate is made up of two numbers; one called \texttt{latitude_} and one called \texttt{longitude_}
+If one wants to send a \texttt{calcP2P} it is required that the writer adds a container for a coordinate \texttt{target_position_} as in listing \ref{lst:toNavCalcP2P}. A coordinate is made up of two numbers; one called \texttt{latitude_} and one called \texttt{longitude_}
 
-\begin{lstlisting}[caption = {Example of a calcP2P call in the toNav.JSON}, captionpos=b, label={lst:toNavCalcP2P}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of a calcP2P call in the toNav.json}, captionpos=b, label={lst:toNavCalcP2P}, language=json,firstnumber=1]
 {
 	"func_": "calcP2P",
 	"target_position_": {
@@ -31,7 +31,7 @@ If one wants to send a \texttt{calcP2P} it is required that the write adds a con
 }
 \end{lstlisting}
 
-\texttt{calcCoverage} requires two coordinates that describe a rectangle, and they are given in the format of a \texttt{coverage_rectangle_}, which contains a \texttt{start_coord_} and a \texttt{end_coord_}. These are coordinates as in \texttt{calcP2P}. An example of this can be seen in listing \ref{lst:toNavCalcCoverage}.
+the \texttt{calcCoverage} function requires two coordinates that describe a rectangle, and they are given in the format of a \texttt{coverage_rectangle_}, which contains a \texttt{start_coord_} and a \texttt{end_coord_}. These are coordinates as in \texttt{calcP2P}. An example of this can be seen in listing \ref{lst:toNavCalcCoverage}.
 
 \begin{lstlisting}[caption = {Example of a calcCoverage call in the toNav.JSON}, captionpos=b, label={lst:toNavCalcCoverage}, language=json,firstnumber=1]
 {
@@ -49,7 +49,7 @@ If one wants to send a \texttt{calcP2P} it is required that the write adds a con
 }
 \end{lstlisting}
 
-\subsubsection{fromNav.JSON}
+\subsubsection{fromNav.json}
 \label{sec:protocol_fromNav}
 This file is used to transfer data from the server to the client, it could be results from the navigation menu or the information for a status panel. 
 The protocol is based on JSON so any kind of data can be contained within. The protocol is build up of objects;  \texttt{Completed_path_}, \texttt{Path_}, \texttt{Progress_}, \texttt{Status}, \texttt{Telemetry_}, and \texttt{Timestamp_}.
@@ -57,7 +57,7 @@ The protocol is based on JSON so any kind of data can be contained within. The p
 A \texttt{Completed_path_}, is used to communicate where the boat has been since it began running its path. It contains a list called \texttt{line_} which is build up of coordinates.
 The line list should be appended to every time the controller samples a new position. An example of the \texttt{Completed_path_} object can be seen in listing \ref{lst:fromNavCompletedPath}
 
-\begin{lstlisting}[caption = {Example of a Completed_path_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavCompletedPath}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of a Completed_path_ object in fromNav.json}, captionpos=b, label={lst:fromNavCompletedPath}, language=json,firstnumber=1]
 "Completed_path_" : {
 		"line_": [
          {
@@ -74,7 +74,7 @@ The line list should be appended to every time the controller samples a new posi
 
 \texttt{Path_} is an object that contains the desired path, i.e. the path that the controller calculates before running. It like the \texttt{Completed_Path_} contains a list called \texttt{line_} is constructed of coordinates. \texttt{Path_} also contains a string object \texttt{timestamp_} which is used to differentiate between a new path object and one that has already been read, therefore it should only be updated when a new path has been calculated. An example can be found in listing \ref{lst:fromNavPath}
 
-\begin{lstlisting}[caption = {Example of a Path_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavPath}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of a Path_ object in fromNav.json}, captionpos=b, label={lst:fromNavPath}, language=json,firstnumber=1]
 "Path_": {
   "line_": [
       {
@@ -93,7 +93,7 @@ The line list should be appended to every time the controller samples a new posi
 To track the progress of the executing path, there is the \texttt{Progress_} object as seen in listing \ref{lst:fromNavProgress}.
 Progress contains a string object \texttt{ete_} containing the calculated estimated time en route, as a string. It also contains a \texttt{percentage_} a number that contains how far along the path it is in percentage. It can be any number but if it is greater then or equal 100 it should be interpreted as a completed path.
 
-\begin{lstlisting}[caption = {Example of a Progress_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavProgress}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of a Progress_ object in fromNav.json}, captionpos=b, label={lst:fromNavProgress}, language=json,firstnumber=1]
 "Progress_": {
  "ete_": "2 min 56 sec",
  "percentage_": 74
@@ -102,7 +102,7 @@ Progress contains a string object \texttt{ete_} containing the calculated estima
 
 \texttt{Status_} is a list that can contain a status object, an empty \texttt{Status_} can be seen in listing \ref{lst:fromNavStatus}.
 
-\begin{lstlisting}[caption = {Example of a empty Status_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavStatus}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of a empty Status_ object in fromNav.json}, captionpos=b, label={lst:fromNavStatus}, language=json,firstnumber=1]
 "Status_": [
 
 ]
@@ -131,7 +131,7 @@ The \texttt{Status_} list can contains any status from anything, as long as it f
 
 \texttt{Telemetry_} is the boats current position and orientation described as a \texttt{latitude_}, \texttt{longitude_} and \texttt{orientation_}, which can be seen in listing \ref{lst:fromNavTelemetry}
 
-\begin{lstlisting}[caption = {Example of an Telemetry_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavTelemetry}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of an Telemetry_ object in fromNav.json}, captionpos=b, label={lst:fromNavTelemetry}, language=json,firstnumber=1]
 "Telemetry_": {
     "latitude_": 56.172425,
     "longitude_": 10.19155,
@@ -139,19 +139,19 @@ The \texttt{Status_} list can contains any status from anything, as long as it f
 },
 \end{lstlisting}
 
-\texttt{Timestamp_} is simply the time-stamp of when the fromNav.JSON file was updated last. see listing \ref{lst:fromNavTimestamp} 
+\texttt{Timestamp_} is simply the time-stamp of when the fromNav.json file was updated last. see listing \ref{lst:fromNavTimestamp} 
 
-\begin{lstlisting}[caption = {Example of an Timestamp_ object in fromNav.JSON}, captionpos=b, label={lst:fromNavTimestamp}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of an Timestamp_ object in fromNav.json}, captionpos=b, label={lst:fromNavTimestamp}, language=json,firstnumber=1]
 "Timestamp_": 1506329007721
 \end{lstlisting}
 
 
-\subsubsection{activeParam.JSON}
+\subsubsection{activeParam.json}
 \label{sec:active_param}
-When communicating what the P, I, and D parts of a PID loop should be, it is passed through the activeParam.JSON file from the User interface to the navigation module. activeParam.JSON has to have a \texttt{name_} and can also have a \texttt{create_timestamp_} to differentiate if there exists two with the same name. the parameters are grouped in two lists \texttt{parameter_names_} and \texttt{parameters_} these list can contain what ever parameters are wanted, it is up to the navigation module to pick out the parameters it needs.\\
+When communicating what the P, I, and D parts of a PID loop should be, it is passed through the activeParam.json file from the user interface to the navigation module. activeParam.json has to have a \texttt{name_} and can also have a \texttt{creation_timestamp_} to differentiate if there exists two with the same name. the parameters are grouped in two lists \texttt{parameter_names_} and \texttt{parameters_} these list can contain what ever parameters are wanted, it is up to the parsing module to pick out the parameters it needs.\\
 \texttt{parameter_names_} and \texttt{parameters_} should always be the same length, since the data is paired.
 An example can be seen in listing \ref{lst:activeParam}.
-\begin{lstlisting}[caption = {Example of activeParam.JSON}, captionpos=b, label={lst:activeParam}, language=json,firstnumber=1]
+\begin{lstlisting}[caption = {Example of activeParam.json}, captionpos=b, label={lst:activeParam}, language=json,firstnumber=1]
 {
 	"name_": "Saint Princess",
 	"parameter_names_": ["P", "I", "D", "Tool Width"],
@@ -163,11 +163,11 @@ An example can be seen in listing \ref{lst:activeParam}.
 
 \subsection{NMEA 0183 version 2}
 The NMEA 0183 version 2 protocol is a serial protocol defined by the National Marine Electronics Association \cite{NMEA}. 
-The protocol is serial EIA-422, and has a bit-rate of 4800 b/s. The protocol is defined by sentences which are ascii strings with up to 80 characters in each, if more characters are needed then there will be sent more sentences. 
+The protocol is serial EIA-422 protocol, and has a bit-rate of 4800 b/s. The protocol is defined by sentences which are ASCII strings with up to 80 characters in each, if more characters are needed then there will be sent more sentences. 
 
-A sentence is defined to start with a \$ and ends with a carriage return line feed.There can be alot of variables in a sentence, all of which are separated by commas. After the \$ the talker identifier is described this can be a variety of things, for a GPS this is GP, after the talker identifier, there is a sentence identifier. There are many sentence identifiers, but the once that will be discussed are the GGA, VTG and APB, since they are used in this system. The different sentence identifiers define what variables that there are in a sentence, after these variables there is a * which defines the start of the checksum.
+A sentence is defined to start with a \$ and ends with a carriage return and line feed.There can be alot of variables in a sentence, all of which are separated by commas. After the \$ the talker identifier is described this can be a variety of things, for a GPS this is GP, after the talker identifier, there is a sentence identifier. There are many sentence identifiers, but the once that will be discussed are the GGA, VTG and APB, since they are used in this system. The different sentence identifiers define what variables that there are in a sentence, after these variables there is a * which defines the start of the checksum.
 
-The checksum is XOR of all the characters in the sentence excluding; \$, *, and the checksum it self. The checksum is a 2 character long hex number.
+The checksum is an XOR of all the characters in the sentence excluding; \$, *, and the checksum itself. The checksum is a 2 character long hex number.
 
 An example of a sentence can be seen in example \ref{ex:gga}
 \begin{ex}
@@ -176,7 +176,7 @@ An example of a sentence can be seen in example \ref{ex:gga}
 \end{ex}
 
 \subsubsection{GGA}
-Global Positioning System Fix Data. Time, Position and fix related data for a GPS receiver. This is the definition of the GGA sentence in the NMEA 0183 standard. an example GGA sentences can be seen in example \ref{ex:gga}.
+Global Positioning System Fix Data. Time, Position and fix related data for a GPS receiver. This is the definition of the GGA sentence in the NMEA 0183 standard. An example GGA sentences can be seen in example \ref{ex:gga}.
 
 \noindent A GGA sentence is built up of 14 variables in this order:
 \begin{description}
@@ -223,7 +223,7 @@ An example of this sentence can be seen in example \ref{ex:vtg}
 \end{ex}
 
 \subsubsection{APB}
-Autopilot Sentence "B", is the NMEA 0183 sentence that contain the variables calculated by an autopilot, an example sentence can be found in example \ref{ex:apb}
+Autopilot Sentence "B", is the NMEA 0183 sentence that contain the variables calculated for an autopilot, an example sentence can be found in example \ref{ex:apb}
 
 \begin{ex}
 \texttt{\$GPAPB,A,A,0.10,R,N,V,V,011,M,DEST,011,M,011,M*3C }

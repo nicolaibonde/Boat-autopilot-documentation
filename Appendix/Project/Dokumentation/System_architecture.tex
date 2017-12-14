@@ -11,16 +11,16 @@ The controller can be broken down even more. It can be split up into a programma
 
 The programmable controller need a WiFi and Ethernet interface to communicate with the user interface. it also need an interface to communicate with sensors and actuators. 
 
-Since the only sensor in this version of the Boat autopilot is a GPS, we only need a serial UART interface, which is the standard if the GPS uses the NMEA protocol. 
+Since the only sensor in this version of the Boat autopilot is a GPS receiver, we only need a serial UART interface, which is the standard if the GPS receiver uses the NMEA protocol. 
 
-The actuators in the system are motors that can be controlled by Pulse width modulation, and so PWM is the protocol used to control the actuators. Motors cant run off of the low amperage of a controller, therefore a motor controller is required, which can take a low voltage PWM signal and step it up to higher voltage. It also has to be able to deliver the required amount amperage of the motor. 
+The actuators in the system are motors that can be controlled by pulse width modulation (PWM) \cite{PWM}. Motors cant run off of the low amperage of a controller, therefore a motor controller is required, which can take a low voltage PWM signal and step it up to higher voltage. It also has to be able to deliver the required amount amperage to the motor. 
 
-To power the system a battery is required and to use it all over the system a power regulator is a good idea, since motors, sensors and the controller require different voltages.
+To power the system a battery is required. To use the battery in the entire system, a power regulator is needed. Because motors, sensors and the controller require different voltages, it also helps to isolate the components electrically.
 
 \subsubsection{General BDD}
 
-To get an overview of the different part of the system a block definition diagram (BDD) has been drawn up.
-In figure \ref{fig:general_bdd} the system blocks can be seen. There is the entire system Boat autopilot, which is broken down in to 2 parts Captain and User Interface. The User interface is what the user interacts with to control the system. It need a WiFi and/ or Ethernet connection to talk with the Captain part. Captain requires a WiFi and/or a Ethernet connection to the User Interface, it also need a battery, a 8.4 volt battery has been chosen. 
+To get an overview of the different part of the system a block definition diagram (BDD) has been drawn.
+In figure \ref{fig:general_bdd} the system blocks can be seen. There is the entire system Boat autopilot, which is broken down in to 2 parts Captain and User Interface. The User interface is what the user interacts with to control the system. It need a WiFi and Ethernet to talk with the Captain part. Captain requires a WiFi and Ethernet, it also need a battery, a 8.4 volt battery has been chosen. 
 
 Captain can be broken down in to further parts, A Controller, Power regulator, Motor Controller, Motor, and GPS.
 The Controller is a programmable controller, with a WiFi and Ethernet adapter, it is responsible for controlling the other parts of Captain. It has a 5 V input to power it, and outputs a 3.3 V output to power the GPS, from the GPS it gets a serial UART signal in the form of NMEA protocol. It also output 1 to 2 PWM signal to 1 to 2 Motor Controllers which drive 1 to 2 Motors.
@@ -89,9 +89,9 @@ Ethernet is a wired communication standard defined be IEEE\cite{ethernet}. In th
 \section{Software architecture}
 \label{sec:soft-architecture}
 Software architecture is in this project used to get an overview of how the different parts of the system are going to interact.
-This means defining a domain model, application model and a many sequence diagrams. 
+This means defining a domain model, application model and many sequence diagrams. 
 
-A domain model figure \ref{fig:domain_model} can be used to describe the boundaries of a system, where does the user interact and should the system respond. I the case of CAPTAIN we have 2 actors, the Technician and the User. The technicians goal when using the system is to set it up, by entering various parameters and settings into the system that result in a working autopilot, these settings could be for example be PID controller terms. The Interface in this case a web interface should then tell the rest of the system about these changes.
+A domain model figure \ref{fig:domain_model} can be used to describe the boundaries of a system, where does the user interact and should the system respond. I the case of CAPTAIN we have two actors, the Technician and the User. The technicians goal is to set it up, by entering various parameters into the system that result in a working autopilot, these settings could be for example be PID loop terms. The Interface in this case a web interface should then tell the rest of the system about these changes.
 
 The technician is not the actor who operates the system generally, that would be the user. The users goal is to get the boat to move in certain ways. This is done through the web interface, where there is the ability to run different modes, including stopping the boat. the user can also get feedback from the system from the web interface.
 
@@ -107,9 +107,9 @@ The current position, calculated path and other status related information, is s
 \end{figure}
 
 From the domain model and use cases, an application model can be devised, see figure \ref{fig:appliction_model}. From the domain model there can be extracted three types of elements; boundary, control and entity.
-a boundary is some sort of interface to the real world, in CAPTAIN this is the web interface, motor(s) and the GPS. Then there is the control which is the Controller, this is responsible for the flow between boundaries and entities. 
+a boundary is some sort of interface to the real world, in CAPTAIN this is the web interface and motor(s). Then there is the control type which is the Controller, this is responsible for the flow between boundaries and entities. Lastly there is the GPS which in our system can be categorized as an entity, since it is just a database of the current position.
 
-From the use cases the functionality of the the four elements can be described:
+From the use cases, the functionality of Web interface, Controller, GPS, and Motor(s) can be described:
 The web interface is has responsibility in three areas; profiles, diagnostics, navigation.
 The profiles responsibility includes:
 \begin{itemize}
@@ -160,7 +160,7 @@ Finally the motor(s) are responsible for setting and getting the thrust of the a
 	\label{fig:appliction_model}
 \end{figure}
 
-With the functionality of the elements defined, sequence diagrams have been created to illustrate the flow of the different functions, in relation to the use cases.
+With the functionality in the application model defined, sequence diagrams have been created to illustrate the flow of the different functions, in relation to the use cases.
 
 In figure \ref{fig:seq:uc1} a technician actor creates a new parameter profile, and the web interface responds by displaying a default parameter profile back to the technician.
 
@@ -189,7 +189,7 @@ In figure \ref{fig:seq:uc2} a technician actor wants edit an parameter profile s
 	\label{fig:seq:uc3}
 \end{figure}
 
-In figure \ref{fig:seq:uc4} a technician actor wants to set a parameter profile as the currently active one, this is done by setting a selected parameter profile active, the web interface displays the active parameter profile, and sends the active parameter profile to the controller
+In figure \ref{fig:seq:uc4} a technician actor wants to set a parameter profile as the currently active one. This is done by setting a selected parameter profile active. The web interface displays the active parameter profile, and sends the active parameter profile to the controller.
 
 \begin{figure}[H]
 	\centering
@@ -198,7 +198,7 @@ In figure \ref{fig:seq:uc4} a technician actor wants to set a parameter profile 
 	\label{fig:seq:uc4}
 \end{figure}
 
-In figure \ref{fig:seq:uc5} a user or technician actor Request diagnostics from web interface. The interface responds by asking the controller for diagnostics. The controller then gets; the speed of the thruster(s), the GPS data, and GPS diagnostics. Then the controller ask the web interface for connection diagnostics. Once all of the data is gathered it is all returned to the web interface, which then displays the diagnostics and the boats position on a map.
+In figure \ref{fig:seq:uc5} a user or technician actor request diagnostics from web interface. The interface responds by asking the controller for diagnostics. The controller then gets; the speed of the thruster(s), the GPS data, and GPS diagnostics data. Then the controller ask the web interface for connection diagnostics. Once all of the data is gathered it is all returned to the web interface, which then displays the diagnostics and the boats position on a map.
 
 \begin{figure}[H]
 	\centering
@@ -252,7 +252,7 @@ In figure \ref{fig:seq:uc10} an user actor wants to define a coverage area, he d
 	\label{fig:seq:uc10}
 \end{figure}
 
-In figure \ref{fig:seq:uc11} a user actor wants to calculate a coverage path, it is a prerequisite that use case 10 has been completed before this so the web interface knows on what to calculate the path. The web interface tells the controller to calculate the path with 2 coordinates defined in use case 8. The controller gets the GPS data to know where the boat is at and returns a calculated path. The web interface then displays the path.
+In figure \ref{fig:seq:uc11} a user actor wants to calculate a coverage path, it is a prerequisite that use case 10 has been completed before this so the web interface knows what to calculate the path of. The web interface tells the controller to calculate the path with 2 coordinates defined in use case 8. The controller gets the GPS data to know where the boat is at and returns a calculated path. The web interface then displays the path.
 
 \begin{figure}[H]
 	\centering
@@ -261,7 +261,7 @@ In figure \ref{fig:seq:uc11} a user actor wants to calculate a coverage path, it
 	\label{fig:seq:uc11}
 \end{figure}
 
-In figure \ref{fig:seq:uc12} a user actor wants to run the a coverage path. Before this can be done, first the user must have calculated a path. The web interface tells the controller to run the coverage path previously calculated. The controller now gets the GPS data, and set the thruster(s) accordingly, it then displays the GPS data on the web interface. Then it calculates the estimated time enroute, to display on the web interface. Everything from getting the GPS data is repeated until the destination is reached.
+In figure \ref{fig:seq:uc12} a user actor wants to run the a coverage path. Before this can be done, first the user must have calculated a path. The web interface tells the controller to run the coverage path previously calculated. The controller now gets the GPS data, and set the thruster(s) accordingly, it then displays the GPS data on the web interface. Then it calculates the estimated time enroute, to display on the web interface. Everything from getting the GPS data and onwards is repeated, until the destination is reached.
 
 \begin{figure}[H]
 	\centering
