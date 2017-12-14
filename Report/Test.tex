@@ -1,6 +1,7 @@
 %Her beskrives test af systemet, herunder en overordnet beskrivelse af hvordan modultest, integrationstest og accepttest er udført. For detaljer angives reference til jeres ”testdokument” i projektets bilag
 \chapter{Test}
 \label{sec:test}
+\section{Software tests}
 Testing was not initially something both team members had long experience with, but it soon became clear that verification would become an important part of the development process, particularly software. 
 
 One group member (Nicolai) had taken software testing the previous semester, and presented the general ideas and concepts before any controller code was written. 
@@ -13,7 +14,7 @@ This combination proved to be very effective, but since both members of the team
 
 At the end of development, over 170 tests totaling more than 8000 lines of code were written. 
 
-\section{Unit tests}
+\subsection{Unit tests}
 
 Listing ~\ref{lst:servo_test} shows an example of a unit test of the Servo class.
 
@@ -48,7 +49,7 @@ Finally, the Assert step verifies that the function did exactly what was intende
 
 Most unit tests in the project are much more complicated than this simple example, but the general structure and procedure is the same. 
 
-\section{Integration tests}
+\subsection{Integration tests}
 
 For some of the integration tests, the previous unit tests were repeated without the mocks and fakes, to verify that everything still behaves as desired when the real classes are constructed instead of fakes and mocks from the interfaces.
 
@@ -60,8 +61,21 @@ These two special tests were useful when verifying the final product, and enable
 
 The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
 
+\section{Hardware tests}
+As opposed to software testing the group has had a lot of experience testing hardware. All of the components in the system are off the shelf, therefore it can be assumed that their design has been tested elsewhere. This means that the hardware testing for this project is focused around the interfaces of the components.
+
+The step down regulators were tested by connecting them to a bench power supply, and the outputs were connected to a voltmeter.
+
+The motor controller, was tested by supplying it with the voltage it need, and driving its PWM input with a frequency generator, then measuring its output with an oscilloscope. 
+
+The GPS receiver was tested by connecting it to a sample application by u-blox, this shows the messages the GPS receiver is outputting.
+
+Similar test were conducted for all of the components in the system. 
+
+To integrate all of the components, most of the leg work is done, since all of the interfaces has been tested. The integration test is then a matter of connecting the components one by one and testing the combined interface of the components. To test the system with the Raspberry Pi, some test code had to be written, to get the PWM outputs and read the GPS receivers signals.
+
+
 \section{Acceptance test}
-During the acceptance test, the boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was to be sure that nothing would go wrong with the waterproofing, and the system wouldn't be lost. 
+The acceptance test was conducted outside, to ensure a GPS connection. The boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was because of the rick of capsizing, which could result in shorting of electronics. It is also possible that boat sails to a position out of reach, resulting in a lost boat.
 
-
-%TODO skriv noget mere til dette afsnit
+The boat is setup in such a way that it connect to a WiFi network called WindowsAP, and with a specific password. The website is then hosted on "http://raspberrypi.local" host name. Between all of the test the website was refreshed to ensure a clean slate for the next test.
