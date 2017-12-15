@@ -1,7 +1,10 @@
 \section{Software design}
 \label{sec:software_design}
-%TODO der mangler fyld tekst
+The following sections detail the software design of the system. Since the programmatic side of the system contains two main components, the user interface and the controller, the sections have also been divided in this fashion.
+
 \subsection{UI}
+
+The user interface design describes how the user can interact with the system. Below in figure~\ref{fig:userinterfaceoverview} the logical blocks of the user interface are set up. This is not a class diagram, but rather a logical classification of the functionality.
 
 \begin{figure}[H]
 	\centering
@@ -147,7 +150,11 @@ These public methods are called on click in the ui.
 
 \subsection{Controller}
 
+The controller is the part of the system that execute user commands, and uses navigation, autopilot and their helper classes to give information back to the user and control the motors intelligently.
+
 \subsubsection{JSONReceiver}
+
+The JSONReceiver is the class responsible for reading commands and parametres from the user interface. It then calls functions in the Navigation and Autopilot classes, depending on the information it read. The class diagram with depencies for the JSONReceiver is shown in figure~\ref{fig:Receiver}
 
 \begin{figure}[H]
 \centering
@@ -180,6 +187,8 @@ These public methods are called on click in the ui.
 
 \subsubsection{JSONTransmitter}
 
+The JSONTransmitter is the class responsible for sending information from the controller back to the user interface. Refer to section \ref{sec:protocols} for which data the JSONTransmitter acquires from other classes, packages, and sends to the user interface. The class diagram with depencies for the JSONTransmitter is shown in figure~\ref{fig:Transmitter}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{Images/Design/Transmitter_class_diagram}
@@ -208,6 +217,8 @@ These public methods are called on click in the ui.
 \end{description}\end{adjustwidth}
 
 \subsubsection{Navigation}
+
+The Navigation is the class responsible for calculating paths, writing NMEA commands to the autopilot in order to traverse the paths, and reading data from the GPS receiver while doing so, to update the boat position. Parameters in the Navigation algorithms can also be changed by the user in real-time, by making changes to the parameter profile. Finally, the Navigation is responsible for calling the Transmitter class every time a command has been completed. The class diagram with depencies for the Navigation is shown in figure~\ref{fig:Navigation}
 
 \begin{figure}[H]
 \centering
@@ -257,6 +268,8 @@ These public methods are called on click in the ui.
 
 \subsubsection{Autopilot}
 
+The Autopilot is the class responsible for maneuvering the boat according to the current parameter profile PID constants and the NMEA telegrams received from the Navigation. The Autopilot has indirect control over the thruster and rudder, through their DCMotor and Servo classes in the controller. The user can also change the PID parameters of the rudder in real-time. The class diagram with depencies for the Autopilot is shown in figure~\ref{fig:Autopilot}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{Images/Design/Autopilot_class_diagram}
@@ -286,8 +299,8 @@ These public methods are called on click in the ui.
 \end{description}\end{adjustwidth}
 
 \subsubsection{DCMotor}
+The DCMotor is the class responsible for controlling the thruster of the system. It receives commands from the Autopilot class whenever new telegrams are received from the Navigation, and updates its speed accordingly. The class diagram with depencies for the DCMotor is shown in figure~\ref{fig:dcmotor}
 
-%TODO fix pil
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{Images/Design/DCMotor_class_diagram}
@@ -311,6 +324,8 @@ These public methods are called on click in the ui.
 
 \subsubsection{Servo}
 
+The Servo is the class responsible for controlling the rudder of the system. It receives commands from the Autopilot class whenever new telegrams are received from the Navigation, and updates its position accordingly. The class diagram with depencies for the Servo is shown in figure~\ref{fig:servo}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{Images/Design/Servo_class_diagram}
@@ -331,12 +346,14 @@ These public methods are called on click in the ui.
 		\item [pin_] the gpio the servo is controlled by
 \end{description}\end{adjustwidth}
 
-\subsubsection{uBlox Neo 7-M}
+\subsubsection{Ublox_neo7m}
+
+The Ublox_neo7m is the class responsible for getting the position and speed of the system from the associated gps receiver. It reads the NMEA messages from the gps receiver, checks if the checksums are valid, and pulls the relevant information from selected telegrams. This class runs in its own thread, and it detached before the main loop. The class diagram with depencies for the Ublox_neo7m is shown in figure~\ref{fig:ubloxneo7m}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{Images/Design/ubloxNEO7M_class_diagram}
-\caption{uBlox Neo 7-M class diagram}
+\caption{Ublox_neo7m class diagram}
 \label{fig:ubloxneo7m}
 \end{figure}
 
@@ -366,6 +383,8 @@ These public methods are called on click in the ui.
 
 \subsubsection{Helper classes}
 
+The helper classes are Coordinate, TargetPosition, CoverageRectangle, and the enumerator Task. As their names imply, the three first are simply coordinate(s) in latitude and longitudinal formats, and the tasks are the available commands sent from the user interface. The helper class diagrams can be seen in figure~\ref{fig:helpers}.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{Images/Design/Helpers_class_diagram}
@@ -394,6 +413,8 @@ These public methods are called on click in the ui.
 \end{description}\end{adjustwidth}
 
 \subsubsection{Status classes}
+
+The status classes are the IStatus interface, MotorStatus, GPStatus, and the MotorType enumerator assists the MotorType class. These classes are used when the JSONTransmitter pulls information from the system before transmitting it to the user interface. The status class diagrams and their dependencies can be seen in figure~\ref{fig:status}.
 
 \begin{figure}[H]
 \centering
