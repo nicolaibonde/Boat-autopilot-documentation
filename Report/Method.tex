@@ -16,12 +16,12 @@ The ASE development model structure is shown in figure~\ref{fig:ASE_model}. This
 The model is similar to the waterfall model, where all requirements are specified at the beginning of the project, architecture is developed, and the project enters the design phase. After iterating through design and verification in module tests until all design has been completed, the project undergoes several integration tests, and finally the acceptance test.Section~\ref{sec:test} on page~\ref{sec:test} describes this process in detail.
 
 \section{V model}
-The V model in figure ~\ref{fig:V_model} is used for hardware as well as software development, and it describes each development phase and their corresponding test artifacts. 
+The V model in figure~\ref{fig:V_model} is used for hardware as well as software development, and it describes each development phase and their corresponding test artifacts. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[max width=0.7\linewidth]{V_model.png}
-	\caption{The V model}
+	\caption{The V model\cite{V_model}}
 	\label{fig:V_model}
 \end{figure}
 
@@ -38,7 +38,7 @@ In developing the architecture and design of the system, SysML has been used as 
 	\label{fig:SysML}
 \end{figure}
 
-SysML is widely used in the engineering industry, and enables other developers to quickly gain insight into the system without prior knowledge. 
+SysML makes it easier to detect errors and omission during the development lifecycle\cite{SysML_faq}, and enables other developers to quickly gain insight into the system without prior knowledge. 
 
 It is effective in bringing the system from idea to requirements specification, to architecture, and in bridging the gap between architecture and implementation, since SysML describes each module of the system and the logical relation between modules precisely. This also gives clues as to how to to implement the system, particularly in software, since class diagrams can be translated almost directly to internally consistent class hierarchies, if specified in enough detail.
 
