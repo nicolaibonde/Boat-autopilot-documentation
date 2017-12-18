@@ -2,9 +2,9 @@
 \chapter{Test}
 \label{sec:test}
 \section{Software tests}
-Testing was not initially something both team members had long experience with, but it soon became clear that verification would become an important part of the development process, particularly software. 
+Testing was not initially something both team members had long experience with, but it soon became clear that verification would become an important part of the development process. 
 
-One group member (Nicolai) had taken software testing the previous semester, and presented the general ideas and concepts before any controller code was written. 
+One group member had taken software testing the previous semester, and presented the general ideas and concepts before any controller code was written. 
 
 The team decided that unit testing would be mandatory for all C++ code that was possible to test, since it offered great benefits, and potentially a whole new way of thinking about software development. This also means that all classes that requires testing need an interface, to be able to make mock and fake classes.
 
@@ -39,13 +39,13 @@ BOOST_AUTO_TEST_CASE(Servo_test_SetPosition_50_returns_1500)
 }
 \end{lstlisting}
 
-Unit testing has three phases, Arrange, Act, and Assert. 
+Unit testing has three phases, arrange, act, and assert. 
 
-In the example, mocks and fakes are first set up, or Arranged, to isolate the test from its external dependencies; other classes and functions. This way, an error in a function will only lead to errors when testing that function, and not when testing other functions which depend on it. 
+In the example, mocks and fakes are first set up, or arranged, to isolate the test from its external dependencies; other classes and functions. This way, an error in a function will only lead to errors when testing that function, and not when testing other functions which depend on it. 
 
-The unit under test (uut) is then constructed, and a function is called; this is the Act step. 
+The unit under test (uut) is then constructed, and a function is called; this is the act step. 
 
-Finally, the Assert step verifies that the function did exactly what was intended, in this case calling another function with a specific argument matching a specific value. This is done using a lambda function.
+Finally, the assert step verifies that the function did exactly what was intended, in this case calling another function with a specific argument matching a specific value. This is done using a lambda function.
 
 Most unit tests in the project are much more complicated than this simple example, but the general structure and procedure is the same. 
 
@@ -78,4 +78,4 @@ To integrate all of the components, most of the leg work is done, since all of t
 \section{Acceptance test}
 The acceptance test was conducted outside, to ensure a GPS connection. The boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was because of the risk of capsizing, which could result in shorting of electronics. It is also possible that the boat would sail to a position out of reach, resulting in the boat being lost.
 
-The boat is set up in such a way that it connects to a WiFi network called WindowsAP with a specific password. The website is then hosted on the host name "http://raspberrypi.local". Between all of the test the website was refreshed to ensure a clean slate for the next test.
+The boat is set up in such a way that it connects to a WiFi network called WindowsAP with a specific password. The website is then hosted on the host name "http://\-raspberrypi.\-local". Between all of the test the website was refreshed to ensure a clean slate for the next test.

@@ -21,6 +21,8 @@ The example shown in listing \ref{lst:toNavBasic} demonstrates the least amount 
 The functions that can be input are; \texttt{none}, \texttt{calcP2P}, \texttt{calcCoverage}, \texttt{start}, and \texttt{stop}.
 If one wants to send a \texttt{calcP2P} it is required that the writer adds a container for a coordinate \texttt{target_position_} as in listing \ref{lst:toNavCalcP2P}. A coordinate is made up of two numbers; one called \texttt{latitude_} and one called \texttt{longitude_}
 
+\newpage
+
 \begin{lstlisting}[caption = {Example of a calcP2P call in the toNav.json}, captionpos=b, label={lst:toNavCalcP2P}, language=json,firstnumber=1]
 {
 	"func_": "calcP2P",
@@ -101,6 +103,8 @@ Progress contains a string object \texttt{ete_} containing the calculated estima
 \end{lstlisting}
 
 \texttt{Status_} is a list that can contain a status object, an empty \texttt{Status_} can be seen in listing \ref{lst:fromNavStatus}.
+
+\newpage
 
 \begin{lstlisting}[caption = {Example of a empty Status_ object in fromNav.json}, captionpos=b, label={lst:fromNavStatus}, language=json,firstnumber=1]
 "Status_": [

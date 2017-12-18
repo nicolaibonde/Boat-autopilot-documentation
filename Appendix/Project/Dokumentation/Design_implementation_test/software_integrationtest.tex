@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(Navigate_Transmit_ServoPercentage)
 		Coordinate(56.1, 10.1), Coordinate(56.2, 10.2), Coordinate(56.3, 10.3), Coordinate(56.4, 10.4)
 	};
 	//Path to save file
-	boost::filesystem::path filepath = boost::filesystem::current_path()\-.parent_path()\-.parent_path()\-.parent_path()\-.append(
+	boost::filesystem::path filepath = boost::filesystem::current_path().parent_path() .parent_path().parent_path().append(
 		"JSON\\Integration_tests\\NavTransmit_Servo\\");
 	fakeit::When(Method(dcMock, GetStatus)).AlwaysReturn(MotorStatus(15.44, SPEED));
 	fakeit::When(Method(servoMock, GetStatus)).AlwaysReturn(MotorStatus(45.44, POSITION));
@@ -63,8 +63,8 @@ BOOST_AUTO_TEST_CASE(Navigate_Transmit_ServoPercentage)
 	{
 		if (it.value().at("title_") == "Position")
 		{
-			for (nlohmann::json::iterator it2 = from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()).at("items_").begin();
-				it2 != from_nav_json.at("Status_").at(it - from_nav_json\-.at("Status_").begin())\-.at("items_")\-.end(); ++it2)
+			for (nlohmann::json::iterator it2 = from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()).at("items_") .begin();
+				it2 != from_nav_json.at("Status_").at(it - from_nav_json.at("Status_").begin()) .at("items_").end(); ++it2)
 			{
 				const double from_nav_result_double = it2.value().at("data_");
 				std::ostringstream from_nav_result_stringstream;
@@ -79,14 +79,14 @@ BOOST_AUTO_TEST_CASE(Navigate_Transmit_ServoPercentage)
 }
 \end{lstlisting}
 
-Just like the unit tests, integrations tests have three phases, Arrange, Act, and Assert. 
+Just like the unit tests, integrations tests have three phases, arrange, act, and assert. 
 
 In the example, only the motors, gps, and autopilot are mocked and faked. It can be seen that the setup is much more complicated than in the simple unit test example, since all components of the system are interacting, even though some methods are stubbed.
 
-The unit under test (in this case nav) is then constructed just like before, and a function is called; this is the Act step. 
+The unit under test (in this case nav) is then constructed just like before, and a function is called; this is the act step. 
 
-Finally, the Assert step verifies that the function did exactly what was intended, in this case writing a specific value to a specific key in one of the .json-files. The file is read using the nlohmann JSON library, and the value is matched against an expected value.
+Finally, the assert step verifies that the function did exactly what was intended, in this case writing a specific value to a specific key in one of the .json-files. The file is read using the nlohmann JSON library, and the value is matched against an expected value.
 
-Two special tests were also made, verifying the entire code base including the UI. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The UI was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the UI. The second test calculates a coverage path and shows it in the UI.
+Two special tests were also made, verifying the entire code base including the user interface. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The user interface was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the user interface. The second test calculates a coverage path and shows it in the user interface.
 
 These two special tests were useful when verifying the final product, and enabled the development team to easily build a main program to run the acceptance test, since the entire code base's functionality had been verified.
