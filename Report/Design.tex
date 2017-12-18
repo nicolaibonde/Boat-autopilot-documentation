@@ -84,7 +84,7 @@ The project contains code in many different languages, totaling over 30000 lines
 
 Figure ~\ref{fig:Navigation} shows the overview of the navigation class and its dependencies. It is seen that the navigation uses a number of helper classes.
 
-Coordinate which contains a latitude and longitude, CoverageRectangle which contains two Coordinates which define a rectangle on the map, TargetPosition containing one Coordinate, an enumerator containing the names of the commands the navigation module can execute.
+Coordinate which contains a latitude and longitude, CoverageRectangle which contains two Coordinates which define a rectangle on the map, TargetPosition containing one Coordinate, and Task; an enumerator containing the names of the commands the navigation module can execute.
 
 NavigationData contains information about the path to complete, the estimated time enroute, and how much of the path has already been traversed. Pose contains a Coordinate for the current position, and an orientation. 
 
@@ -97,7 +97,7 @@ Along with the helper classes, Navigation has references to several interfaces: 
 \label{fig:Navigation}
 \end{figure}
 
-Figure ~\ref{fig:Autopilot} shows the overview of the autopilot class and its dependencies. This module has an interface for the Navigation and Receiver to access, and has references to two interfaces; a position motor and a speed motor. 
+Figure ~\ref{fig:Autopilot} shows the overview of the autopilot class and its dependencies. This module has an interface for the Navigation and Receiver to access, and has references to two interfaces; a position motor and a speed motor, representing the rudder and the thruster. The Autopilot has a PID loop running for each of the motors to control their behaviour, and the parameters of the rudder loop can be changed by the user in the user interface.
 
 \begin{figure}[H]
 \centering

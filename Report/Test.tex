@@ -62,20 +62,20 @@ These two special tests were useful when verifying the final product, and enable
 The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
 
 \section{Hardware tests}
-As opposed to software testing the group has had a lot of experience testing hardware. All of the components in the system are off the shelf, therefore it can be assumed that their design has been tested elsewhere. This means that the hardware testing for this project is focused around the interfaces of the components.
+As opposed to software testing the group has had a lot of experience testing hardware. All of the components in the system are off-the-shelf, therefore it can be assumed that their design has been tested elsewhere. This means that the hardware testing for this project is focused around the interfaces of the components.
 
-The step down regulators were tested by connecting them to a bench power supply, and the outputs were connected to a voltmeter.
+The step-down regulators were tested by connecting them to a bench power supply, and the outputs were connected to a voltmeter.
 
-The motor controller, was tested by supplying it with the voltage it need, and driving its PWM input with a frequency generator, then measuring its output with an oscilloscope. 
+The motor controller was tested by supplying it with the voltage it needed, and driving its PWM input with a frequency generator, then measuring its output with an oscilloscope. 
 
-The GPS receiver was tested by connecting it to a sample application by u-blox, this shows the messages the GPS receiver is outputting.
+The GPS receiver was tested by connecting it to a sample application by u-blox, which displays the messages the GPS receiver is outputting in NMEA format.
 
-Similar test were conducted for all of the components in the system. 
+Similar test were conducted for all components in the system. 
 
-To integrate all of the components, most of the leg work is done, since all of the interfaces has been tested. The integration test is then a matter of connecting the components one by one and testing the combined interface of the components. To test the system with the Raspberry Pi, some test code had to be written, to get the PWM outputs and read the GPS receivers signals.
+To integrate all of the components, most of the leg work is done, since all of the interfaces have been tested. The integration test is then a matter of connecting the components one by one and testing the combined interface of the components. To test the system with the Raspberry Pi, some test code had to be written, to get the PWM outputs and read the GPS receiver's signals.
 
 
 \section{Acceptance test}
-The acceptance test was conducted outside, to ensure a GPS connection. The boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was because of the rick of capsizing, which could result in shorting of electronics. It is also possible that boat sails to a position out of reach, resulting in a lost boat.
+The acceptance test was conducted outside, to ensure a GPS connection. The boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was because of the risk of capsizing, which could result in shorting of electronics. It is also possible that the boat would sail to a position out of reach, resulting in a lost boat.
 
-The boat is setup in such a way that it connect to a WiFi network called WindowsAP, and with a specific password. The website is then hosted on "http://raspberrypi.local" host name. Between all of the test the website was refreshed to ensure a clean slate for the next test.
+The boat is set up in such a way that it connects to a WiFi network called WindowsAP with a specific password. The website is then hosted on the host name "http://raspberrypi.local". Between all of the test the website was refreshed to ensure a clean slate for the next test.
