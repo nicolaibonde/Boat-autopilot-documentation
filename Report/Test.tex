@@ -55,9 +55,9 @@ For some of the integration tests, the previous unit tests were repeated without
 
 During this phase, a few design errors were found, including a dependency problem between the transmitter and navigation units. Without the unit test base, it is doubtful that this and other issues would have been resolved as quickly as they did, since they required some restructuring of those classes. 
 
-Finally, two special tests were made, verifying the entire code base including the user interface. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The user interface was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the user interface. The second test calculates a coverage path and shows it in the user interface.
+Finally, two special tests were written, verifying the entire code base including the user interface. In these tests, the GPS inputs and motor outputs were mocked, but the rest of the classes and other elements were constructed. The user interface was then started, and commands sent through the .json files. The first test calculates and traverses a point to point path, and shows the progress and finish in the user interface. The second test calculates a coverage path and shows it in the user interface.
 
-These two special tests were useful when verifying the final product, and enabled the development team to easily build a main program to run the acceptance test, since the entire code base's functionality had been verified.
+These two non-automatic tests were useful when verifying the final product, and enabled the development team to easily build a main program to run the acceptance test, since the entire code base's functionality had been verified.
 
 The integration tests were thus instrumental in sanitizing the code base and the dependency trees between classes.
 
@@ -76,6 +76,6 @@ To integrate all of the components, most of the leg work is done, since all of t
 
 
 \section{Acceptance test}
-The acceptance test was conducted outside, to ensure a GPS connection. The boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was because of the risk of capsizing, which could result in shorting of electronics. It is also possible that the boat would sail to a position out of reach, resulting in a lost boat.
+The acceptance test was conducted outside, to ensure a GPS connection. The boat was "piloted" by one of the team members (by carrying it), while the other sent commands using the user interface on the website. The reason for doing the acceptance test out of water was because of the risk of capsizing, which could result in shorting of electronics. It is also possible that the boat would sail to a position out of reach, resulting in the boat being lost.
 
 The boat is set up in such a way that it connects to a WiFi network called WindowsAP with a specific password. The website is then hosted on the host name "http://raspberrypi.local". Between all of the test the website was refreshed to ensure a clean slate for the next test.
