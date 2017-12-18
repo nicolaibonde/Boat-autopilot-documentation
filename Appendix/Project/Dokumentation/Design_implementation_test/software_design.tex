@@ -92,13 +92,11 @@ These public methods are called on click in the user interface.
 		\item [updateEndCoord( end_coord )] updates the \texttt{End_coord_} with a new value.
 \end{description}\end{adjustwidth}
 
-%TODO describe polyline
-
 \paragraph{Public members:}
 \begin{adjustwidth}{2.5em}{0pt}\begin{description}
 		\item [End_coord_] is the end point of the \texttt{Path_}.
 		\item [Boat_pose_] is the position and orientation of the boat.
-		\item [Path_] is a list of points which is interpreted as a polyline, and is the path that is intended to follow.
+		\item [Path_] is a list of points which is interpreted as a polyline (a list of connected line segments), and is the path that is intended to follow.
 		\item[Completed_path_] is a list of points which is interpreted as a polyline, and is the path that the boat actually followed.
 		\item[ETE_] contains the estimated time enroute, and the completion percentage, and a \texttt{CSS} class for dynamic styling. 
 \end{description}\end{adjustwidth}

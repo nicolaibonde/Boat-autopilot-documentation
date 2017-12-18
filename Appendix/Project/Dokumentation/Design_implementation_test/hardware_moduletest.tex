@@ -1,5 +1,6 @@
 \section{Hardware implementation and module tests}
-%TODO skriv noget her
+This section details the different hardware modules used by the system, such as the voltage regulators, the controller, the GPS receiver, and more. Furthermore, each has a short description of how the unit was tested.
+
 \subsection{Voltage regulators}
 As mentioned in the \nameref{sec:hardware_design} section, two voltage regulators are needed, both of them 5~V.
 LM2596 was chosen, and to get them to work, all that has to be done is to supply them with a voltage a bit higher then the expected output voltage. In this case the output voltage we want is 5 V, and the battery voltage is 8.4 V nominal, which is high enough to supply the regulators. The voltage regulator just has to be adjusted to output 5 V. 
@@ -239,7 +240,7 @@ The Motor need all the power it can gets, therefore the motor controller power i
 \label{fig:electronics_boat}
 \end{figure}
 
-The last thing that is required, is to enclose all of electronics hardware in side the boat. The motor position is fixed in side the boat and so is the servo, that means that the electronics need to sit around it. The Raspberry Pi is positioned in the stern of the boat together with the servo. The motor controller is in the bow of the boat. The perfboard is in the middle of the boat atop the motor. Lastly the GPS receiver is cable tied to the lid that is used to seal the boat, this is do to get the GPS receiver to the highest position. The positions described can be seen in figure~\ref{fig:electronics_boat}, and the closed boat with all the hardware inside can be seen in figure~\ref{boat_closed}.
+The last thing that is required, is to enclose all of electronics hardware in side the boat. The motor position is fixed in side the boat and so is the servo, that means that the electronics need to sit around it. The Raspberry Pi is positioned in the stern of the boat together with the servo. The motor controller is in the bow of the boat. The perfboard is in the middle of the boat atop the motor. Lastly the GPS receiver is cable tied to the lid that is used to seal the boat, this is do to get the GPS receiver to the highest position. The positions described can be seen in figure~\ref{fig:electronics_boat}, and the closed boat with all the hardware inside can be seen in figure~\ref{fig:boat_closed}.
 
 \begin{figure}[H]
 \centering

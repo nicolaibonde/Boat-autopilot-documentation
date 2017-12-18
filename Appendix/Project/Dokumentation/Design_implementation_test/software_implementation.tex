@@ -1,7 +1,9 @@
 \section{Software implementation}
 \label{sec:software_implementation}
+The following sections detail the software implementation of the system. Each class is described in terms of its responsibilities and usage. Code examples are given where it was deemed relevant, but the full code base can be found as a seperate item in the appendix, and a generated code documentation (doxygen) is also included.
+
 \subsection{Autopilot}
-The Autopilot is mad up of two separate PID loops, they were implemented using the MiniPID library \cite{minipid}. It allows for setting output limits, which are setup in the constructor of the Autopilot as seen in listing~\ref{lst:autopilot_con}. It can also be seen that the PID terms are all set to -1, this is used to indicate an invalid valued. There is only one set of PID terms because terms for the thruster was not parameterized out to the website. Therefore some relaxed values are set, so the motor is not going to accelerate to much. 
+The Autopilot is made up of two separate PID loops which were implemented using the MiniPID library \cite{minipid}. It allows for setting output limits, which are setup in the constructor of the Autopilot as seen in listing~\ref{lst:autopilot_con}. It can also be seen that the PID terms are all set to -1, this is used to indicate an invalid value. There is only one set of PID terms because terms for the thruster were not parameterized out to the website. Therefore some relaxed values are set, so the motor is not going to accelerate too much. 
 
 \begin{lstlisting}[caption = {Constructor method of the Autopilot}, captionpos=b, label={lst:autopilot_con}, language=C++,firstnumber=1]
 Autopilot::Autopilot(IPositionMotor& rudder, ISpeedMotor& thruster): rudder_pid_(0, 0, 0), thruster_pid_(1,0,0), rudder_(rudder), thruster_(thruster)
@@ -18,26 +20,26 @@ Autopilot::Autopilot(IPositionMotor& rudder, ISpeedMotor& thruster): rudder_pid_
 }
 \end{lstlisting}
 
-The Autopilot works by setting the rudder and thruster PWM outputs from a calculation done by the MiniPID library. For the rudder the the setpoint is always 0, since the navigation outputs what direction to steer. The thruster has a setpoint of the max speed set in the constructor, and it also gets it's error from the navigation. The navigation calls the \texttt{Run} function in the autopilot with a NMEA telegram, the autopilot can parse either a APB or a VTG telegram. The APB telegram includes the direction to steer, and the VTG holds current speed of the boat. 
+The Autopilot works by setting the rudder and thruster PWM outputs from a calculation done by the MiniPID library. For the rudder the the setpoint is always 0, since the navigation outputs which direction to steer. The thruster has a setpoint of the max speed set in the constructor, and it also gets its error from the navigation. The navigation calls the \texttt{Run} function in the autopilot with a NMEA telegram, the autopilot can parse either a APB or a VTG telegram. The APB telegram includes the direction to steer, and the VTG holds current speed of the boat. 
 
 It was decided that stopping the boat just means to stop the motor and center the rudder. 
 
 Before the \texttt{Run} function will work, there needs to have been a call to the \texttt{SetParameters} function, which sets the rudder PID terms. 
 
 \subsection{JSONReceiver}
-The responsibility of the JSONReciever is to get the activeParam.JSON, and the toNav.JSON files and parse them. After parsing it needs to call the appropriate functions in other object to let them know of this new data. To handle the JSON format in C++ the "json for modern c++" library by Niels Lohmann was used\cite{json}. 
+The responsibility of the JSONReciever is to get the activeParam.JSON, and the toNav.JSON files and parse them. After parsing it needs to call the appropriate functions in other objects to let them know of this new data. To handle the JSON format in C++ the "json for modern c++" library by Niels Lohmann was used\cite{json}. 
 
-The recieving of toNav.json works by reading the contents of file, and parsing it into JSON, after this it needs to figure out what kind of task is in the file. This is done by first using the json find function on the parsed json object. If the task is either; none, stop, start, just the task is passed on to the Navigation via the PerformTask function. If the task is calcCoverage, it goes through and checks if the toNav protocol is adhered to. If every thing is good it create a CoverageRectangle object which is then passed on to the Navigation together with the task, through the PerformTask function.
+Reading the toNav.json file is done by reading the contents of file, and parsing it into JSON, after this it needs to figure out what kind of task is in the file. This is done by first using the json find function on the parsed json object. If the task is either none, stop, start, just the task is passed on to the Navigation via the PerformTask function. If the task is calcCoverage, it goes through and checks if the toNav protocol is adhered to. If everything checks out, it creates a CoverageRectangle object which is then passed on to the Navigation together with the task, through the PerformTask function.
 The exact same thing happens with the calcP2P task, but it creates a TargetPosition object instead.
 
-To receive the active parameter profile the JSONReciever, parses the activeParam.json file with the "json for modern c++" library like before. Then it reads all the information and assigns it to the proper variables, so it can send to the Navigation and Autopilot, through the SetParameters function in both of them.
+To receive the active parameter profile, the JSONReceiver parses the activeParam.json file with the "json for modern c++" library like before. Then it reads all the information and assigns it to the proper variables, so it can send to the Navigation and Autopilot, through the SetParameters function in both of them.
 
 \subsection{JSONTransmitter}
 The  JSONTransmitter class is responsible for collecting information from the motors, navigation, and gps modules, translate it to valid JSON format, and then update the fromNav.json file. To handle JSON format parsing in C++, the "JSON for modern C++" library by Niels Lohmann was used\cite{json}. 
 
-Because the Transmitter and the Navigation are mutually dependent, the Transmitter class has a pointer function that is called by the Navigation in its constructor, passing the Transmitter a this-pointer to the Navigation singleton. The Navigation itself has a reference to the JSONTransmitter.
+Because the Transmitter and the Navigation are mutually dependent, the Transmitter class has a pointer function that is called by the Navigation in its constructor, passing the Transmitter a this-pointer to the Navigation object. The Navigation itself has a reference to the JSONTransmitter.
 
-The Transmitter is called by the Navigation when a task has been performed, and is given a timestamp parameter. It then collects NavigationData from the Navigation class, MotorStatuses from the two motors, and a GPSStatus from the gps. From this it builds a JSON "tree" of objects, and packages them correctly, taking edge cases into account, as defined by the fromNav.json protocol. 
+The Transmitter is called by the Navigation when a task has been performed, and is given a timestamp parameter. It then collects NavigationData from the Navigation class, MotorStatuses from the two motors, and a GPSStatus from the gps. From this it builds a JSON "tree" of objects, and packages them correctly, taking edge cases into account as defined by the fromNav.json protocol. 
 
 Listing~\ref{lst:TransmitFromNav} shows the final few lines of the TransmitFromNav function, where the fromNav JSON is assembled and overwrites the contents of the fromNav.json file.
 
@@ -58,17 +60,17 @@ file << fromNav.dump();
 \end{lstlisting}
 
 \subsection{Navigation}
-The Navigation class is responsible for perform tasks given by the user; calculating paths, and starting/stopping. To do this, it uses a number of algorithms, calls the GPS for new data, and finally transmits data back to the user as well as sending data to the autopilot if a path is being traversed.
+The Navigation class is responsible for performing tasks given by the user, calculating paths, and starting/stopping. To do this, it uses a number of algorithms, calls the GPS for new data, and finally transmits data back to the user as well as sending data to the autopilot if a path is being traversed.
 
 The two path types used in this project are a simple line to a destination called a "point to point" path, and a more complicated "coverage rectangle" which, as the name implies, covers an area.
 
-The first consideration in any navigation system is to decide how to treat straight on a non-planar surface. The standard approach for maps is to use the Mercator Projection, which is what is commonly seen on any 2D world map. This type of projection is favoured in many places because of the rectangular, well-behaved, result. However, projecting the earth down in this fashion does present some challenges, the most important for our project being that seemingly equally long lines on the map are in fact almost never of equal length. The Mercator projection maps are stretched by a factor that increase with the absolute latitude, meaning that the closer you get to the poles, the smaller distances are.
+The first consideration in any navigation system is to decide how to treat straight lines on a non-planar surface. The standard approach for maps is to use the Mercator Projection, which is what is commonly seen on any 2D world map. This type of projection is favoured in many places because of the rectangular, well-behaved, result. However, projecting the earth down in this fashion does present some challenges, the most important for our project being that seemingly equally long lines on the map are in fact almost never of equal length. The Mercator projection maps are stretched by a factor that increases with the absolute latitude, meaning that the closer you get to the poles, the smaller distances are.
 
 The system has to take this into account, and there are multiple approaches to dealing with this issue. The common approach by freight ships is to use great circle lines, treating the earth as a spheroid and find the best "great circle" to get between two points. As one would expect, these lines are distorted when they undergo a Mercator projection. 
 
 In our project, the goal is not to get from A to B as quickly as possible, but to be able to map an area of the sea and give the user/client an intuitive user interface to input the desired area to map. 
 
-This makes great circle paths ill-suited as a way of treating the globe. The user should not have to think about the implementation of the system, but just define an area, in our case a rectangle, to map. For this reason, a way of navigation that produces straight lines when Mercator projected is necessary. These types of lines on a spheroid are called rhumb lines, and the difference between the great circle and rhumb lines can be seen in figure ~\ref{fig:rhumbgreatcirclemercator} below.
+This makes great circle paths ill-suited as a way of treating the globe. The user should not have to think about the implementation of the system, but just define an area, in our case a rectangle, to map. For this reason, a way of navigating that produces straight lines when Mercator projected is necessary. These types of lines on a spheroid are called rhumb lines, and the difference between the great circle and rhumb lines can be seen in figure ~\ref{fig:rhumbgreatcirclemercator} below.
 
 \begin{figure}[H]
 \centering
@@ -166,15 +168,14 @@ As seen in the source code, the general idea is to create a rhumb line between t
 \begin{figure}[H]
 \centering
 \includegraphics[max width=0.9\linewidth]{Images/Implementation/P2P_path_being_traversed}
-\caption{A calculated point to point path in the UI}
+\caption{A calculated point to point path being traversed in the UI}
 \label{fig:p2p_path}
 \end{figure}
 
-%TODO Dette er grimt as fuck
 \begin{figure}[H]
 \centering
 \includegraphics[max width=0.9\linewidth]{Images/Implementation/P2P_path_calculated}
-\caption{A calculated point to point path being traversed in the UI}
+\caption{A calculated point to point path in the UI}
 \label{fig:p2p_path_traversed}
 \end{figure}
 
@@ -208,7 +209,6 @@ The bearings and which way to turn is simply calculated by comparing the angle b
 
 The cross track error and important metrics used in the navigation algorithm that calculates it is seen in figure ~\ref{fig:xte}.
 
-%TODO Nicolai laver en svg
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{Images/Implementation/xte}
