@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['percentagetoservo',['percentageToServo',['../class_servo.html#a54bfb7c6f6aa8317342f4801b7e24fc4',1,'Servo']]],
-  ['performtask',['PerformTask',['../class_i_navigation.html#a80027671cf5e3ee53ffaed8a1bbced8e',1,'INavigation::PerformTask(const Task task)=0'],['../class_i_navigation.html#ab303647695bea040352feb2b36e856d4',1,'INavigation::PerformTask(const Task task, const TargetPosition target_position)=0'],['../class_i_navigation.html#a69214c0281baccee86d9acb4d3eaf060',1,'INavigation::PerformTask(const Task task, const CoverageRectangle coverage_rectangle)=0'],['../class_navigation.html#add7c9eabdd412b682e10f5d2b2ffd940',1,'Navigation::PerformTask(const Task task) override'],['../class_navigation.html#a4adbdbd422fe670fa7daacc59c42515f',1,'Navigation::PerformTask(const Task task, const TargetPosition target_position) override'],['../class_navigation.html#af76bbd8d58c20bf5fd6c4224ca2faf76',1,'Navigation::PerformTask(const Task task, const CoverageRectangle coverage_rectangle) override']]],
-  ['pigpio',['PiGpio',['../class_pi_gpio.html#a717f2db789a40d18023978a0704eeec1',1,'PiGpio']]],
-  ['pose',['Pose',['../class_pose.html#adf63f117ff451c41d0d463c7e6e6ea5f',1,'Pose']]]
+  ['k',['K',['../class_geographic_lib_1_1_elliptic_function.html#ad375aaeee97a650b226cf2e6427ed243',1,'GeographicLib::EllipticFunction']]],
+  ['k2',['k2',['../class_geographic_lib_1_1_elliptic_function.html#aae89052823b8d8078f726fd5eb018284',1,'GeographicLib::EllipticFunction']]],
+  ['ke',['KE',['../class_geographic_lib_1_1_elliptic_function.html#ae515fb22ddad890ba9cb79d405157762',1,'GeographicLib::EllipticFunction']]],
+  ['kilometer',['kilometer',['../class_geographic_lib_1_1_constants.html#a4ec5a9d91ab0ccbd3bd921cda4bfc836',1,'GeographicLib::Constants']]],
+  ['kp2',['kp2',['../class_geographic_lib_1_1_elliptic_function.html#ad74bfa1f82d2548d8c929e2d677e56e8',1,'GeographicLib::EllipticFunction']]]
 ];

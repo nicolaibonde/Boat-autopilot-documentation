@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['servo',['Servo',['../class_servo.html#a78c2bab58e98ec486fb2e7d57466f6f3',1,'Servo']]],
-  ['setparameters',['SetParameters',['../class_autopilot.html#aebb83d8998c1451596e2576172f77155',1,'Autopilot::SetParameters()'],['../class_i_autopilot.html#a8848234e3c40bb0b5ea54d3f42092635',1,'IAutopilot::SetParameters()'],['../class_i_navigation.html#aab1d274996e5bc82d6b60692e0f2eec0',1,'INavigation::SetParameters()'],['../class_navigation.html#afa27ffc8399f3f954e8139f6c9a9acc0',1,'Navigation::SetParameters()']]],
-  ['setposition',['SetPosition',['../class_i_position_motor.html#afb90097f30f2b397702e785e344799f0',1,'IPositionMotor::SetPosition()'],['../class_servo.html#a184da2e46c051ecaf232666265b6e2e7',1,'Servo::SetPosition()']]],
-  ['setspeed',['SetSpeed',['../class_d_c_motor.html#a35ed514c946790bdb2517a896259ff35',1,'DCMotor::SetSpeed()'],['../class_i_speed_motor.html#a34773327a1d134e85af6cf56d6237999',1,'ISpeedMotor::SetSpeed()']]],
-  ['settimestamp',['setTimestamp',['../class_navigation.html#a64ca3034a68712f50fa455ed1dd2c206',1,'Navigation']]],
-  ['setup',['Setup',['../class_i_g_p_s.html#adfc3bba6082597c195cad414afb9116d',1,'IGPS::Setup()'],['../class_ublox__neo7m.html#a98e0ae3a7c7bbdeda01f897e8e7ad4b7',1,'Ublox_neo7m::Setup()']]],
-  ['start',['start',['../class_navigation.html#aea1dd40d8cb3a968febb5339a3733723',1,'Navigation']]],
-  ['stop',['stop',['../class_navigation.html#a7e6893bb8f057290cb34c50b64ab5080',1,'Navigation::stop()'],['../class_autopilot.html#ae5bd63046c0048a5f6fb9b057fd2e9ca',1,'Autopilot::Stop()'],['../class_i_autopilot.html#ab60bae500e8cd23627d514914f4d7e38',1,'IAutopilot::Stop()']]],
-  ['stopthread',['StopThread',['../class_i_g_p_s.html#ab590e761c9ef8cfe3f50e0c9b723b4ec',1,'IGPS::StopThread()'],['../class_ublox__neo7m.html#a2039f143fe1e1fc07977eb081875af67',1,'Ublox_neo7m::StopThread()']]]
+  ['majorradius',['MajorRadius',['../class_geographic_lib_1_1_albers_equal_area.html#a8968df286736241a4410c8fdeaaa926a',1,'GeographicLib::AlbersEqualArea::MajorRadius()'],['../class_geographic_lib_1_1_ellipsoid.html#a8add5b47632122eeec068f833445065f',1,'GeographicLib::Ellipsoid::MajorRadius()'],['../class_geographic_lib_1_1_rhumb.html#aa16da3799c97398ba7110dc9a3aa9bb0',1,'GeographicLib::Rhumb::MajorRadius()'],['../class_geographic_lib_1_1_rhumb_line.html#aa3dd063cdddfdee587e4158771d9a226',1,'GeographicLib::RhumbLine::MajorRadius()'],['../class_geographic_lib_1_1_transverse_mercator.html#abae933dd18c4495489b3f35349312408',1,'GeographicLib::TransverseMercator::MajorRadius()']]],
+  ['meridiandistance',['MeridianDistance',['../class_geographic_lib_1_1_ellipsoid.html#af3803ecdd97abf503c458cb4d94e53f5',1,'GeographicLib::Ellipsoid']]],
+  ['meridionalcurvatureradius',['MeridionalCurvatureRadius',['../class_geographic_lib_1_1_ellipsoid.html#a9551442a47928a36f1f45de1471ef360',1,'GeographicLib::Ellipsoid']]],
+  ['meter',['meter',['../class_geographic_lib_1_1_constants.html#ac1b17e7cf67ef42b9b91f3677c2eaa75',1,'GeographicLib::Constants::meter()'],['../class_geographic_lib_1_1_constants.html#afeffc10d6b8171b39a50949cac149063',1,'GeographicLib::Constants::meter()']]],
+  ['mile',['mile',['../class_geographic_lib_1_1_constants.html#a49cb7b828f7c85c36761d47b8db6518c',1,'GeographicLib::Constants']]],
+  ['minorradius',['MinorRadius',['../class_geographic_lib_1_1_ellipsoid.html#a3079e9c5c331afc487a79a43253413e7',1,'GeographicLib::Ellipsoid']]],
+  ['motorstatus',['MotorStatus',['../class_motor_status.html#ab3f0168f93ceb85b48f96f42ed0c6805',1,'MotorStatus']]]
 ];

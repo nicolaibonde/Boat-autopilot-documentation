@@ -1,26 +1,4 @@
 var searchData=
 [
-  ['_7eautopilot',['~Autopilot',['../class_autopilot.html#a5e0044bf8d2f51f800486ab7e5c2534d',1,'Autopilot']]],
-  ['_7ecoveragerectangle',['~CoverageRectangle',['../class_coverage_rectangle.html#aa39710ec91458fc3bc1374624961c75e',1,'CoverageRectangle']]],
-  ['_7edcmotor',['~DCMotor',['../class_d_c_motor.html#a48593da1ce124a9819bdb4bd239f35d3',1,'DCMotor']]],
-  ['_7egpsstatus',['~GPSStatus',['../class_g_p_s_status.html#a65c2fd53de3fa8cf7f563ad160c33a37',1,'GPSStatus']]],
-  ['_7eiautopilot',['~IAutopilot',['../class_i_autopilot.html#af8c82add426512827f96e1cc960c2505',1,'IAutopilot']]],
-  ['_7eigpio',['~IGPIO',['../class_i_g_p_i_o.html#a064470ed9e63ab51335193396c40e817',1,'IGPIO']]],
-  ['_7eigps',['~IGPS',['../class_i_g_p_s.html#af02cd7c6266fa07eb14371b8cbe7bda0',1,'IGPS']]],
-  ['_7eimotorstatusgetter',['~IMotorStatusGetter',['../class_i_motor_status_getter.html#a1168604556573ef544af2598ccb387f3',1,'IMotorStatusGetter']]],
-  ['_7eipositionmotor',['~IPositionMotor',['../class_i_position_motor.html#ab4470b0af4e6fa9cebb0692bf2041414',1,'IPositionMotor']]],
-  ['_7eireceiver',['~IReceiver',['../class_i_receiver.html#a3d4ee784f867ce348518bfaf4fb01b48',1,'IReceiver']]],
-  ['_7eiserial',['~ISerial',['../class_i_serial.html#a31e96c8b2fa0e1ff590e21c0310f44bb',1,'ISerial']]],
-  ['_7eispeedmotor',['~ISpeedMotor',['../class_i_speed_motor.html#ad98c3511978c8a117d317d4c61cc7967',1,'ISpeedMotor']]],
-  ['_7eistatus',['~IStatus',['../class_i_status.html#aa16f3883023c5c0e77ef8fac45c8368d',1,'IStatus']]],
-  ['_7ejsonreceiver',['~JSONReceiver',['../class_j_s_o_n_receiver.html#ac282489da4a1bcab370b39d2766e0a57',1,'JSONReceiver']]],
-  ['_7ejsontransmitter',['~JSONTransmitter',['../class_j_s_o_n_transmitter.html#a5fbf09aaa725311679f335a3c83918f5',1,'JSONTransmitter']]],
-  ['_7emotorstatus',['~MotorStatus',['../class_motor_status.html#a6a85e767330d3323e13e71090bfe43ac',1,'MotorStatus']]],
-  ['_7enavigation',['~Navigation',['../class_navigation.html#addd4022d716df48f4e55a1db69361ba7',1,'Navigation']]],
-  ['_7enavigationdata',['~NavigationData',['../class_navigation_data.html#a3ebdca8ed484cd1e64a3b96f0830dbba',1,'NavigationData']]],
-  ['_7epigpio',['~PiGpio',['../class_pi_gpio.html#ab94f37dd17a415b96ea6ebc62f9231e3',1,'PiGpio']]],
-  ['_7epose',['~Pose',['../class_pose.html#a4267a4b362912dded8377f2c3260803e',1,'Pose']]],
-  ['_7eservo',['~Servo',['../class_servo.html#af35d51d683c1bc48d0ecc9643c62bb04',1,'Servo']]],
-  ['_7etargetposition',['~TargetPosition',['../class_target_position.html#a02a229a07e6ec08590553000846f6e10',1,'TargetPosition']]],
-  ['_7eublox_5fneo7m',['~Ublox_neo7m',['../class_ublox__neo7m.html#add3945d0b700db4606cb8a3ef90d7cbd',1,'Ublox_neo7m']]]
+  ['quartermeridian',['QuarterMeridian',['../class_geographic_lib_1_1_ellipsoid.html#a53111c962ba028968f51635309d091c5',1,'GeographicLib::Ellipsoid']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ublox_5fneo7m',['Ublox_neo7m',['../class_ublox__neo7m.html#a6dde67acfc27ff7722aac73a8cfb64f5',1,'Ublox_neo7m']]]
+  ['originlatitude',['OriginLatitude',['../class_geographic_lib_1_1_albers_equal_area.html#a4ff1a0b0cb655832a2940c735f6da995',1,'GeographicLib::AlbersEqualArea']]]
 ];

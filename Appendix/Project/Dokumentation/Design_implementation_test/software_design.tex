@@ -2,14 +2,14 @@
 \label{sec:software_design}
 The following sections detail the software design of the system. Since the programmatic side of the system contains two main components, the user interface and the controller, the sections have also been divided in this fashion.
 
-\subsection{UI}
+\subsection{User interface}
 
 The user interface design describes how the user can interact with the system. Below in figure~\ref{fig:userinterfaceoverview} the logical blocks of the user interface are set up. This is not a class diagram, but rather a logical classification of the functionality.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Images/Design/User_Interface_overview}
-	\caption{An overview of how the functions of the User Interface are structured}
+	\caption{An overview of how the functions of the user interface are structured}
 	\label{fig:userinterfaceoverview}
 \end{figure}
 
@@ -272,7 +272,7 @@ The Autopilot is the class responsible for maneuvering the boat according to the
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Images/Design/Autopilot_class_diagram}
+\includegraphics[max width=1\linewidth]{Images/Design/Autopilot_class_diagram}
 \caption{Autopilot class diagram}
 \label{fig:Autopilot}
 \end{figure}
@@ -303,7 +303,7 @@ The DCMotor is the class responsible for controlling the thruster of the system.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Images/Design/DCMotor_class_diagram}
+\includegraphics[max width=1\linewidth]{Images/Design/DCMotor_class_diagram}
 \caption{DCMotor class diagram}
 \label{fig:dcmotor}
 \end{figure}
@@ -328,7 +328,7 @@ The Servo is the class responsible for controlling the rudder of the system. It 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Images/Design/Servo_class_diagram}
+\includegraphics[max width=1\linewidth]{Images/Design/Servo_class_diagram}
 \caption{Servo class diagram}
 \label{fig:servo}
 \end{figure}
@@ -352,7 +352,7 @@ The Ublox_neo7m is the class responsible for getting the position and speed of t
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Images/Design/ubloxNEO7M_class_diagram}
+\includegraphics[max width=1\linewidth]{Images/Design/ubloxNEO7M_class_diagram}
 \caption{Ublox_neo7m class diagram}
 \label{fig:ubloxneo7m}
 \end{figure}
@@ -418,7 +418,7 @@ The status classes are the IStatus interface, MotorStatus, GPStatus, and the Mot
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Images/Design/Status_class_diagram}
+\includegraphics[max width=1\linewidth]{Images/Design/Status_class_diagram}
 \caption{Status class diagram}
 \label{fig:status}
 \end{figure}

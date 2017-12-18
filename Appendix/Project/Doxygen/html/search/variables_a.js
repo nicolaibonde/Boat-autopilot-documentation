@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['old_5fpose_5f',['old_pose_',['../class_ublox__neo7m.html#ada930cee6ef5d4bb01418aa67f659e96',1,'Ublox_neo7m']]],
-  ['orientation_5f',['Orientation_',['../class_pose.html#ab706f37a7087ce3aed6a1b167b2242e4',1,'Pose']]]
+  ['navigation_5f',['navigation_',['../class_j_s_o_n_receiver.html#ac4d83534c0dc116cae533fb72b40d99d',1,'JSONReceiver::navigation_()'],['../class_j_s_o_n_transmitter.html#a4aab1f21105c8cd001152cfaf9187762',1,'JSONTransmitter::navigation_()']]]
 ];

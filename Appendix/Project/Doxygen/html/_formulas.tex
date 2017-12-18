@@ -2,7 +2,58 @@
 \usepackage{epsfig}
 \pagestyle{empty}
 \begin{document}
-$[-2^{53}+1, 2^{53}-1]$
+\[ E(\phi, k) = (2 E(k) / \pi) [ \phi + \delta E(\phi, k) ] \]
+\pagebreak
+
+\[ K(k) = \int_0^{\pi/2} \frac1{\sqrt{1-k^2\sin^2\phi}}\,d\phi. \]
+\pagebreak
+
+\[ E(k) = \int_0^{\pi/2} \sqrt{1-k^2\sin^2\phi}\,d\phi. \]
+\pagebreak
+
+\[ D(k) = \int_0^{\pi/2} \frac{\sin^2\phi}{\sqrt{1-k^2\sin^2\phi}}\,d\phi. \]
+\pagebreak
+
+\[ \Pi(\alpha^2, k) = \int_0^{\pi/2} \frac1{\sqrt{1-k^2\sin^2\phi}(1 - \alpha^2\sin^2\phi)}\,d\phi. \]
+\pagebreak
+
+\[ G(\alpha^2, k) = \int_0^{\pi/2} \frac{\sqrt{1-k^2\sin^2\phi}}{1 - \alpha^2\sin^2\phi}\,d\phi. \]
+\pagebreak
+
+\[ H(\alpha^2, k) = \int_0^{\pi/2} \frac{\cos^2\phi}{(1-\alpha^2\sin^2\phi)\sqrt{1-k^2\sin^2\phi}} \,d\phi. \]
+\pagebreak
+
+\[ F(\phi, k) = \int_0^\phi \frac1{\sqrt{1-k^2\sin^2\theta}}\,d\theta. \]
+\pagebreak
+
+\[ E(\phi, k) = \int_0^\phi \sqrt{1-k^2\sin^2\theta}\,d\theta. \]
+\pagebreak
+
+\[ \Pi(\phi, \alpha^2, k) = \int_0^\phi \frac1{\sqrt{1-k^2\sin^2\theta}(1 - \alpha^2\sin^2\theta)}\,d\theta. \]
+\pagebreak
+
+\[ D(\phi, k) = \int_0^\phi \frac{\sin^2\theta}{\sqrt{1-k^2\sin^2\theta}}\,d\theta. \]
+\pagebreak
+
+\[ \begin{align} G(\phi, \alpha^2, k) &= \frac{k^2}{\alpha^2} F(\phi, k) + \biggl(1 - \frac{k^2}{\alpha^2}\biggr) \Pi(\phi, \alpha^2, k) \\ &= \int_0^\phi \frac{\sqrt{1-k^2\sin^2\theta}}{1 - \alpha^2\sin^2\theta}\,d\theta. \end{align} \]
+\pagebreak
+
+\[ \begin{align} H(\phi, \alpha^2, k) &= \frac1{\alpha^2} F(\phi, k) + \biggl(1 - \frac1{\alpha^2}\biggr) \Pi(\phi, \alpha^2, k) \\ &= \int_0^\phi \frac{\cos^2\theta} {(1-\alpha^2\sin^2\theta)\sqrt{1-k^2\sin^2\theta}} \,d\theta. \end{align} \]
+\pagebreak
+
+\[ R_F(x, y, z) = \frac12 \int_0^\infty\frac1{\sqrt{(t + x) (t + y) (t + z)}}\, dt \]
+\pagebreak
+
+\[ R_C(x, y) = \frac12 \int_0^\infty\frac1{\sqrt{t + x}(t + y)}\,dt \]
+\pagebreak
+
+\[ R_G(x, y, z) = \frac14 \int_0^\infty[(t + x) (t + y) (t + z)]^{-1/2} \biggl( \frac x{t + x} + \frac y{t + y} + \frac z{t + z} \biggr)t\,dt \]
+\pagebreak
+
+\[ R_J(x, y, z, p) = \frac32 \int_0^\infty [(t + x) (t + y) (t + z)]^{-1/2} (t + p)^{-1}\, dt \]
+\pagebreak
+
+\[ R_D(x, y, z) = \frac32 \int_0^\infty[(t + x) (t + y)]^{-1/2} (t + z)^{-3/2}\, dt \]
 \pagebreak
 
 \end{document}

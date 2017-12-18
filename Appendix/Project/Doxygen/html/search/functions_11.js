@@ -1,4 +1,29 @@
 var searchData=
 [
-  ['value',['value',['../classnlohmann_1_1basic__json.html#af9c51328fbe1da75eca750be3009917a',1,'nlohmann::basic_json::value(const typename object_t::key_type &amp;key, ValueType default_value) const'],['../classnlohmann_1_1basic__json.html#ad6a18403e7fbac9c4efd06facc71fc88',1,'nlohmann::basic_json::value(const typename object_t::key_type &amp;key, const char *default_value) const'],['../classnlohmann_1_1basic__json.html#ab7df4291dda0a80d86f74427cc3993ba',1,'nlohmann::basic_json::value(const json_pointer &amp;ptr, ValueType default_value) const'],['../classnlohmann_1_1basic__json.html#a869c900ee02cf1a68988dcce3b375424',1,'nlohmann::basic_json::value(const json_pointer &amp;ptr, const char *default_value) const'],['../classnlohmann_1_1basic__json_1_1iter__impl.html#a92e849ca687355935c02f492be936b68',1,'nlohmann::basic_json::iter_impl::value()'],['../classnlohmann_1_1basic__json_1_1json__reverse__iterator.html#af51506d91ecf911c97521e10a047c841',1,'nlohmann::basic_json::json_reverse_iterator::value()']]]
+  ['secondeccentricitysq',['SecondEccentricitySq',['../class_geographic_lib_1_1_ellipsoid.html#a6cabba8e89cbe49dbd790b4e42e7075e',1,'GeographicLib::Ellipsoid']]],
+  ['secondeccentricitysqtoflattening',['SecondEccentricitySqToFlattening',['../class_geographic_lib_1_1_ellipsoid.html#a4646b294883d5ebfaf697707795c1b75',1,'GeographicLib::Ellipsoid']]],
+  ['secondflattening',['SecondFlattening',['../class_geographic_lib_1_1_ellipsoid.html#af60b8d4ee50bc3b157b4e5d5df7d90d7',1,'GeographicLib::Ellipsoid']]],
+  ['secondflatteningtoflattening',['SecondFlatteningToFlattening',['../class_geographic_lib_1_1_ellipsoid.html#ab65f55e2248ab7e79630a02198111a1b',1,'GeographicLib::Ellipsoid']]],
+  ['servo',['Servo',['../class_servo.html#a78c2bab58e98ec486fb2e7d57466f6f3',1,'Servo']]],
+  ['set_5fdigits',['set_digits',['../class_geographic_lib_1_1_math.html#a92f0f4a6e1da9c17790d7d2689128aa0',1,'GeographicLib::Math']]],
+  ['setparameters',['SetParameters',['../class_autopilot.html#aebb83d8998c1451596e2576172f77155',1,'Autopilot::SetParameters()'],['../class_i_autopilot.html#a8848234e3c40bb0b5ea54d3f42092635',1,'IAutopilot::SetParameters()'],['../class_i_navigation.html#aab1d274996e5bc82d6b60692e0f2eec0',1,'INavigation::SetParameters()'],['../class_navigation.html#afa27ffc8399f3f954e8139f6c9a9acc0',1,'Navigation::SetParameters()']]],
+  ['setposition',['SetPosition',['../class_i_position_motor.html#afb90097f30f2b397702e785e344799f0',1,'IPositionMotor::SetPosition()'],['../class_servo.html#a184da2e46c051ecaf232666265b6e2e7',1,'Servo::SetPosition()']]],
+  ['setscale',['SetScale',['../class_geographic_lib_1_1_albers_equal_area.html#a0c00022edeb6b67dcd4e00f087b412c4',1,'GeographicLib::AlbersEqualArea']]],
+  ['setspeed',['SetSpeed',['../class_d_c_motor.html#a35ed514c946790bdb2517a896259ff35',1,'DCMotor::SetSpeed()'],['../class_i_speed_motor.html#a34773327a1d134e85af6cf56d6237999',1,'ISpeedMotor::SetSpeed()']]],
+  ['settimestamp',['setTimestamp',['../class_navigation.html#a64ca3034a68712f50fa455ed1dd2c206',1,'Navigation']]],
+  ['setup',['Setup',['../class_i_g_p_s.html#adfc3bba6082597c195cad414afb9116d',1,'IGPS::Setup()'],['../class_ublox__neo7m.html#a98e0ae3a7c7bbdeda01f897e8e7ad4b7',1,'Ublox_neo7m::Setup()']]],
+  ['sincosd',['sincosd',['../class_geographic_lib_1_1_math.html#ab24f0d4b506c030c1d4804e05028d3c7',1,'GeographicLib::Math']]],
+  ['sind',['sind',['../class_geographic_lib_1_1_math.html#a8901c693dc6770dee85af53d05254461',1,'GeographicLib::Math']]],
+  ['sncndn',['sncndn',['../class_geographic_lib_1_1_elliptic_function.html#a1a1dc5cf5775a61fbc7c89b068a62cff',1,'GeographicLib::EllipticFunction']]],
+  ['sq',['sq',['../class_geographic_lib_1_1_math.html#a6a092f38e231c80a1f144814c90f1895',1,'GeographicLib::Math']]],
+  ['square_5fkilometer',['square_kilometer',['../class_geographic_lib_1_1_constants.html#a1956824e4f2b22705d57566229a7c311',1,'GeographicLib::Constants']]],
+  ['square_5fmeter',['square_meter',['../class_geographic_lib_1_1_constants.html#ab92200b36f9d306a2710738c6d9bc705',1,'GeographicLib::Constants::square_meter()'],['../class_geographic_lib_1_1_constants.html#a702b928c9a29dbcc7324b9d835b38d94',1,'GeographicLib::Constants::square_meter()']]],
+  ['square_5fmile',['square_mile',['../class_geographic_lib_1_1_constants.html#ab7f473c27ad50da450b4192155cc92f9',1,'GeographicLib::Constants']]],
+  ['square_5fnauticalmile',['square_nauticalmile',['../class_geographic_lib_1_1_constants.html#a5acf6b2c23d1c9ddf140a6b4e588e88a',1,'GeographicLib::Constants']]],
+  ['start',['start',['../class_navigation.html#aea1dd40d8cb3a968febb5339a3733723',1,'Navigation']]],
+  ['stop',['stop',['../class_navigation.html#a7e6893bb8f057290cb34c50b64ab5080',1,'Navigation::stop()'],['../class_autopilot.html#ae5bd63046c0048a5f6fb9b057fd2e9ca',1,'Autopilot::Stop()'],['../class_i_autopilot.html#ab60bae500e8cd23627d514914f4d7e38',1,'IAutopilot::Stop()']]],
+  ['stopthread',['StopThread',['../class_i_g_p_s.html#ab590e761c9ef8cfe3f50e0c9b723b4ec',1,'IGPS::StopThread()'],['../class_ublox__neo7m.html#a2039f143fe1e1fc07977eb081875af67',1,'Ublox_neo7m::StopThread()']]],
+  ['sum',['sum',['../class_geographic_lib_1_1_math.html#a756937d2acfc80f4f321111b38ac9893',1,'GeographicLib::Math']]],
+  ['surveyfoot',['surveyfoot',['../class_geographic_lib_1_1_constants.html#a7faf6e7435791c0a8061296a79c0be08',1,'GeographicLib::Constants']]],
+  ['swab',['swab',['../class_geographic_lib_1_1_math.html#aec7f95c2bb99422f1f047cb628a232f8',1,'GeographicLib::Math']]]
 ];

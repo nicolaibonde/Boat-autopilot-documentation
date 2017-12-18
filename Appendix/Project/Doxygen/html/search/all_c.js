@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['p_5f',['p_',['../class_autopilot.html#a48cecd701e363be5e55918a0ef6df686',1,'Autopilot']]],
-  ['parameters_5f',['parameters_',['../class_navigation.html#a28e415192d12a255c796455487775548',1,'Navigation']]],
-  ['path_5f',['path_',['../class_navigation.html#ac60d96ccb205401254f0dca5a01c86a6',1,'Navigation::path_()'],['../class_navigation_data.html#a8bcecf48e61e8ddb490d9d661efcecd0',1,'NavigationData::Path_()']]],
-  ['path_5fstart_5ftime_5f',['path_start_time_',['../class_navigation.html#a9769f3811f25e9a0fa7538634fbe0d0d',1,'Navigation']]],
-  ['percentage_5f',['percentage_',['../class_motor_status.html#aa244b4367fa787607a2551a363111493',1,'MotorStatus']]],
-  ['percentagetoservo',['percentageToServo',['../class_servo.html#a54bfb7c6f6aa8317342f4801b7e24fc4',1,'Servo']]],
-  ['performtask',['PerformTask',['../class_i_navigation.html#a80027671cf5e3ee53ffaed8a1bbced8e',1,'INavigation::PerformTask(const Task task)=0'],['../class_i_navigation.html#ab303647695bea040352feb2b36e856d4',1,'INavigation::PerformTask(const Task task, const TargetPosition target_position)=0'],['../class_i_navigation.html#a69214c0281baccee86d9acb4d3eaf060',1,'INavigation::PerformTask(const Task task, const CoverageRectangle coverage_rectangle)=0'],['../class_navigation.html#add7c9eabdd412b682e10f5d2b2ffd940',1,'Navigation::PerformTask(const Task task) override'],['../class_navigation.html#a4adbdbd422fe670fa7daacc59c42515f',1,'Navigation::PerformTask(const Task task, const TargetPosition target_position) override'],['../class_navigation.html#af76bbd8d58c20bf5fd6c4224ca2faf76',1,'Navigation::PerformTask(const Task task, const CoverageRectangle coverage_rectangle) override']]],
-  ['pigpio',['PiGpio',['../class_pi_gpio.html',1,'PiGpio'],['../class_pi_gpio.html#a717f2db789a40d18023978a0704eeec1',1,'PiGpio::PiGpio()']]],
-  ['pin_5f',['pin_',['../class_d_c_motor.html#ab97161e4a8165ab0913cd215e67ac799',1,'DCMotor::pin_()'],['../class_servo.html#a5c26a62f6a69cf0dfc1634fb7ddbed51',1,'Servo::pin_()']]],
-  ['pose',['Pose',['../class_pose.html',1,'Pose'],['../class_pose.html#adf63f117ff451c41d0d463c7e6e6ea5f',1,'Pose::Pose()']]],
-  ['pose_5f',['pose_',['../class_g_p_s_status.html#af4a5c9ce1a3439506de66886f2c4419b',1,'GPSStatus::pose_()'],['../class_ublox__neo7m.html#abe790b215ce2127a6084239ee9fb08cf',1,'Ublox_neo7m::pose_()']]],
-  ['position_5f',['position_',['../class_servo.html#a7a493ca0e289d27ad09cb624740b3a72',1,'Servo']]],
-  ['progress_5f',['Progress_',['../class_navigation_data.html#a465535d6247fb6be756e9c9fb02dfdd8',1,'NavigationData']]]
+  ['majorradius',['MajorRadius',['../class_geographic_lib_1_1_albers_equal_area.html#a8968df286736241a4410c8fdeaaa926a',1,'GeographicLib::AlbersEqualArea::MajorRadius()'],['../class_geographic_lib_1_1_ellipsoid.html#a8add5b47632122eeec068f833445065f',1,'GeographicLib::Ellipsoid::MajorRadius()'],['../class_geographic_lib_1_1_rhumb.html#aa16da3799c97398ba7110dc9a3aa9bb0',1,'GeographicLib::Rhumb::MajorRadius()'],['../class_geographic_lib_1_1_rhumb_line.html#aa3dd063cdddfdee587e4158771d9a226',1,'GeographicLib::RhumbLine::MajorRadius()'],['../class_geographic_lib_1_1_transverse_mercator.html#abae933dd18c4495489b3f35349312408',1,'GeographicLib::TransverseMercator::MajorRadius()']]],
+  ['mask',['mask',['../class_geographic_lib_1_1_rhumb.html#a04b001e0f85f8b57a26e9d7995aec124',1,'GeographicLib::Rhumb::mask()'],['../class_geographic_lib_1_1_rhumb_line.html#a1016b14e551f4863939a33e67d9efc4d',1,'GeographicLib::RhumbLine::mask()']]],
+  ['math',['Math',['../class_geographic_lib_1_1_math.html',1,'GeographicLib']]],
+  ['max_5fspeed_5f',['max_speed_',['../class_autopilot.html#aaf8bc1c14536b10feeee1bb7c9a856dd',1,'Autopilot']]],
+  ['meridiandistance',['MeridianDistance',['../class_geographic_lib_1_1_ellipsoid.html#af3803ecdd97abf503c458cb4d94e53f5',1,'GeographicLib::Ellipsoid']]],
+  ['meridionalcurvatureradius',['MeridionalCurvatureRadius',['../class_geographic_lib_1_1_ellipsoid.html#a9551442a47928a36f1f45de1471ef360',1,'GeographicLib::Ellipsoid']]],
+  ['meter',['meter',['../class_geographic_lib_1_1_constants.html#ac1b17e7cf67ef42b9b91f3677c2eaa75',1,'GeographicLib::Constants::meter()'],['../class_geographic_lib_1_1_constants.html#afeffc10d6b8171b39a50949cac149063',1,'GeographicLib::Constants::meter()']]],
+  ['mile',['mile',['../class_geographic_lib_1_1_constants.html#a49cb7b828f7c85c36761d47b8db6518c',1,'GeographicLib::Constants']]],
+  ['minorradius',['MinorRadius',['../class_geographic_lib_1_1_ellipsoid.html#a3079e9c5c331afc487a79a43253413e7',1,'GeographicLib::Ellipsoid']]],
+  ['motor_5ftype_5f',['motor_type_',['../class_motor_status.html#a57d20c3b639af91c342af6619d01f2c7',1,'MotorStatus']]],
+  ['motorstatus',['MotorStatus',['../class_motor_status.html',1,'MotorStatus'],['../class_motor_status.html#ab3f0168f93ceb85b48f96f42ed0c6805',1,'MotorStatus::MotorStatus()']]],
+  ['motortype',['MotorType',['../_motor_type_8h.html#a3f29f8952bca737db7bc832cd0a6d6f3',1,'MotorType.h']]],
+  ['motortype_2eh',['MotorType.h',['../_motor_type_8h.html',1,'']]]
 ];

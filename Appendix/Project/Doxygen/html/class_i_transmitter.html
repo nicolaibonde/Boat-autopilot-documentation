@@ -20,7 +20,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="logo - side.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo - side - Copy.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -73,14 +73,14 @@ Inheritance diagram for ITransmitter:</div>
  <div class="center">
   <img src="class_i_transmitter.png" usemap="#ITransmitter_map" alt=""/>
   <map id="ITransmitter_map" name="ITransmitter_map">
-<area href="class_j_s_o_n_transmitter.html" title="An implementation of the ITransmitter interface. " alt="JSONTransmitter" shape="rect" coords="0,56,108,80"/>
+<area href="class_j_s_o_n_transmitter.html" title="JSONTransmitter. " alt="JSONTransmitter" shape="rect" coords="0,56,108,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa9de6244169a54d19dcbbc9d861e9bdd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_transmitter.html#aa9de6244169a54d19dcbbc9d861e9bdd">NavAcquisition</a> (<a class="el" href="class_i_navigation.html">INavigation</a> *navigation)=0</td></tr>
-<tr class="memdesc:aa9de6244169a54d19dcbbc9d861e9bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> acquisition called by <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> constructor with an <a class="el" href="class_i_navigation.html" title="An interface for the Navigation unit of the system. ">INavigation</a> this-pointer to link <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> and <a class="el" href="class_j_s_o_n_transmitter.html" title="An implementation of the ITransmitter interface. ">JSONTransmitter</a> <br />
+<tr class="memdesc:aa9de6244169a54d19dcbbc9d861e9bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> acquisition called by <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> constructor with an <a class="el" href="class_i_navigation.html" title="An interface for the Navigation unit of the system. ">INavigation</a> this-pointer to link <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> and <a class="el" href="class_j_s_o_n_transmitter.html" title="JSONTransmitter. ">JSONTransmitter</a> <br />
 correctly, since mutual references are not possible.  <a href="#aa9de6244169a54d19dcbbc9d861e9bdd">More...</a><br /></td></tr>
 <tr class="separator:aa9de6244169a54d19dcbbc9d861e9bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae123bceb3c145a68190f75e012c82ca1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_transmitter.html#ae123bceb3c145a68190f75e012c82ca1">TransmitFromNav</a> (std::string const timestamp)=0</td></tr>
@@ -90,9 +90,9 @@ correctly, since mutual references are not possible.  <a href="#aa9de6244169a54d
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An interface for the Transmitter unit of the system. </p>
 <p>This module is responsible for writing data to the fromNav.json file. <br />
-Because <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> and <a class="el" href="class_j_s_o_n_transmitter.html" title="An implementation of the ITransmitter interface. ">JSONTransmitter</a> must call function in each other, <a class="el" href="_j_s_o_n_transmitter_8h_source.html">JSONTransmitter.h</a> has a forward declaration of <a class="el" href="class_i_navigation.html" title="An interface for the Navigation unit of the system. ">INavigation</a>,<br />
+Because <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> and <a class="el" href="class_j_s_o_n_transmitter.html" title="JSONTransmitter. ">JSONTransmitter</a> must call function in each other, <a class="el" href="_j_s_o_n_transmitter_8h_source.html">JSONTransmitter.h</a> has a forward declaration of <a class="el" href="class_i_navigation.html" title="An interface for the Navigation unit of the system. ">INavigation</a>,<br />
 <a class="el" href="_navigation_8h_source.html">Navigation.h</a> has a forward declaration of <a class="el" href="_i_transmitter_8h_source.html">ITransmitter.h</a>, JSONTransmitter.cpp includes <a class="el" href="_i_navigation_8h_source.html">INavigation.h</a>, Navigation.cpp includes <br />
-<a class="el" href="_i_transmitter_8h_source.html">ITransmitter.h</a>. The <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> calls NavAcquisition in <a class="el" href="class_j_s_o_n_transmitter.html" title="An implementation of the ITransmitter interface. ">JSONTransmitter</a> with a this-pointer parameter, and <a class="el" href="class_j_s_o_n_transmitter.html" title="An implementation of the ITransmitter interface. ">JSONTransmitter</a> then <br />
+<a class="el" href="_i_transmitter_8h_source.html">ITransmitter.h</a>. The <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> calls NavAcquisition in <a class="el" href="class_j_s_o_n_transmitter.html" title="JSONTransmitter. ">JSONTransmitter</a> with a this-pointer parameter, and <a class="el" href="class_j_s_o_n_transmitter.html" title="JSONTransmitter. ">JSONTransmitter</a> then <br />
 saves this object pointer. Through this method, the two objects hold a reference and pointer to each other, respectively.<br />
 </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="_navigation_8h_source.html">Navigation.h</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -120,7 +120,7 @@ saves this object pointer. Through this method, the two objects hold a reference
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> acquisition called by <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> constructor with an <a class="el" href="class_i_navigation.html" title="An interface for the Navigation unit of the system. ">INavigation</a> this-pointer to link <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> and <a class="el" href="class_j_s_o_n_transmitter.html" title="An implementation of the ITransmitter interface. ">JSONTransmitter</a> <br />
+<p><a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> acquisition called by <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> constructor with an <a class="el" href="class_i_navigation.html" title="An interface for the Navigation unit of the system. ">INavigation</a> this-pointer to link <a class="el" href="class_navigation.html" title="An implementation of the INavigation interface. ">Navigation</a> and <a class="el" href="class_j_s_o_n_transmitter.html" title="JSONTransmitter. ">JSONTransmitter</a> <br />
 correctly, since mutual references are not possible. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

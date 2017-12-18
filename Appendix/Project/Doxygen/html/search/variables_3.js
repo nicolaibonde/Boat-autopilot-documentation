@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['ellipsoid_5fflattening_5f',['ellipsoid_flattening_',['../class_navigation.html#ab25bb93175a44e55ec4c82723bed80d5',1,'Navigation']]],
-  ['end_5fposition_5f',['end_position_',['../class_coverage_rectangle.html#a94d02b5f3968197cb5e14ba210db5cf1',1,'CoverageRectangle']]],
-  ['equitorial_5fradius_5f',['equitorial_radius_',['../class_navigation.html#ae4d44e484a502468fdca6c9960556475',1,'Navigation']]],
-  ['ete_5f',['Ete_',['../class_navigation_data.html#ac1eca5710a02ef34daf821f8702435b6',1,'NavigationData']]]
+  ['d_5f',['d_',['../class_autopilot.html#a3fa28f11e803babac18005f18080f1b4',1,'Autopilot']]],
+  ['dc_5fmotor_5f',['dc_motor_',['../class_j_s_o_n_transmitter.html#a09ec7f7406b0331d973cced398ee18d3',1,'JSONTransmitter']]],
+  ['distance_5fbetween_5fpoints_5f',['distance_between_points_',['../class_navigation.html#ad4d59a06c27bb8251b051598337b8c39',1,'Navigation']]],
+  ['distance_5fbetween_5fxte_5fpoints_5f',['distance_between_xte_points_',['../class_navigation.html#a636ab57eb035fad598e387aa0073ac4b',1,'Navigation']]]
 ];

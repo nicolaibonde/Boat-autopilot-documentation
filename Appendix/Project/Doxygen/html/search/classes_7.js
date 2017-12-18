@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['navigation',['Navigation',['../class_navigation.html',1,'']]],
-  ['navigationdata',['NavigationData',['../class_navigation_data.html',1,'']]]
+  ['math',['Math',['../class_geographic_lib_1_1_math.html',1,'GeographicLib']]],
+  ['motorstatus',['MotorStatus',['../class_motor_status.html',1,'']]]
 ];

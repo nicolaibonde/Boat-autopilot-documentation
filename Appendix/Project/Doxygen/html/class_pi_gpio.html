@@ -20,7 +20,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="logo - side.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo - side - Copy.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -99,6 +99,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a652ada88b77939534e8f51ff4fc9cc50"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pi_gpio.html#a652ada88b77939534e8f51ff4fc9cc50">GpioServo</a> (unsigned user_gpio, unsigned pulsewidth) override</td></tr>
 <tr class="memdesc:a652ada88b77939534e8f51ff4fc9cc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts servo pulses on the GPIO, 0 (off), 500 (most anti-clockwise) to 2500 (most clockwise).  <a href="#a652ada88b77939534e8f51ff4fc9cc50">More...</a><br /></td></tr>
 <tr class="separator:a652ada88b77939534e8f51ff4fc9cc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad18bd4cf1f6841e92a068bf47e482cef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pi_gpio.html#ad18bd4cf1f6841e92a068bf47e482cef">GpioHardwarePWM</a> (unsigned user_gpio, unsigned frequency, unsigned dutycycle) override</td></tr>
+<tr class="memdesc:ad18bd4cf1f6841e92a068bf47e482cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use the dedicated hardware gpios for the pwm.  <a href="#ad18bd4cf1f6841e92a068bf47e482cef">More...</a><br /></td></tr>
+<tr class="separator:ad18bd4cf1f6841e92a068bf47e482cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab998b5a5e719041cc7b9c1e8815a9979"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pi_gpio.html#ab998b5a5e719041cc7b9c1e8815a9979">GpioTicks</a> () override</td></tr>
+<tr class="memdesc:ab998b5a5e719041cc7b9c1e8815a9979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of microseconds since system boot.  <a href="#ab998b5a5e719041cc7b9c1e8815a9979">More...</a><br /></td></tr>
+<tr class="separator:ab998b5a5e719041cc7b9c1e8815a9979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_i_g_p_i_o"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_g_p_i_o')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_i_g_p_i_o.html">IGPIO</a></td></tr>
 <tr class="memitem:a064470ed9e63ab51335193396c40e817 inherit pub_methods_class_i_g_p_i_o"><td class="memItemLeft" align="right" valign="top"><a id="a064470ed9e63ab51335193396c40e817"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_g_p_i_o.html#a064470ed9e63ab51335193396c40e817">~IGPIO</a> ()</td></tr>
@@ -110,6 +116,61 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl class="section note"><dt>Note</dt><dd>This is just a wrapper for the pigpio library </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="http://abyz.me.uk/rpi/pigpio/cif.html">http://abyz.me.uk/rpi/pigpio/cif.html</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad18bd4cf1f6841e92a068bf47e482cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18bd4cf1f6841e92a068bf47e482cef">&#9670;&nbsp;</a></span>GpioHardwarePWM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PiGpio::GpioHardwarePWM </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>user_gpio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>frequency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>dutycycle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Use the dedicated hardware gpios for the pwm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user_gpio</td><td>What gpio should the hardware pwm run on </td></tr>
+    <tr><td class="paramname">frequency</td><td>What frequency should it run 0 25000000 </td></tr>
+    <tr><td class="paramname">dutycycle</td><td>What dutycycle between 0 and 1000000 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if OK </dd></dl>
+
+<p>Implements <a class="el" href="class_i_g_p_i_o.html#a8c7fad7b9079919cead8c4decb2b5cb9">IGPIO</a>.</p>
+
+</div>
+</div>
 <a id="a4eae1bac6909fa8e136a214d12f1c27f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4eae1bac6909fa8e136a214d12f1c27f">&#9670;&nbsp;</a></span>GpioPWM()</h2>
 
@@ -299,6 +360,36 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl class="section return"><dt>Returns</dt><dd>Returns the numerically closest frequency if OK </dd></dl>
 
 <p>Implements <a class="el" href="class_i_g_p_i_o.html#a1f7896afe8b13b1dc4e7302d9c48292b">IGPIO</a>.</p>
+
+</div>
+</div>
+<a id="ab998b5a5e719041cc7b9c1e8815a9979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab998b5a5e719041cc7b9c1e8815a9979">&#9670;&nbsp;</a></span>GpioTicks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t PiGpio::GpioTicks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of microseconds since system boot. </p>
+<dl class="section return"><dt>Returns</dt><dd>Time since boot in microseconds (uint32_t format) </dd></dl>
+
+<p>Implements <a class="el" href="class_i_g_p_i_o.html#a0781775ab1e793477a1b8c9dc47d92ac">IGPIO</a>.</p>
 
 </div>
 </div>

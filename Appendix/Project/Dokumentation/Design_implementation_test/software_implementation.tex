@@ -1,7 +1,7 @@
 \section{Software implementation}
 \label{sec:software_implementation}
 \subsection{Autopilot}
-The Autopilot is mad up of 2 separate PID loops, to implement PID loops the MiniPID library was used\cite{minipid}. It allows for setting output limits, which setup in the constructor of the Autopilot as seen in listing~\ref{lst:autopilot_con}. It can also be seen that the PID terms are all set to -1, this is used to indicate an invalid valued. There is only one set of PID terms because terms for the thruster was not parameterized out to the website. Therefore some relaxed values are set, so the motor is not going to accelerate to much. 
+The Autopilot is mad up of two separate PID loops, they were implemented using the MiniPID library \cite{minipid}. It allows for setting output limits, which are setup in the constructor of the Autopilot as seen in listing~\ref{lst:autopilot_con}. It can also be seen that the PID terms are all set to -1, this is used to indicate an invalid valued. There is only one set of PID terms because terms for the thruster was not parameterized out to the website. Therefore some relaxed values are set, so the motor is not going to accelerate to much. 
 
 \begin{lstlisting}[caption = {Constructor method of the Autopilot}, captionpos=b, label={lst:autopilot_con}, language=C++,firstnumber=1]
 Autopilot::Autopilot(IPositionMotor& rudder, ISpeedMotor& thruster): rudder_pid_(0, 0, 0), thruster_pid_(1,0,0), rudder_(rudder), thruster_(thruster)
@@ -25,7 +25,7 @@ It was decided that stopping the boat just means to stop the motor and center th
 Before the \texttt{Run} function will work, there needs to have been a call to the \texttt{SetParameters} function, which sets the rudder PID terms. 
 
 \subsection{JSONReceiver}
-The responsibility of the JSONReciever is to get the activeParam.JSON, and the toNav.JSON files and parse them. After parsing it needs to call the appropriate functions in other object to let them know of this new data. To handle the JSON format in c++ the "json for modern c++" library by Niels Lohmann was used\cite{json}. 
+The responsibility of the JSONReciever is to get the activeParam.JSON, and the toNav.JSON files and parse them. After parsing it needs to call the appropriate functions in other object to let them know of this new data. To handle the JSON format in C++ the "json for modern c++" library by Niels Lohmann was used\cite{json}. 
 
 The recieving of toNav.json works by reading the contents of file, and parsing it into JSON, after this it needs to figure out what kind of task is in the file. This is done by first using the json find function on the parsed json object. If the task is either; none, stop, start, just the task is passed on to the Navigation via the PerformTask function. If the task is calcCoverage, it goes through and checks if the toNav protocol is adhered to. If every thing is good it create a CoverageRectangle object which is then passed on to the Navigation together with the task, through the PerformTask function.
 The exact same thing happens with the calcP2P task, but it creates a TargetPosition object instead.
@@ -39,7 +39,7 @@ Because the Transmitter and the Navigation are mutually dependent, the Transmitt
 
 The Transmitter is called by the Navigation when a task has been performed, and is given a timestamp parameter. It then collects NavigationData from the Navigation class, MotorStatuses from the two motors, and a GPSStatus from the gps. From this it builds a JSON "tree" of objects, and packages them correctly, taking edge cases into account, as defined by the fromNav.json protocol. 
 
-Listing ~\ref{lst:TransmitFromNav} shows the final few lines of the TransmitFromNav function, where the fromNav JSON is assembled and overwrites the contents of the fromNav.json file.
+Listing~\ref{lst:TransmitFromNav} shows the final few lines of the TransmitFromNav function, where the fromNav JSON is assembled and overwrites the contents of the fromNav.json file.
 
 \begin{lstlisting}[caption = {Last lines of the TransmitFromNav function in the Transmitter class}, captionpos=b, label={lst:TransmitFromNav}, language=C++,firstnumber=1]
 //Construction of fromNav JS object
@@ -73,8 +73,7 @@ This makes great circle paths ill-suited as a way of treating the globe. The use
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{Images/Implementation/Rhumb_vs_great_circle_mercator_projection}
-\caption{A comparison of rhumb lines and great circle lines after mercator projection}
-%https://blogs.esri.com/esri/arcgis/2012/03/05/mercators-500th-birthday/
+\caption{A comparison of rhumb lines and great circle lines after mercator projection \cite{rhumb-greate-cirle}}
 \label{fig:rhumbgreatcirclemercator}
 \end{figure}
 
@@ -162,11 +161,11 @@ std::vector<Coordinate> Navigation::calculatePointsFromSegments(std::vector<Coor
 }
 \end{lstlisting}
 
-As seen in the source code, the general idea is to create a rhumb line between the current coordinate and the target position, and then sample the rhumb line with the distance_between_points_ variable. Figure ~\ref{fig:p2p_path} below shows the UI when a point to point path has been calculated, and figure ~\ref{fig:p2p_path_traversed} shows the point to point path and the part of the path that has already been completed.
+As seen in the source code, the general idea is to create a rhumb line between the current coordinate and the target position, and then sample the rhumb line with the distance_between_points_ variable. Figure~\ref{fig:p2p_path} below shows the UI when a point to point path has been calculated, and figure~\ref{fig:p2p_path_traversed} shows the point to point path and the part of the path that has already been completed.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\linewidth]{Images/Implementation/P2P_path_being_traversed}
+\includegraphics[max width=0.9\linewidth]{Images/Implementation/P2P_path_being_traversed}
 \caption{A calculated point to point path in the UI}
 \label{fig:p2p_path}
 \end{figure}
@@ -174,7 +173,7 @@ As seen in the source code, the general idea is to create a rhumb line between t
 %TODO Dette er grimt as fuck
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\linewidth]{Images/Implementation/P2P_path_calculated}
+\includegraphics[max width=0.9\linewidth]{Images/Implementation/P2P_path_calculated}
 \caption{A calculated point to point path being traversed in the UI}
 \label{fig:p2p_path_traversed}
 \end{figure}
@@ -183,20 +182,20 @@ The equivalent process cannot be applied to the coverage rectangle of course, si
 
 An area is mapped by defining a tool width, the width of the mapping tool used, or just the desired sampling of the area, and then drawing parallel lines over the coverage area seperated by this tool width. 
 
-The CoverageRectangle case in calculatePathSegments thus calculates the start and end points of these ines. It was chosen that each line would have a constant latitude to ease this process, but had the project been further developed, perhaps it could have been made possible to rotate this rectangle. Between these parallel lines, the boat must turn pi radians and get onto another line. This was done by connecting the parallel lines with half spheres at the ends in a sensible manner, and deal with all the edge cases this creates. 
+The CoverageRectangle case in calculatePathSegments thus calculates the start and end points of these lines. It was chosen that each line would have a constant latitude to ease this process, but had the project been further developed, perhaps it could have been made possible to rotate this rectangle. Between these parallel lines, the boat must turn pi radians and get onto another line. This was done by connecting the parallel lines with half spheres at the ends in a sensible manner, and deal with all the edge cases this creates. 
 
 The calculatePointsFromSegments for the CoverageRectangle case samples between the parallel lines, and adds some points found on a half circle between the endpoints. It also checks whether the tool_width and total latitude difference divide nicely, and if not, changes its route slightly at the start of the coverage rectangle to correct for this. An example of a drawn coverage rectange in the UI can be seen in figure ~\ref{fig:coverage_rectangle_path}. A zoomed-in version of the end of this coveragerectangle can be seen in figure ~\ref{fig:coverage_rectangle_path_zoom}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\linewidth]{Images/Implementation/Coverage_rectangle_on_map}
+\includegraphics[max width=0.9\linewidth]{Images/Implementation/Coverage_rectangle_on_map}
 \caption{A calculated coverage rectangle path in the UI}
 \label{fig:coverage_rectangle_path}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\linewidth]{Images/Implementation/Coverage_rectangle_on_map_zoom}
+\includegraphics[max width=0.9\linewidth]{Images/Implementation/Coverage_rectangle_on_map_zoom}
 \caption{A zoomed-in calculated coverage rectangle path in the UI}
 \label{fig:coverage_rectangle_path_zoom}
 \end{figure}
@@ -262,7 +261,7 @@ unsigned Servo::percentageToServo(const double percentage) const
 \end{lstlisting}
 
 \subsection{Ublox-neo7m}
-The Ublox-neo7m is a GPS receiver by ublox, and it follows the NMEA protocol. This means that it sends out a serial telegram. To get this telegram from a serial device the simpleSerial library is used\cite{simple_serial}. The Ublox class has to responsibilities, it needs to get the concrete gps data, and then it needs to allow other classes to get pose data, speed, and status data. 
+The Ublox-neo7m is a GPS receiver by ublox, and it follows the NMEA protocol. This means that it sends out a serial telegram. To get this telegram from a serial device the simpleSerial library is used\cite{simple_serial}. The Ublox class has two responsibilities, it needs to get the concrete gps data, and then it needs to allow other classes to get pose data, speed, and status data. 
 
 To make sure that this class is never blocking the execution of other functions by waiting for GPS data. It has the Setup function which returns a thread that runs the function getGPSData. This function keeps reading from the serial device, and when it gets a GGA telegram it parses it in to a Pose, and a bunch of variables needed for a GPSStatus object. It also parses the VTG telegram since it contains the speed of the GPSReciever. 
 
@@ -313,7 +312,7 @@ The design is build up of a simple side menu, with a logo and the menu items. Be
 \label{fig:frontpage}
 \end{figure}
 
-In figure~\ref{fig:p2ppage} it can be seen how the website handles categorization of functionality. In the figure there is a Coordinate panel which hold two more fields, one for latitude and longitude. Also there is a panel with the Estimated time en-route, and buttons to control the boat. The coordinate panel and Controls panel are also encapsulated in a box, which is besides a box with a map panel in it. This structure is created to make the website more size flexible, and it clearly defines different areas of interest.
+In figure~\ref{fig:p2ppage} it can be seen how the website handles categorization of functionality. In the figure there is a Coordinate panel which hold two more fields, one for latitude and longitude. Also there is a panel with the estimated time en-route, and buttons to control the boat. The coordinate panel and Controls panel are also encapsulated in a box, which is besides a box with a map panel in it. This structure is created to make the website more size flexible, and it clearly defines different areas of interest.
 
 \begin{figure}[H]
 \centering
@@ -322,12 +321,12 @@ In figure~\ref{fig:p2ppage} it can be seen how the website handles categorizatio
 \label{fig:p2ppage}
 \end{figure}
 
-Apart for the design of the website, it is develop with AngularJS\cite{angular}, which is a javascript framework. It makes data binding very easy, also it allows the website to only load once, after this the context is just changed. This context changing makes it very easy to develop different parts of the website separately, and still retain no loading of pages.
+Apart for the design of the website, it is develop with AngularJS\cite{angular}, which is a JavaScript framework. It makes data binding very easy, also it allows the website to only load once, after this the context is just changed. This context changing makes it very easy to develop different parts of the website separately, and still retain no page loading.
 
 \subsubsection{Edit parameters}
-The edit parameters page need to be able to create, delete, edit and active parameter profiles. A Parameter profile is a JSON object containing different parameters, it is the same as the active parameter profile, which is describe in the section~\ref{sec:active_param}.
+The edit parameters page need to be able to create, delete, edit and active parameter profiles. A parameter profile is a JSON object containing different parameters, it is the same as the active parameter profile, which is describe in the section~\ref{sec:active_param}.
 
-A list of all of these parameter profiles is first loaded into a variable, if there are any. These parameter profiles comes from a file called profiles.JSON. When the user clicks the "New" button it create a default profile and pushes it to the list of profiles, and subsequently saves the list to the profiles.JSON file, as seen in listing~\ref{lst:newprofile}. 
+A list of all of these parameter profiles is first loaded into a variable, if there are any. These parameter profiles comes from a file called profiles.json. When the user clicks the "New" button it create a default profile and pushes it to the list of profiles, and subsequently saves the list to the profiles.json file, as seen in listing~\ref{lst:newprofile}. 
 
 \begin{lstlisting}[caption = {NewProfile function in editParam.js}, captionpos=b, label={lst:newprofile}, language=C++,firstnumber=1]
  $scope.NewProfile = function() {
@@ -347,7 +346,7 @@ A list of all of these parameter profiles is first loaded into a variable, if th
   }
 \end{lstlisting}
 
-If the user presses the "Delete" button with a parameter profile selected, it will get deleted if there is not currently a profile open in the editor. If the profile being deleted is the active on, then the active one is replaces with an empty profile called None. When the profile is deleted from the list, then the list is saved to the profiles.JSON file, the source code can be seen in listing~\ref{lst:deleteprofile}
+If the user presses the "Delete" button with a parameter profile selected, it will get deleted if there is not currently a profile open in the editor. If the profile being deleted is the active on, then the active one is replaces with an empty profile called None. When the profile is deleted from the list, then the list is saved to the profiles.json file, the source code can be seen in listing~\ref{lst:deleteprofile}
 
 \begin{lstlisting}[caption = {DeleteProfile function in editParam.js}, captionpos=b, label={lst:deleteprofile}, language=C++,firstnumber=1]
  $scope.DeleteProfile = function(index) {
@@ -389,7 +388,7 @@ $scope.EditProfile = function(index) {
   }
 \end{lstlisting}
 
-When the edit section is visible the user can change any of the variables, when happy with the changes the user can press the "Save" button. This hides the edit section and saves the list of profiles to the profiles.JSON file. But from the code in listing~\ref{lst:saveprofile} it is not apparent how the \texttt{Profile\_} variable is saved. This is because javascript always handles copying variables by reference, so \texttt{Profiles\_} is a reference to one position in the list of profiles. And when saving the list it is already updated.
+When the edit section is visible the user can change any of the variables, when happy with the changes the user can press the "Save" button. This hides the edit section and saves the list of profiles to the profiles.json file. But from the code in listing~\ref{lst:saveprofile} it is not apparent how the \texttt{Profile\_} variable is saved. This is because JavaScript always handles copying variables by reference, so \texttt{Profiles\_} is a reference to one position in the list of profiles. And when saving the list it is already updated.
 
 \begin{lstlisting}[caption = {SaveProfile function in editParam.js}, captionpos=b, label={lst:saveprofile}, language=C++,firstnumber=1]
 $scope.SaveProfile = function() {
@@ -399,7 +398,7 @@ $scope.SaveProfile = function() {
   }
 \end{lstlisting}
 
-But say the user was not happy with the changes, the "Revert" button can be pressed. This goes through all the parameters in the profile and overrides their values and and names with what they were when the "Edit button was pressed, this sequence can be seen in listing~\ref{lst:revertprofile}.
+Say the user was not happy with the changes, the "Revert" button can be pressed. This goes through all the parameters in the profile and overrides their values and and names with what they were when the "Edit button was pressed, this sequence can be seen in listing~\ref{lst:revertprofile}.
 
 \begin{lstlisting}[caption = {RevertProfile function in editParam.js}, captionpos=b, label={lst:revertprofile}, language=C++,firstnumber=1]
 $scope.RevertProfile = function() {
@@ -411,7 +410,7 @@ $scope.RevertProfile = function() {
   }
 \end{lstlisting}
 
-The last button not explained is the "Activate" button. When the user presses the button, the selected profile should be set active. Being active means that the name of the profile is displayed next to "Active Profile:" and that the profile and its content is saved to the activeParam.JSON file. The simple function can be seen in listing~\ref{lst:activeparam}.
+The last button not explained is the "Activate" button. When the user presses the button, the selected profile should be set active. Being active means that the name of the profile is displayed next to "Active Profile:" and that the profile and its content is saved to the activeParam.json file. The simple function can be seen in listing~\ref{lst:activeparam}.
 
 \begin{lstlisting}[caption = {ActivateProfile function in editParam.js}, captionpos=b, label={lst:activeparam}, language=C++,firstnumber=1]
 $scope.ActivateProfile = function(index) {
@@ -420,7 +419,7 @@ $scope.ActivateProfile = function(index) {
   }
 \end{lstlisting}
 
-Many of the function discussed save variables to different files, this is done through the \texttt{saveToFile} function. This function makes a POST call to the server. This POST call includes the data to save, any kind of JSON variable, it also needs a url.The url is used by the server to figure out what to do with the data, this is explained in more detail in section~\ref{sec:nodejs_server} \nameref{sec:nodejs_server} on page~\pageref{sec:nodejs_server}. The syntax for sending a POST call with Angular, can be seen in listing~\ref{lst:savetofile}.
+Many of the function discussed save variables to different files, this is done through the \texttt{saveToFile} function. This function makes a POST call to the server. This POST call includes the data to save, any kind of JSON variable, it also needs a url. The url is used by the server to figure out what to do with the data, this is explained in more detail in section~\ref{sec:nodejs_server} \nameref{sec:nodejs_server} on page~\pageref{sec:nodejs_server}. The syntax for sending a POST call with Angular, can be seen in listing~\ref{lst:savetofile}.
 
 \begin{lstlisting}[caption = {saveToFile function in editParam.js}, captionpos=b, label={lst:savetofile}, language=C++,firstnumber=1]
 saveToFile = function(url, content) {
@@ -542,7 +541,7 @@ setPath = function(path) {
 	}
 \end{lstlisting}
 
-When the user presses the start button the Action function is called. The action state dictates that the start function should be called.  The website save a start task in the toNav.JSON file, then it calls the waitForCompletion function, as seen in listing~\ref{lst:start}. Which starts an asynchronous loop that read the data in fromNav.JSON. With this data it updates the progress and ETE, as well as displaying the completed path on the map as a green line. 
+When the user presses the start button the Action function is called. The action state dictates that the start function should be called.  The website save a start task in the toNav.json file, then it calls the waitForCompletion function, as seen in listing~\ref{lst:start}. Which starts an asynchronous loop that read the data in fromNav.json. With this data it updates the progress and ETE, as well as displaying the completed path on the map as a green line. 
 
 \begin{lstlisting}[caption = {the start and waitForCompletion functions in p2p.js}, captionpos=b, label={lst:start}, language=C++,firstnumber=1]
     //Send command to navigation unit
@@ -580,7 +579,7 @@ When the user presses the start button the Action function is called. The action
     }
 \end{lstlisting}
 
-At any point in time the user can press the "Stop" button which call the Stop function. It sends a stop task to the navigation through the toNav.JSON file, seen in listing~\ref{lst:stop}. Also the Stop function updates some visuals, for example it makes the progress bar red, and makes the ETE say "Canceled".
+At any point in time the user can press the "Stop" button which call the Stop function. It sends a stop task to the navigation through the toNav.json file, seen in listing~\ref{lst:stop}. Also the Stop function updates some visuals, for example it makes the progress bar red, and makes the ETE say "Canceled".
 
 \begin{lstlisting}[caption = {Stop function in p2p.js}, captionpos=b, label={lst:stop}, language=C++,firstnumber=1]
     $scope.Stop = function() {
@@ -719,7 +718,7 @@ The status page also has a Map just like the point to point page and coverage pa
 \end{figure}
 
 
-\subsection{Nodejs server}
+\subsection{Node.js server}
 \label{sec:nodejs_server}
 The Nodejs server can be thought of as the back-end of the website, it is what needs to run for the website to be live. Nodejs is a javascript runtime\cite{nodejs}. This project uses the server to handle three of post calls that the client can make through the website, and also hosting the website on port 80. 
 

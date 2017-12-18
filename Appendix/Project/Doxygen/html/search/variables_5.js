@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['gpio_5f',['gpio_',['../class_d_c_motor.html#aa1bb908b17fca5264dfa3a0a36bed729',1,'DCMotor::gpio_()'],['../class_servo.html#ac5ddc7b035029d13c786232f3a51577d',1,'Servo::gpio_()']]],
-  ['gps_5f',['gps_',['../class_j_s_o_n_transmitter.html#adacad42114391b1061780f9dc80a29c8',1,'JSONTransmitter::gps_()'],['../class_navigation.html#a86a2eb614f7170703a200bb31f44b5c9',1,'Navigation::gps_()']]]
+  ['filepath_5f',['filepath_',['../class_j_s_o_n_transmitter.html#a7ca5ecd756650466a3e2979e6e7e70fb',1,'JSONTransmitter']]],
+  ['fix_5f',['fix_',['../class_g_p_s_status.html#abb84e1653bf03682b00d82cabd10a416',1,'GPSStatus']]],
+  ['fix_5ftimestamp_5f',['fix_timestamp_',['../class_g_p_s_status.html#ac95fd9236af7b03bd702339727bd6f1c',1,'GPSStatus']]],
+  ['frequency_5f',['frequency_',['../class_d_c_motor.html#aef5cd851f95804ab58e564f054beb7e2',1,'DCMotor']]]
 ];

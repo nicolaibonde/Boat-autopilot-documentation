@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['d_5f',['d_',['../class_autopilot.html#a3fa28f11e803babac18005f18080f1b4',1,'Autopilot']]],
-  ['dc_5fmotor_5f',['dc_motor_',['../class_j_s_o_n_transmitter.html#a09ec7f7406b0331d973cced398ee18d3',1,'JSONTransmitter']]],
-  ['distance_5fbetween_5fpoints_5f',['distance_between_points_',['../class_navigation.html#ad4d59a06c27bb8251b051598337b8c39',1,'Navigation']]],
-  ['distance_5fbetween_5fxte_5fpoints_5f',['distance_between_xte_points_',['../class_navigation.html#a636ab57eb035fad598e387aa0073ac4b',1,'Navigation']]]
+  ['completed_5fpath_5f',['Completed_path_',['../class_navigation_data.html#a6da057aeda3c3aa2233b64630c232e7b',1,'NavigationData::Completed_path_()'],['../class_navigation.html#a609a64bd848eef00dcb4194a59724a48',1,'Navigation::completed_path_()']]],
+  ['coordinate_5f',['Coordinate_',['../class_pose.html#a5c78858d8cbc103a0ea0f6e909ce8099',1,'Pose']]],
+  ['current_5fspeed',['current_speed',['../class_autopilot.html#affd17075bf0c4cf993b24227249401fa',1,'Autopilot']]]
 ];

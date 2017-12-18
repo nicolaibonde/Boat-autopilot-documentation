@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['navigation_5f',['navigation_',['../class_j_s_o_n_receiver.html#ac4d83534c0dc116cae533fb72b40d99d',1,'JSONReceiver::navigation_()'],['../class_j_s_o_n_transmitter.html#a4aab1f21105c8cd001152cfaf9187762',1,'JSONTransmitter::navigation_()']]]
+  ['max_5fspeed_5f',['max_speed_',['../class_autopilot.html#aaf8bc1c14536b10feeee1bb7c9a856dd',1,'Autopilot']]],
+  ['motor_5ftype_5f',['motor_type_',['../class_motor_status.html#a57d20c3b639af91c342af6619d01f2c7',1,'MotorStatus']]]
 ];

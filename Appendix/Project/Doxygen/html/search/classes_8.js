@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pigpio',['PiGpio',['../class_pi_gpio.html',1,'']]],
-  ['pose',['Pose',['../class_pose.html',1,'']]]
+  ['navigation',['Navigation',['../class_navigation.html',1,'']]],
+  ['navigationdata',['NavigationData',['../class_navigation_data.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boolean',['boolean',['../namespacenlohmann_1_1detail.html#a90aa5ef615aa8305e9ea20d8a947980fa84e2c64f38f78ba3ea5c905ab5a2da27',1,'nlohmann::detail']]]
+  ['distance',['DISTANCE',['../class_geographic_lib_1_1_rhumb.html#a04b001e0f85f8b57a26e9d7995aec124a4db8cf0132fb4dc6da1f832854d8da0e',1,'GeographicLib::Rhumb::DISTANCE()'],['../class_geographic_lib_1_1_rhumb_line.html#a1016b14e551f4863939a33e67d9efc4daaa298227647a145e642e6186e12826af',1,'GeographicLib::RhumbLine::DISTANCE()']]]
 ];
