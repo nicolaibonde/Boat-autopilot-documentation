@@ -32,11 +32,11 @@ The controller is written in C++ and is therefore compiled, the compiler used wh
 \subsection{Code}
 %To start with lets have a look at the controller code. It is broken up just like the design states. 
 
-One of the key components of the system is the GPS receiver, it is the sensor responsible for locating the boat. The controller has a class called Ublox\_neo7m, it is an implementation of the IGPS interface. The Ublox\_neo7m class gets its data by setting up a thread, which continually reads on a serial interface. The data from the serial interface is written to the correct variables. Any other part of the system can get data from the GPS receiver be it, status data like fix and horizontal dilution of precision, or the pose of the boat. 
+One of the key components of the system is the GPS receiver, it is the sensor responsible for locating the boat. The controller has a class called Ublox\_neo7m, it is an implementation of the IGPS interface. The Ublox\_neo7m class gets its data by setting up a thread, which continually reads on a serial interface. The data from the serial interface is written to the correct variables. Any other part of the system can get data from the GPS receiver be it, status data such as fix and horizontal dilution of precision, or the pose of the boat. 
 
 There is a thruster in the system as well, it is a DC-motor, which can be controlled by a PWM signal. Therefore the implementation of the class DCMotor uses an object of type IGPIO to send out PWM signals, where IGPIO is an interface that describes a general purpose I/O driver for a system. In this case it is for the Raspberry Pi and the PiGpio library is used\cite{pigpio}. It allows for the motor to set a hardware PWM to a frequency of 30 kHz and a wide spectrum of duty cycles.
 
-As the thruster, the rudder class, called Servo, also uses an IGPIO interface to send PWM signals to a GPIO pin. The servo can set the position between 0\% and 100\%. In reality, the servos full range of motion is described as period of between 500µS and 2500µS, and a PWM frequency of 50 Hz. So the Servo class converts from one input to the other, it also uses the PiGpio built in function called GpioServo. Both the rudder and thruster is in controlled by the autopilot.
+As the thruster, the rudder class, called Servo, also uses an IGPIO interface to send PWM signals to a GPIO pin. The servo can set the position between 0\% and 100\%. In reality, the servos full range of motion is described as period of between 500 µs and 2500 µs, and a PWM frequency of 50 Hz. So the Servo class converts from one input to the other, it also uses the PiGpio built in function called GpioServo. Both the rudder and thruster is in controlled by the autopilot.
 
 The Autopilot is in essence built up of two PID loops, one for the rudder, and one for the thruster. In the current implementation, it allows for the user to change the PID terms for the rudder PID loop through the user interface. The autopilots gets the data for what to do from the navigation class.
 
@@ -48,7 +48,7 @@ So for our project, the goal is not to get from A to B as quickly as possible, b
 
 The navigation unit uses the GeographicLib library to calculate rhumb lines and rhumb distances. Initially, an algorithm was written by the devleopment team to do this, but after comparing it to the one offered in the Geographic library, the performance and precision was much better, and it was decided to use the library for these two functions, and for importing the WGS84 constants. All other Navigation algorithms and calculations have been designed, developed, and tested by the project team.
 
-How the algorithms on the Navigation unit work can be seen in the documentation, section~\ref{sec:software_implementation} on page~\pageref{sec:software_implementation}.
+How the algorithms in the Navigation unit work can be seen in the documentation, section~\ref{sec:software_implementation} on page~\pageref{sec:software_implementation}.
 
 The navigation uses the JSONTrasmitter to send data to the user interface.
 
@@ -68,7 +68,7 @@ The status page on the website has one responsibility which is parsing the statu
 
 Lastly on the website there is the edit parameter page, and this is where the technician setup to boat with all of the parameters that can be modified. It does this by letting the user create, delete and edit JSON objects in a list. This list is saved on the server, along with the currently active parameter profile. 
 
-As mentioned before the user interface also has a Node.js server\cite{nodejs}. It is what is responsible for handling POST calls from the website. All of the POST calls it is setup to handle is for saving data to a file, so both the website and the controller can read it.
+As mentioned before the user interface is hosted on a Node.js server\cite{nodejs}. This is what is responsible for handling POST calls from the website. All of the POST calls it is setup to handle is for saving data to a file, so both the website and the controller can read it.
 
 %GPS
 %Servo / Motor
